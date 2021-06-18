@@ -12,7 +12,7 @@ namespace BitadAPI.Repositories
     {
         public Task<ICollection<Workshop>> GetAll();
         public Task<Workshop> GetByCode(string code);
-        public Task<Workshop> IncrementParticipantCount(int id);
+        public Task<Workshop> AddParticipant(int id, User user);
     }
 
     public class WorkshopRepository : Repository<Workshop>, IWorkshopRepository
@@ -26,17 +26,17 @@ namespace BitadAPI.Repositories
             return await GetAll().Include(x => x.Speaker).FirstOrDefaultAsync(x => x.Code == code);
         }
 
-        public async Task<Workshop> IncrementParticipantCount(int id)
+        public async Task<Workshop> AddParticipant(int id, User user)
         {
             var workshop = await GetAll().FirstOrDefaultAsync(x => x.Id == id);
-            workshop.ParticipantsNumber++;
+            workshop.Participants.Add(user);
             var result = await UpdateAsync(workshop);
             return result;
         }
 
         async Task<ICollection<Workshop>> IWorkshopRepository.GetAll()
         {
-            return await GetAll().Include(x => x.Speaker).ToListAsync();
+            return await GetAll().Include(x => x.Participants).Include(x => x.Speaker).ToListAsync();
         }
 
         

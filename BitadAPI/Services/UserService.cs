@@ -82,12 +82,12 @@ namespace BitadAPI.Services
                 Workshop = await _workshopRepository.GetByCode(registrationData.WorkshopCode)
             };
 
-            var result = await _userRepository.CreateUser(user);
+            var resultUser = await _userRepository.CreateUser(user);
 
-            if (result is null) return null;
-            if (result.Workshop is not null)
+            if (resultUser is null) return null;
+            if (resultUser.Workshop is not null)
             {
-                result.Workshop = await _workshopRepository.IncrementParticipantCount(result.Workshop.Id);
+                resultUser.Workshop = await _workshopRepository.AddParticipant(resultUser.Workshop.Id, resultUser);
             }
 
             return new DtoRegistrationResponse
@@ -95,8 +95,8 @@ namespace BitadAPI.Services
                 FirstName = registrationData.FirstName,
                 LastName = registrationData.LastName,
                 Email = registrationData.Email,
-                LoginCode = result.Code,
-                Workshop = _mapper.Map<DtoWorkshop>(result.Workshop)
+                LoginCode = resultUser.Code,
+                Workshop = _mapper.Map<DtoWorkshop>(resultUser.Workshop)
             };
         }
 
