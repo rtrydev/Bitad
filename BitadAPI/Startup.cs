@@ -91,12 +91,14 @@ namespace BitadAPI
             services.AddTransient<IStaffRepository, StaffRepository>();
             services.AddTransient<IQrCodeRedeemRepository, QrCodeRedeemRepository>();
             services.AddTransient<IQrCodeRepository, QrCodeRepository>();
+            services.AddTransient<ISponsorRepository, SponsorRepository>();
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IWorkshopService, WorkshopService>();
             services.AddScoped<IAgendaService, AgendaService>();
             services.AddScoped<IStaffService, StaffService>();
             services.AddScoped<IQrCodeRedeemService, QrCodeRedeemService>();
+            services.AddScoped<ISponsorService, SponsorService>();
 
             services.AddControllers();
         }

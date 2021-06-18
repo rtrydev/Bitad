@@ -13,6 +13,7 @@ namespace BitadAPI.Context
         public virtual DbSet<Workshop> Workshops { get; set; }
         public virtual DbSet<QrCode> QrCodes { get; set; }
         public virtual DbSet<QrCodeRedeem> QrCodeRedeems { get; set; }
+        public virtual DbSet<Sponsor> Sponsors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
