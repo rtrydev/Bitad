@@ -20,6 +20,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
 using BitadAPI.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace BitadAPI
 {
@@ -28,6 +29,9 @@ namespace BitadAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
+            var context = new RepositoryContext();
+            context.Database.Migrate();
         }
 
         public IConfiguration Configuration { get; }

@@ -17,7 +17,7 @@ namespace BitadAPI.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(@"Server=localhost;Database=Bitad;User Id=postgres;Password=Pa$$w0rd");
+            optionsBuilder.UseNpgsql(@"Server=db;Database=Bitad;User Id=postgres;Password=Pa$$w0rd");
         }
 
     }
