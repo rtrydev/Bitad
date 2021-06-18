@@ -1,0 +1,47 @@
+.hamburger {
+  display: none;
+  position: relative;
+  padding: 0;
+  width: 1.833rem;
+  background-color: unset;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger__bar {
+  margin-bottom: 0.278rem;
+  height: 0.167rem;
+  background-color: var(--black);
+  transition-timing-function: ease;
+  transition-duration: 0.3s;
+  transition-property: transform, opacity;
+}
+
+.hamburger__bar:last-child {
+  margin-bottom: 0;
+}
+
+.hamburger:hover .hamburger__bar,
+.hamburger:focus .hamburger__bar {
+  background-color: var(--accent);
+}
+
+/* Hamburger bars animation */
+.hamburger--open .hamburger__bar:first-child {
+  transform: translate3d(0, 8px, 0) rotate(45deg);
+}
+
+.hamburger--open .hamburger__bar:last-child {
+  transform: translate3d(0, -8px, 0) rotate(-45deg);
+}
+
+/* Not first and not last bar */
+.hamburger--open .hamburger__bar:not(:first-child):not(:last-child) {
+  opacity: 0;
+}
+
+@media all and (max-width: 782px) {
+  .hamburger {
+    display: block;
+  }
+}

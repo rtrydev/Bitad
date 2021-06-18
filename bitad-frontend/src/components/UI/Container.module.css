@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+}
+
+.container__wrapper {
+  margin: auto;
+  max-width: var(--max-width);
+  padding: 0 var(--margin-xs);
+}

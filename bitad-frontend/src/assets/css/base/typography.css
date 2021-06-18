@@ -1,0 +1,77 @@
+:root {
+  --root-font-size: 18px;
+  --font-size-xxl: 62px;
+  --line-height-xxl: 70px;
+  --font-size-xl: 48px;
+  --line-height-xl: 56px;
+  --font-size-l: 28px;
+  --line-height-l: 36px;
+  --font-size-m: 24px;
+  --line-height-m: 32px;
+  --font-size-s: 16px;
+  --line-height-s: 24px;
+}
+
+@media all and (max-width: 782px) {
+  :root {
+    --font-size-m: 20px;
+    --line-height-m: 28px;
+    --font-size-xxl: 44px;
+    --line-height-xxl: 52px;
+    --font-size-xl: 34px;
+    --line-height-xl: 42px;
+  }
+}
+
+html {
+  font-size: var(--root-font-size);
+  font-family: "PT Sans";
+  color: var(--black);
+}
+
+/* Links */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: var(--black);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: var(--font-size-xxl);
+  line-height: var(--line-height-xxl);
+}
+
+h2 {
+  margin-bottom: var(--margin-s);
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-xl);
+  letter-spacing: 0.045rem;
+}
+
+h3 {
+  font-weight: normal;
+  margin-bottom: var(--margin-xs);
+  font-size: var(--font-size-l);
+  line-height: var(--line-height-l);
+  letter-spacing: 0.05rem;
+}
+
+h4 {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  font-weight: normal;
+  font-size: var(--font-size-m);
+  letter-spacing: -0.006rem;
+}

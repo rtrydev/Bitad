@@ -1,0 +1,66 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--margin-xs) 0;
+}
+
+.navigation__element ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation__element li {
+  display: inline-block;
+  margin-left: var(--margin-m);
+  margin-bottom: 0;
+}
+
+.navigation__element a {
+  color: var(--black);
+}
+
+.navigation__element a:hover,
+.navigation__element a:focus {
+  color: var(--accent);
+}
+
+.navigation__element img {
+  display: block;
+  height: 43px;
+}
+
+@media all and (max-width: 782px) {
+  .navigation__element ul {
+    display: none;
+  }
+
+  .navigation--open {
+    z-index: 1;
+    height: 100vh;
+    background-color: var(--light-gray) !important;
+    /* Fix for not showing navigation when clicked on hamburger by tab if navigation was hiden */
+    top: 0;
+    overflow-y: auto;
+  }
+
+  .navigation--open .navigation__element ul {
+    display: block;
+    position: absolute;
+    left: var(--margin-xs);
+    top: var(--navigation-spacing);
+  }
+
+  .navigation--open .navigation__element li {
+    display: block;
+    margin-left: 0;
+    margin-bottom: var(--margin-xl);
+  }
+
+  .navigation--open .navigation__element a {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-xl);
+    font-weight: bold;
+  }
+}

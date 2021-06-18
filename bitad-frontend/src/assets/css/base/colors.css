@@ -1,0 +1,7 @@
+:root {
+  --black: hsl(209, 56%, 20%);
+  --accent: hsl(205, 59%, 53%);
+  --white: hsl(0, 0%, 100%);
+  --white-transparent: hsla(0, 0%, 100%, 0.97);
+  --light-gray: hsl(0, 0%, 93%);
+}

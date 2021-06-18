@@ -1,0 +1,45 @@
+:root {
+  --margin-xxxl: 88px;
+  --margin-xxl: 64px;
+  --margin-xl: 56px;
+  --margin-l: 40px;
+  --margin-m: 32px;
+  --margin-s: 24px;
+  --margin-xs: 16px;
+  --margin-xxs: 8px;
+
+  --max-width: 1208px;
+
+  --navigation-spacing: 7.45rem;
+}
+
+@media all and (max-width: 782px) {
+  :root {
+    --margin-xxxl: 80px;
+    --margin-xxl: 56px;
+    --margin-xl: 48px;
+    --margin-l: 32px;
+    --margin-m: 24px;
+    --margin-s: 16px;
+    --section-margin: 88px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 5000px;
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}

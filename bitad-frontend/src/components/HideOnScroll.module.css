@@ -1,0 +1,11 @@
+.hide-on-scroll {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: top 0.3s;
+  z-index: 1;
+}
+
+.hide-on-scroll--hide {
+  top: -75px;
+}
