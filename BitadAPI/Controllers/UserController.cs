@@ -20,6 +20,15 @@ namespace BitadAPI.Controllers
             userService = serivce;
         }
 
+        [HttpPost("RegisterUser")]
+        public async Task<ActionResult<DtoRegistrationResponse>> RegisterUser([FromBody] DtoRegistration registrationData)
+        {
+            var result = await userService.RegisterUser(registrationData);
+            if (result is null) return Forbid();
+
+            return Ok(result);
+        }
+
         [HttpPost("AuthenticateUser")]
         public async Task<ActionResult<DtoUserLogon>> AuthenticateUser(string userEmail, string userCode)
         {

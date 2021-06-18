@@ -18,22 +18,25 @@ namespace BitadAPI.Services
         public Task<DtoUserLogon> AuthenticateUser(string userEmail, string userCode);
         public Task<DtoUser> GetUserById(int id);
         public Task<ICollection<DtoLeader>> GetLeaders();
+        public Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData);
     }
 
     public class UserService : IUserService
     {
-        private IUserRepository userRepository;
+        private IUserRepository _userRepository;
+        private IWorkshopRepository _workshopRepository;
         private IMapper _mapper;
 
-        public UserService(IUserRepository repository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IWorkshopRepository workshopRepository, IMapper mapper)
         {
-            userRepository = repository;
+            _userRepository = userRepository;
+            _workshopRepository = workshopRepository;
             _mapper = mapper;
         }
 
         public async Task<DtoUserLogon> AuthenticateUser(string userEmail, string userCode)
         {
-            var user = await userRepository.GetByPredicate(x => x.Email == userEmail && x.Code == userCode);
+            var user = await _userRepository.GetByPredicate(x => x.Email == userEmail && x.Code == userCode);
             var dtoUser = _mapper.Map<DtoUser>(user);
             return new DtoUserLogon
             {
@@ -45,7 +48,7 @@ namespace BitadAPI.Services
         public async Task<ICollection<DtoLeader>> GetLeaders()
         {
             var leaders = new List<DtoLeader>(20);
-            var topUsers = await userRepository.GetTopUsers(20);
+            var topUsers = await _userRepository.GetTopUsers(20);
             var position = 1;
             foreach(var user in topUsers)
             {
@@ -61,8 +64,34 @@ namespace BitadAPI.Services
 
         public async Task<DtoUser> GetUserById(int id)
         {
-            var user = await userRepository.GetById(id);
+            var user = await _userRepository.GetById(id);
             return _mapper.Map<DtoUser>(user);
+        }
+
+        public async Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData)
+        {
+            if (await _userRepository.GetByPredicate(x => x.Email == registrationData.Email) is not null)
+                return null;
+
+            var user = new User
+            {
+                Name = registrationData.FirstName + " " + registrationData.LastName,
+                Email = registrationData.Email,
+                CurrentScore = 0,
+                Code = GenerateLoginCode(),
+                Workshop = await _workshopRepository.GetByCode(registrationData.WorkshopCode)
+            };
+
+            var result = await _userRepository.CreateUser(user);
+
+            return new DtoRegistrationResponse
+            {
+                FirstName = registrationData.FirstName,
+                LastName = registrationData.LastName,
+                Email = registrationData.Email,
+                LoginCode = result.Code,
+                Workshop = _mapper.Map<DtoWorkshop>(result.Workshop)
+            };
         }
 
         private string GenerateJwtToken(User user)
@@ -78,6 +107,17 @@ namespace BitadAPI.Services
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+        private string GenerateLoginCode()
+        {
+            var rnd = new Random();
+            var codeBuilder = new StringBuilder();
+            for(int i=0; i < 4; i++)
+            {
+                codeBuilder.Append((char)rnd.Next('A', 'Z'));
+            }
+            return codeBuilder.ToString();
         }
     }
 }

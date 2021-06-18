@@ -15,5 +15,6 @@ namespace BitadAPI.Models
         public string Room { get; set; }
         public Speaker Speaker { get; set; }
         public DateTime Start { get; set; }
+        public string Code { get; set; }
     }
 }

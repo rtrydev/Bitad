@@ -20,6 +20,7 @@ namespace BitadAPI.Repositories
         public Task<User> GetByPredicate(Expression<Func<User, bool>> predicate);
         public Task<User> AddPoints(int id, int points);
         public Task<ICollection<User>> GetTopUsers(int amount);
+        public Task<User> CreateUser(User user);
     }
 
     public class UserRepository : Repository<User>, IUserRepository
@@ -54,6 +55,11 @@ namespace BitadAPI.Repositories
         public async Task<ICollection<User>> GetTopUsers(int amount)
         {
             return await GetAll().OrderByDescending(x => x.CurrentScore).Take(amount).ToListAsync();
+        }
+
+        public async Task<User> CreateUser(User user)
+        {
+            return await AddAsync(user);
         }
     }
 }
