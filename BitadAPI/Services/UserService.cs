@@ -84,6 +84,12 @@ namespace BitadAPI.Services
 
             var result = await _userRepository.CreateUser(user);
 
+            if (result is null) return null;
+            if (result.Workshop is not null)
+            {
+                result.Workshop = await _workshopRepository.IncrementParticipantCount(result.Workshop.Id);
+            }
+
             return new DtoRegistrationResponse
             {
                 FirstName = registrationData.FirstName,
