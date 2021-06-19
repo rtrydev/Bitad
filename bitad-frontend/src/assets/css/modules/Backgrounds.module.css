@@ -2,3 +2,10 @@
   background-color: var(--white-transparent);
   width: 100%;
 }
+
+.hero-background {
+  background-image: url("../../images/hero-bg.svg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: auto 42.22rem;
+}

@@ -1,0 +1,17 @@
+.hero {
+  text-align: center;
+}
+
+.hero img {
+  display: inline-block;
+  margin-bottom: var(--margin-xxl);
+  max-height: 333px;
+}
+
+.hero h1 {
+  margin-bottom: var(--section-margin);
+}
+
+.hero h4 {
+  margin-bottom: var(--margin-l);
+}

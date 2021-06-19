@@ -1,0 +1,11 @@
+.button {
+  display: inline-block;
+  padding: var(--margin-xxs) var(--margin-m);
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-size: var(--font-size-m);
+  letter-spacing: -0.1px;
+  font-weight: bold;
+  border: var(--border);
+  color: var(--accent);
+}

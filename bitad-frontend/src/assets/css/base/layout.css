@@ -10,7 +10,15 @@
 
   --max-width: 1208px;
 
+  --section-margin: 96px;
+  --two-min-column: 380px;
+  --three-min-column: 360px;
+  --footer-min-column: 340px;
+  --header-margin-top: 134px;
   --navigation-spacing: 7.45rem;
+
+  --border-radius: 0.6666rem;
+  --border: 2px solid var(--accent);
 }
 
 @media all and (max-width: 782px) {
@@ -42,4 +50,8 @@ body {
 
 .no-scroll {
   overflow-y: hidden;
+}
+
+header {
+  padding-top: var(--header-margin-top);
 }

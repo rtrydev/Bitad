@@ -51,6 +51,7 @@ h4 {
 h1 {
   font-size: var(--font-size-xxl);
   line-height: var(--line-height-xxl);
+  letter-spacing: 0.2px;
 }
 
 h2 {
@@ -74,4 +75,8 @@ h4 {
   font-weight: normal;
   font-size: var(--font-size-m);
   letter-spacing: -0.006rem;
+}
+
+button {
+  background-color: unset;
 }

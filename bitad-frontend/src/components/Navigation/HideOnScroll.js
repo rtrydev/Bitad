@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import classes from "./HideOnScroll.module.css";
+import styles from "./HideOnScroll.module.css";
 
 function HideOnScroll(props) {
   const [isScrollingUp, setIsScrollingUp] = useState(0);
@@ -20,11 +20,11 @@ function HideOnScroll(props) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollPosition]);
 
-  const scrollClass = isScrollingUp ? classes["hide-on-scroll--hide"] : "";
+  const scrollClass = isScrollingUp ? styles["hide-on-scroll--hide"] : "";
 
   return (
     <div
-      className={`${classes["hide-on-scroll"]} ${scrollClass} ${props.className}`}
+      className={`${styles["hide-on-scroll"]} ${scrollClass} ${props.className}`}
     >
       {props.children}
     </div>

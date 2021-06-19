@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import Container from "./UI/Container";
+import Container from "../UI/Container";
 import HideOnScroll from "./HideOnScroll";
 import Hamburger from "./Hamburger";
-import siteLogo from "../assets/images/reset-logo.svg";
+import siteLogo from "../../assets/images/reset-logo.svg";
 import styles from "./Navigation.module.css";
-import bg from "../assets/css/modules/Backgrounds.module.css";
+import bg from "../../assets/css/modules/Backgrounds.module.css";
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
