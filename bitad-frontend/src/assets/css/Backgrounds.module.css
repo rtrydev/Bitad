@@ -1,0 +1,22 @@
+.white-background {
+  background-color: var(--white-transparent);
+  width: 100%;
+}
+
+.hero-background {
+  background-image: url(../images/hero-bg.svg);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: auto 42.22rem;
+}
+
+.shadow {
+  box-shadow: 0 12.4px 49.3px 0 rgba(0, 0, 0, 0.24);
+}
+
+.half-background {
+  background: url(../images/blue-bg.svg), url(../images/gray-bg.svg);
+  background-position: 0 100%, 0 0;
+  background-size: 14.27rem auto, 50% auto;
+  background-repeat: no-repeat, repeat-y;
+}

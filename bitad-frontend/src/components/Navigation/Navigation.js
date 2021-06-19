@@ -4,7 +4,7 @@ import HideOnScroll from "./HideOnScroll";
 import Hamburger from "./Hamburger";
 import siteLogo from "../../assets/images/reset-logo.svg";
 import styles from "./Navigation.module.css";
-import bg from "../../assets/css/modules/Backgrounds.module.css";
+import bg from "../../assets/css/Backgrounds.module.css";
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,8 +12,8 @@ function Navigation() {
   useEffect(() => {
     const html = document.querySelector("html");
     isOpen
-      ? html.classList.add("no-scroll")
-      : html.classList.remove("no-scroll");
+      ? html.classList.add(styles["no-scroll"])
+      : html.classList.remove(styles["no-scroll"]);
   }, [isOpen]);
 
   const handleHamburgerClick = () => {
@@ -26,7 +26,7 @@ function Navigation() {
         isOpen ? styles["navigation--open"] : ""
       } `}
     >
-      <Container className="">
+      <Container>
         <nav className={styles.navigation}>
           <div className={styles.navigation__element}>
             <a href="#">

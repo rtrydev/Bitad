@@ -31,7 +31,8 @@
   }
 }
 
-html {
+html,
+button {
   font-size: var(--root-font-size);
   font-family: "PT Sans";
   color: var(--black);
@@ -92,4 +93,12 @@ p {
 
 button {
   background-color: unset;
+}
+
+.text-align--center {
+  text-align: center;
+}
+
+.text-align--right {
+  text-align: right;
 }

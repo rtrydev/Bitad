@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import "./assets/css/base/colors.css";
-import "./assets/css/base/layout.css";
-import "./assets/css/base/typography.css";
+import "./assets/css/Layout.module.css";
+import "./assets/css/Colors.module.css";
+import "./assets/css/Typography.module.css";
 
 ReactDOM.render(
   <React.StrictMode>

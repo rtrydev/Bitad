@@ -31,6 +31,10 @@
   height: 43px;
 }
 
+.no-scroll {
+  overflow-y: hidden;
+}
+
 @media all and (max-width: 782px) {
   .navigation__element ul {
     display: none;
