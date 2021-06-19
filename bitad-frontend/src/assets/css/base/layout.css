@@ -54,4 +54,10 @@ body {
 
 header {
   padding-top: var(--header-margin-top);
+  padding-bottom: var(--section-margin);
+}
+
+section {
+  padding-top: var(--margin-xl);
+  padding-bottom: var(--section-margin);
 }

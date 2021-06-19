@@ -9,3 +9,9 @@
   border: var(--border);
   color: var(--accent);
 }
+
+.button:hover,
+.button:focus {
+  color: var(--black);
+  border-color: var(--black);
+}

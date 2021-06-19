@@ -23,6 +23,14 @@
   }
 }
 
+@media all and (max-width: 450px) {
+  :root {
+    --footer-min-column: 267px;
+    --two-min-column: 260px;
+    --three-min-column: var(--two-min-column);
+  }
+}
+
 html {
   font-size: var(--root-font-size);
   font-family: "PT Sans";
@@ -75,6 +83,11 @@ h4 {
   font-weight: normal;
   font-size: var(--font-size-m);
   letter-spacing: -0.006rem;
+}
+
+p {
+  line-height: 1.9;
+  margin-bottom: var(--margin-xs);
 }
 
 button {

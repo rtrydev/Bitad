@@ -1,9 +1,16 @@
 .container {
   width: 100%;
+  overflow-x: hidden;
 }
 
 .container__wrapper {
   margin: auto;
   max-width: var(--max-width);
   padding: 0 var(--margin-xs);
+}
+
+@media all and (max-width: 320px) {
+  .container {
+    overflow-x: unset;
+  }
 }

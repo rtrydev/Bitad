@@ -1,0 +1,19 @@
+.decorated-image {
+  position: relative;
+}
+
+.decorated-image__image {
+  display: block;
+  width: 100%;
+}
+
+.decorated-image::before {
+  content: "";
+  position: absolute;
+  top: calc((var(--margin-m) * -1));
+  right: calc(var(--margin-m) * -1);
+  width: 67%;
+  height: 54%;
+  background-color: var(--accent);
+  z-index: -1;
+}
