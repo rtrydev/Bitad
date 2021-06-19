@@ -5,7 +5,6 @@ WORKDIR /app
 # Copy csproj and restore as distinct layers
 COPY *.csproj ./
 
-RUN dotnet tool install --global dotnet-ef
 RUN dotnet restore
 
 # Copy everything else and build

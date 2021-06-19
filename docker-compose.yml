@@ -28,6 +28,20 @@ services:
       - db
     networks:
       - app-network
+  frontend:
+    container_name: frontend
+    restart: unless-stopped
+    tty: true
+    build:
+      context: ./bitad-frontend/
+      dockerfile: Dockerfile.prod
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+      - db
+    networks:
+      - app-network
 networks:
   app-network:
     driver: bridge
