@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 import Container from "../UI/Container";
 import HideOnScroll from "./HideOnScroll";
 import Hamburger from "./Hamburger";
@@ -29,24 +31,24 @@ function Navigation() {
       <Container>
         <nav className={styles.navigation}>
           <div className={styles.navigation__element}>
-            <a href="#">
+            <NavLink to="/">
               <img src={siteLogo} alt="Reset Logo" />
-            </a>
+            </NavLink>
           </div>
           <div className={styles.navigation__element}>
             <Hamburger isOpen={isOpen} onClick={handleHamburgerClick} />
             <ul>
               <li>
-                <a href="#">O konferencji</a>
+                <NavLink to="/">O konferencji</NavLink>
               </li>
               <li>
-                <a href="#">Sponsorzy</a>
+                <NavHashLink to="/#sponsors">Sponsorzy</NavHashLink>
               </li>
               <li>
-                <a href="#">Agenda</a>
+                <NavLink to="/agenda">Agenda</NavLink>
               </li>
               <li>
-                <a href="#">Rejestracja</a>
+                <NavLink to="/registration">Rejestracja</NavLink>
               </li>
             </ul>
           </div>
