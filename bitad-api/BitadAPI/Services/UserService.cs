@@ -37,6 +37,8 @@ namespace BitadAPI.Services
         public async Task<DtoUserLogon> AuthenticateUser(string userEmail, string userCode)
         {
             var user = await _userRepository.GetByPredicate(x => x.Email == userEmail && x.Code == userCode);
+            if (user is null) return null;
+
             var dtoUser = _mapper.Map<DtoUser>(user);
             return new DtoUserLogon
             {

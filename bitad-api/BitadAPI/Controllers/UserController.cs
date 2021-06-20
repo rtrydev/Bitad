@@ -33,6 +33,8 @@ namespace BitadAPI.Controllers
         public async Task<ActionResult<DtoUserLogon>> AuthenticateUser(string userEmail, string userCode)
         {
             var result = await userService.AuthenticateUser(userEmail, userCode);
+            if (result is null) return Forbid();
+
             return Ok(result);
         }
 
