@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
     tty: true
     build:
-      context: ./BitadAPI
+      context: ./bitad-api/BitadAPI
       dockerfile: Dockerfile
     ports:
       - "8080:80"
