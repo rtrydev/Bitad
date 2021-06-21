@@ -103,6 +103,7 @@ namespace BitadAPI
             services.AddScoped<IStaffService, StaffService>();
             services.AddScoped<IQrCodeRedeemService, QrCodeRedeemService>();
             services.AddScoped<ISponsorService, SponsorService>();
+            services.AddScoped<IJwtService, JwtService>();
 
             services.AddControllers();
         }

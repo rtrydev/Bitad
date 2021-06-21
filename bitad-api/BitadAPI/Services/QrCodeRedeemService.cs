@@ -10,7 +10,7 @@ namespace BitadAPI.Services
 {
     public interface IQrCodeRedeemService
     {
-        public Task<DtoQrCodeRedeem> RedeemQrCode(string qrCodeString, int userId);
+        public Task<TokenRefreshResponse<DtoQrCodeRedeem>> RedeemQrCode(string qrCodeString, int userId);
     }
 
     public class QrCodeRedeemService : IQrCodeRedeemService
@@ -18,15 +18,17 @@ namespace BitadAPI.Services
         private IQrCodeRedeemRepository _qrCodeRedeemRepository;
         private IQrCodeRepository _qrCodeRepository;
         private IUserRepository _userRepository;
+        private IJwtService _jwtService;
 
-        public QrCodeRedeemService(IQrCodeRepository qrCodeRepository, IQrCodeRedeemRepository qrCodeRedeemRepository, IUserRepository userRepository)
+        public QrCodeRedeemService(IQrCodeRepository qrCodeRepository, IQrCodeRedeemRepository qrCodeRedeemRepository, IUserRepository userRepository, IJwtService jwtService)
         {
             _qrCodeRedeemRepository = qrCodeRedeemRepository;
             _qrCodeRepository = qrCodeRepository;
             _userRepository = userRepository;
+            _jwtService = jwtService;
         }
 
-        public async Task<DtoQrCodeRedeem> RedeemQrCode(string qrCodeString, int userId)
+        public async Task<TokenRefreshResponse<DtoQrCodeRedeem>> RedeemQrCode(string qrCodeString, int userId)
         {
             var qrCode = await _qrCodeRepository.GetQrCode(qrCodeString);
 
@@ -38,12 +40,17 @@ namespace BitadAPI.Services
             var user = await _userRepository.GetById(userId);
             var result = await _qrCodeRedeemRepository.RedeemQrCode(qrCode, user);
             await _userRepository.AddPoints(userId, qrCode.Points);
+
             var redeem = new DtoQrCodeRedeem
             {
                 Points = qrCode.Points,
                 QrCode = qrCodeString
             };
-            return redeem;
+            return new TokenRefreshResponse<DtoQrCodeRedeem>
+            {
+                Body = redeem,
+                Token = await _jwtService.GetNewToken(userId)
+            };
         }
     }
 }

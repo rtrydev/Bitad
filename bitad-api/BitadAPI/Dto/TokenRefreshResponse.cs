@@ -1,11 +1,9 @@
 ﻿using System;
-using BitadAPI.Models;
-
 namespace BitadAPI.Dto
 {
-    public class DtoUserLogon
+    public class TokenRefreshResponse<T>
     {
-        public DtoUser User { get; set; }
+        public T Body { get; set; }
         public string Token { get; set; }
     }
 }
