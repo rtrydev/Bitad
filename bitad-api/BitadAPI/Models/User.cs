@@ -18,5 +18,6 @@ namespace BitadAPI.Models
         public int CurrentScore { get; set; }
         public string CurrentJwt { get; set; }
         public Workshop Workshop { get; set; }
+        public string PasswordSalt { get; set; }
     }
 }
