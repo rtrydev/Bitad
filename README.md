@@ -21,4 +21,5 @@ $ docker-compose up -d
 $ docker-compose up
 $ docker-compose stop
 $ docker-compose down
+$ docker-compose build <service_name>
 ```
