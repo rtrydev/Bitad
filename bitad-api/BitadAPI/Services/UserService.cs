@@ -135,6 +135,14 @@ namespace BitadAPI.Services
             }
 
             var user = await _userRepository.GetById(userId);
+
+            if(user.Workshop is not null)
+                return new TokenRefreshResponse<DtoWorkshop>
+                {
+                    Body = null,
+                    Token = refreshToken
+                };
+
             user.Workshop = workshop;
             var result = await _userRepository.UpdateUser(user);
             return new TokenRefreshResponse<DtoWorkshop>
