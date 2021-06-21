@@ -2,11 +2,6 @@
   position: relative;
 }
 
-.decorated-image__image {
-  display: block;
-  width: 100%;
-}
-
 .decorated-image::before {
   content: "";
   position: absolute;

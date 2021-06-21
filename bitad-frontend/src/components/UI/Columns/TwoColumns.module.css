@@ -1,5 +1,0 @@
-.two-columns {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--two-min-column), 1fr));
-  gap: var(--margin-xl);
-}

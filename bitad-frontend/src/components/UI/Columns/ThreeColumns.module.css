@@ -1,8 +1,0 @@
-.three-columns {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(var(--three-min-column), 1fr)
-  );
-  gap: var(--margin-xl);
-}

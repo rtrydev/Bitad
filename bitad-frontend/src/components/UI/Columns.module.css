@@ -1,0 +1,38 @@
+:root {
+  --two-min-column: 380px;
+  --three-min-column: 350px;
+}
+
+@media all and (max-width: 450px) {
+  :root {
+    --two-min-column: 260px;
+    --three-min-column: var(--two-min-column);
+  }
+}
+
+.two-columns,
+.three-columns {
+  display: grid;
+  gap: var(--margin-xl);
+}
+
+.two-columns {
+  grid-template-columns: repeat(auto-fill, minmax(var(--two-min-column), 1fr));
+}
+
+.three-columns {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--three-min-column), 1fr)
+  );
+}
+
+@media all and (max-width: 782px) {
+  .three-columns {
+    gap: var(--margin-m);
+  }
+}
+
+.three-columns--small {
+  gap: var(--margin-m);
+}

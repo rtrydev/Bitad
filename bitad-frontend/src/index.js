@@ -4,6 +4,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import "./assets/css/Layout.module.css";
+import "./assets/css/Fonts.module.css";
 import "./assets/css/Colors.module.css";
 import "./assets/css/Typography.module.css";
 

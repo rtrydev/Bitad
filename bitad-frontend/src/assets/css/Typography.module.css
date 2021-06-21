@@ -35,10 +35,9 @@ html,
 button {
   font-size: var(--root-font-size);
   font-family: "PT Sans";
+  line-height: 1.9;
   color: var(--black);
 }
-
-/* Links */
 
 a {
   color: var(--accent);
@@ -53,7 +52,8 @@ a:focus {
 h1,
 h2,
 h3,
-h4 {
+h4,
+p {
   margin-top: 0;
 }
 
@@ -87,8 +87,10 @@ h4 {
 }
 
 p {
-  line-height: 1.9;
   margin-bottom: var(--margin-xs);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50rem;
 }
 
 button {

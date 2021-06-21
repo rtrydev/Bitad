@@ -11,8 +11,6 @@
   --max-width: 1208px;
 
   --section-margin: 96px;
-  --two-min-column: 380px;
-  --three-min-column: 350px;
   --footer-min-column: 340px;
   --header-margin-top: 134px;
   --navigation-spacing: 7.45rem;
@@ -36,8 +34,6 @@
 @media all and (max-width: 450px) {
   :root {
     --footer-min-column: 267px;
-    --two-min-column: 260px;
-    --three-min-column: var(--two-min-column);
   }
 }
 

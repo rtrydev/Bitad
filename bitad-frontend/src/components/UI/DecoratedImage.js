@@ -1,14 +1,10 @@
 import styles from "./DecoratedImage.module.css";
-import bg from "../../assets/css/Backgrounds.module.css";
+import ImageWithShadow from "./ImageWithShadow";
 
 function DecoratedImage(props) {
   return (
     <div className={styles["decorated-image"]}>
-      <img
-        src={props.src}
-        alt={props.alt}
-        className={`${styles["decorated-image__image"]} ${bg.shadow}`}
-      />
+      <ImageWithShadow src={props.src} alt={props.alt} />
     </div>
   );
 }

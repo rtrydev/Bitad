@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import Container from "../UI/Container";
+import ImageAsLink from "../UI/ImageAsLink";
 import HideOnScroll from "./HideOnScroll";
 import Hamburger from "./Hamburger";
 import siteLogo from "../../assets/images/reset-logo.svg";
@@ -31,9 +32,7 @@ function Navigation() {
       <Container>
         <nav className={styles.navigation}>
           <div className={styles.navigation__element}>
-            <NavLink to="/">
-              <img src={siteLogo} alt="Reset Logo" />
-            </NavLink>
+            <ImageAsLink to="/" src={siteLogo} alt="Reset Logo" />
           </div>
           <div className={styles.navigation__element}>
             <Hamburger isOpen={isOpen} onClick={handleHamburgerClick} />
