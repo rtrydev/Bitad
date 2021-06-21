@@ -55,7 +55,7 @@ namespace BitadAPI.Services
                 Token = await _jwtService.GetNewToken(user.Id),
                 Body = dtoUser
             };
-            
+
         }
 
         public async Task<TokenRefreshResponse<ICollection<DtoLeader>>> GetLeaders(int userId)
@@ -63,7 +63,7 @@ namespace BitadAPI.Services
             var leaders = new List<DtoLeader>(20);
             var topUsers = await _userRepository.GetTopUsers(20);
             var position = 1;
-            foreach(var user in topUsers)
+            foreach (var user in topUsers)
             {
                 leaders.Add(new DtoLeader
                 {
@@ -90,7 +90,7 @@ namespace BitadAPI.Services
             };
         }
 
-        
+
 
         public async Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData)
         {
@@ -133,9 +133,10 @@ namespace BitadAPI.Services
         public async Task<TokenRefreshResponse<DtoWorkshop>> SelectWorkshop(int userId, string workshopCode)
         {
             var workshop = await _workshopRepository.GetByCode(workshopCode);
+
             var refreshToken = await _jwtService.GetNewToken(userId);
 
-            if (workshop.ParticipantsNumber >= workshop.MaxParticipants)
+            if (workshop is null || workshop.ParticipantsNumber >= workshop.MaxParticipants)
             {
                 return new TokenRefreshResponse<DtoWorkshop>
                 {
