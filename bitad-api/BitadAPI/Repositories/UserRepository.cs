@@ -21,6 +21,7 @@ namespace BitadAPI.Repositories
         public Task<User> AddPoints(int id, int points);
         public Task<ICollection<User>> GetTopUsers(int amount);
         public Task<User> CreateUser(User user);
+        public Task<User> UpdateUser(User user);
     }
 
     public class UserRepository : Repository<User>, IUserRepository
@@ -36,12 +37,12 @@ namespace BitadAPI.Repositories
 
         public async Task<User> GetById(int id)
         {
-            return await GetAll().FirstOrDefaultAsync(x => x.Id == id);
+            return await GetAll().Include(x => x.Workshop).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<User> GetByPredicate(Expression<Func<User, bool>> predicate)
         {
-            return await GetAll().FirstOrDefaultAsync(predicate);
+            return await GetAll().Include(x => x.Workshop).FirstOrDefaultAsync(predicate);
         }
 
         public async Task<User> AddPoints(int id, int points)
@@ -60,6 +61,11 @@ namespace BitadAPI.Repositories
         public async Task<User> CreateUser(User user)
         {
             return await AddAsync(user);
+        }
+
+        public async Task<User> UpdateUser(User user)
+        {
+            return await UpdateAsync(user);
         }
     }
 }

@@ -15,10 +15,12 @@ namespace BitadAPI.Services
 {
     public interface IUserService
     {
-        public Task<DtoUserLogon> AuthenticateUser(string userEmail, string userCode);
-        public Task<DtoUser> GetUserById(int id);
-        public Task<ICollection<DtoLeader>> GetLeaders();
+        public Task<TokenRefreshResponse<DtoUser>> AuthenticateUser(DtoUserLogin userLogin);
+        public Task<TokenRefreshResponse<DtoUser>> GetUserById(int id);
+        public Task<TokenRefreshResponse<ICollection<DtoLeader>>> GetLeaders(int userid);
         public Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData);
+        public Task<TokenRefreshResponse<DtoWorkshop>> SelectWorkshop(int userId, string workshopCode);
+
     }
 
     public class UserService : IUserService
@@ -26,28 +28,31 @@ namespace BitadAPI.Services
         private IUserRepository _userRepository;
         private IWorkshopRepository _workshopRepository;
         private IMapper _mapper;
+        private IJwtService _jwtService;
 
-        public UserService(IUserRepository userRepository, IWorkshopRepository workshopRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IWorkshopRepository workshopRepository, IMapper mapper, IJwtService jwtService)
         {
             _userRepository = userRepository;
             _workshopRepository = workshopRepository;
             _mapper = mapper;
+            _jwtService = jwtService;
         }
 
-        public async Task<DtoUserLogon> AuthenticateUser(string userEmail, string userCode)
+        public async Task<TokenRefreshResponse<DtoUser>> AuthenticateUser(DtoUserLogin userLogin)
         {
-            var user = await _userRepository.GetByPredicate(x => x.Email == userEmail && x.Code == userCode);
+            var user = await _userRepository.GetByPredicate(x => x.Username == userLogin.Username && x.Password == userLogin.Password);
             if (user is null) return null;
 
             var dtoUser = _mapper.Map<DtoUser>(user);
-            return new DtoUserLogon
+            return new TokenRefreshResponse<DtoUser>
             {
-                Token = GenerateJwtToken(user),
-                User = dtoUser
+                Token = await _jwtService.GetNewToken(user.Id),
+                Body = dtoUser
             };
+            
         }
 
-        public async Task<ICollection<DtoLeader>> GetLeaders()
+        public async Task<TokenRefreshResponse<ICollection<DtoLeader>>> GetLeaders(int userId)
         {
             var leaders = new List<DtoLeader>(20);
             var topUsers = await _userRepository.GetTopUsers(20);
@@ -61,14 +66,25 @@ namespace BitadAPI.Services
                     Position = position++
                 });
             }
-            return leaders;
+            return new TokenRefreshResponse<ICollection<DtoLeader>>
+            {
+                Token = await _jwtService.GetNewToken(userId),
+                Body = leaders
+            };
         }
 
-        public async Task<DtoUser> GetUserById(int id)
+        public async Task<TokenRefreshResponse<DtoUser>> GetUserById(int id)
         {
             var user = await _userRepository.GetById(id);
-            return _mapper.Map<DtoUser>(user);
+            var dtoUser = _mapper.Map<DtoUser>(user);
+            return new TokenRefreshResponse<DtoUser>
+            {
+                Body = dtoUser,
+                Token = await _jwtService.GetNewToken(id)
+            };
         }
+
+        
 
         public async Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData)
         {
@@ -77,10 +93,12 @@ namespace BitadAPI.Services
 
             var user = new User
             {
-                Name = registrationData.FirstName + " " + registrationData.LastName,
+                FirstName = registrationData.FirstName,
+                LastName = registrationData.LastName,
+                Username = registrationData.Username,
                 Email = registrationData.Email,
                 CurrentScore = 0,
-                Code = GenerateLoginCode(),
+                Password = registrationData.Password,
                 Workshop = await _workshopRepository.GetByCode(registrationData.WorkshopCode)
             };
 
@@ -94,27 +112,36 @@ namespace BitadAPI.Services
 
             return new DtoRegistrationResponse
             {
+                Username = registrationData.Username,
                 FirstName = registrationData.FirstName,
                 LastName = registrationData.LastName,
                 Email = registrationData.Email,
-                LoginCode = resultUser.Code,
                 Workshop = _mapper.Map<DtoWorkshop>(resultUser.Workshop)
             };
         }
 
-        private string GenerateJwtToken(User user)
+        public async Task<TokenRefreshResponse<DtoWorkshop>> SelectWorkshop(int userId, string workshopCode)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("secretstringverysecure");
-            var tokenDescriptor = new SecurityTokenDescriptor
+            var workshop = await _workshopRepository.GetByCode(workshopCode);
+            var refreshToken = await _jwtService.GetNewToken(userId);
+
+            if (workshop.ParticipantsNumber >= workshop.MaxParticipants)
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
-                    SecurityAlgorithms.HmacSha256Signature)
+                return new TokenRefreshResponse<DtoWorkshop>
+                {
+                    Body = null,
+                    Token = refreshToken
+                };
+            }
+
+            var user = await _userRepository.GetById(userId);
+            user.Workshop = workshop;
+            var result = await _userRepository.UpdateUser(user);
+            return new TokenRefreshResponse<DtoWorkshop>
+            {
+                Body = _mapper.Map<DtoWorkshop>(workshop),
+                Token = refreshToken
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
         }
 
         private string GenerateLoginCode()

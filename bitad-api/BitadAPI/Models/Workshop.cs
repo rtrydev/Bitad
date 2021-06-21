@@ -18,5 +18,6 @@ namespace BitadAPI.Models
         public Speaker Speaker { get; set; }
         public DateTime Start { get; set; }
         public string Code { get; set; }
+        public int MaxParticipants { get; set; }
     }
 }

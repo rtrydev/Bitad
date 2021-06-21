@@ -17,7 +17,7 @@ namespace BitadAPI.Services
         private IWorkshopRepository workshopRepository;
         private IMapper _mapper;
 
-        public WorkshopService(IWorkshopRepository repository, IMapper mapper)
+        public WorkshopService(IWorkshopRepository repository, IMapper mapper, IJwtService jwtService)
         {
             workshopRepository = repository;
             _mapper = mapper;
@@ -28,5 +28,6 @@ namespace BitadAPI.Services
             var workshops = await workshopRepository.GetAll();
             return _mapper.Map<ICollection<Workshop>, ICollection<DtoWorkshop>>(workshops);
         }
+
     }
 }
