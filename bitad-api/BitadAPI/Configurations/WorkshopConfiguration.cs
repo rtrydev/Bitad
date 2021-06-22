@@ -18,6 +18,11 @@ namespace BitadAPI.Configurations
 
             builder.HasKey(x => x.Id);
 
+            builder.HasMany(x => x.Participants)
+               .WithOne(x => x.Workshop)
+               .HasForeignKey("workshop_id")
+               .IsRequired(false);
+
             builder.Property(x => x.Id)
                 .HasColumnName("id")
                 .HasColumnType("int")
