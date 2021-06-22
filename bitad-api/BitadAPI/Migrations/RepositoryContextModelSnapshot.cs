@@ -268,12 +268,12 @@ namespace BitadAPI.Migrations
                         .HasColumnType("text")
                         .HasColumnName("username");
 
-                    b.Property<int?>("WorkshopId")
+                    b.Property<int?>("workshop_id")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WorkshopId");
+                    b.HasIndex("workshop_id");
 
                     b.ToTable("users");
                 });
@@ -356,7 +356,7 @@ namespace BitadAPI.Migrations
                 {
                     b.HasOne("BitadAPI.Models.Workshop", "Workshop")
                         .WithMany("Participants")
-                        .HasForeignKey("WorkshopId");
+                        .HasForeignKey("workshop_id");
 
                     b.Navigation("Workshop");
                 });
