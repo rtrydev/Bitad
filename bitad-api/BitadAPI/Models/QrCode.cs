@@ -7,8 +7,6 @@ namespace BitadAPI.Models
 {
     public class QrCode
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Code { get; set; }
         public int Points { get; set; }
