@@ -32,10 +32,21 @@ namespace BitadAPI.Services
         {
             var qrCode = await _qrCodeRepository.GetQrCode(qrCodeString);
 
-            if (qrCode is null) return null;
+            var currentTime = DateTime.Now;
+            var newToken = await _jwtService.GetNewToken(userId);
+            var nullResponse = TokenRefreshResponse<DtoQrCodeRedeem>.NullResponse(newToken);
+
+            if (qrCode is null)
+                return nullResponse;
+
+            if (qrCode.ActivationTime > currentTime)
+                return nullResponse;
+
+            if (qrCode.DeactivationTime < currentTime)
+                return nullResponse;
 
             if (await _qrCodeRedeemRepository.FindRedeem(qrCodeString, userId) is not null)
-                return null;
+                return nullResponse;
 
             var user = await _userRepository.GetById(userId);
             var result = await _qrCodeRedeemRepository.RedeemQrCode(qrCode, user);
@@ -49,7 +60,7 @@ namespace BitadAPI.Services
             return new TokenRefreshResponse<DtoQrCodeRedeem>
             {
                 Body = redeem,
-                Token = await _jwtService.GetNewToken(userId)
+                Token = newToken
             };
         }
     }

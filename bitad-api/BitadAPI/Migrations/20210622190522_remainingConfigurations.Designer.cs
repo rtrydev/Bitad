@@ -3,15 +3,17 @@ using System;
 using BitadAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BitadAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210622190522_remainingConfigurations")]
+    partial class remainingConfigurations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -264,16 +266,19 @@ namespace BitadAPI.Migrations
                         .HasColumnName("password_salt");
 
                     b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("username");
+                        .HasColumnType("text");
 
                     b.Property<int?>("WorkshopId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("workshop_id")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("WorkshopId");
+
+                    b.HasIndex("workshop_id");
 
                     b.ToTable("users");
                 });
@@ -354,9 +359,13 @@ namespace BitadAPI.Migrations
 
             modelBuilder.Entity("BitadAPI.Models.User", b =>
                 {
-                    b.HasOne("BitadAPI.Models.Workshop", "Workshop")
+                    b.HasOne("BitadAPI.Models.Workshop", null)
                         .WithMany("Participants")
                         .HasForeignKey("WorkshopId");
+
+                    b.HasOne("BitadAPI.Models.Workshop", "Workshop")
+                        .WithMany()
+                        .HasForeignKey("workshop_id");
 
                     b.Navigation("Workshop");
                 });

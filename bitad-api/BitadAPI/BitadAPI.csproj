@@ -38,6 +38,7 @@
     <None Remove="AutoMapper" />
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="Profiles\" />
+    <None Remove="Configurations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -47,5 +48,6 @@
     <Folder Include="Dto\" />
     <Folder Include="Services\" />
     <Folder Include="Profiles\" />
+    <Folder Include="Configurations\" />
   </ItemGroup>
 </Project>

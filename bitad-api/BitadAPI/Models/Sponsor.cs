@@ -13,8 +13,6 @@ namespace BitadAPI.Models
 
     public class Sponsor
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public SponsorRank Rank { get; set; }
         public string Name { get; set; }

@@ -3,15 +3,17 @@ using System;
 using BitadAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BitadAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210622180406_qrCodeRedeemConfiguration")]
+    partial class qrCodeRedeemConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +57,7 @@ namespace BitadAPI.Migrations
                         .HasColumnName("updated_at");
 
                     b.Property<int?>("speaker_id")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -115,7 +117,7 @@ namespace BitadAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("user_id")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -130,198 +132,151 @@ namespace BitadAPI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Company")
-                        .HasColumnType("text")
-                        .HasColumnName("company");
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text")
-                        .HasColumnName("description");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
+                        .HasColumnType("text");
 
                     b.Property<string>("Picture")
-                        .HasColumnType("text")
-                        .HasColumnName("picture");
+                        .HasColumnType("text");
 
                     b.Property<string>("Website")
-                        .HasColumnType("text")
-                        .HasColumnName("website");
+                        .HasColumnType("text");
 
                     b.Property<string>("WebsiteLink")
-                        .HasColumnType("text")
-                        .HasColumnName("website_link");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("speakers");
+                    b.ToTable("Speakers");
                 });
 
             modelBuilder.Entity("BitadAPI.Models.Sponsor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
+                        .HasColumnType("text");
 
                     b.Property<string>("Picture")
-                        .HasColumnType("text")
-                        .HasColumnName("picture");
+                        .HasColumnType("text");
 
                     b.Property<int>("Rank")
-                        .HasColumnType("int")
-                        .HasColumnName("rank");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Webpage")
-                        .HasColumnType("text")
-                        .HasColumnName("website");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("sponsors");
+                    b.ToTable("Sponsors");
                 });
 
             modelBuilder.Entity("BitadAPI.Models.Staff", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Description")
-                        .HasColumnType("text")
-                        .HasColumnName("description");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
+                        .HasColumnType("text");
 
                     b.Property<string>("Picture")
-                        .HasColumnType("text")
-                        .HasColumnName("picture");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("staff");
+                    b.ToTable("Staffs");
                 });
 
             modelBuilder.Entity("BitadAPI.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("CurrentJwt")
-                        .HasColumnType("text")
-                        .HasColumnName("current_jwt");
+                        .HasColumnType("text");
 
                     b.Property<int>("CurrentScore")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0)
-                        .HasColumnName("current_score");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("email");
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("first_name");
+                        .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("last_name");
+                        .HasColumnType("text");
 
                     b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("password");
+                        .HasColumnType("text");
 
                     b.Property<string>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("password_salt");
+                        .HasColumnType("text");
 
                     b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("username");
+                        .HasColumnType("text");
 
                     b.Property<int?>("WorkshopId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("WorkshopId");
 
-                    b.ToTable("users");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("BitadAPI.Models.Workshop", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("code");
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("description");
+                        .HasColumnType("text");
 
                     b.Property<int>("MaxParticipants")
-                        .HasColumnType("int")
-                        .HasColumnName("max_participants");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Room")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("room");
+                        .HasColumnType("text");
+
+                    b.Property<int?>("SpeakerId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("Start")
-                        .HasColumnType("timestamp")
-                        .HasColumnName("start");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("title");
-
-                    b.Property<int>("speaker_id")
-                        .HasColumnType("int");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("speaker_id");
+                    b.HasIndex("SpeakerId");
 
-                    b.ToTable("workshops");
+                    b.ToTable("Workshops");
                 });
 
             modelBuilder.Entity("BitadAPI.Models.Agenda", b =>
@@ -365,9 +320,7 @@ namespace BitadAPI.Migrations
                 {
                     b.HasOne("BitadAPI.Models.Speaker", "Speaker")
                         .WithMany()
-                        .HasForeignKey("speaker_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SpeakerId");
 
                     b.Navigation("Speaker");
                 });
