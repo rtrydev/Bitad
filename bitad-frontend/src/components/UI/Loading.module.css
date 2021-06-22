@@ -1,0 +1,26 @@
+.loading {
+  --cursor-width: 0.05em;
+  --cursor-spacing: 0.12em;
+
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: calc(var(--cursor-width) + var(--cursor-spacing));
+}
+
+.loading::after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  top: 0.08em;
+  left: var(--cursor-spacing);
+  width: var(--cursor-width);
+  height: 0.58em;
+  background-color: var(--black);
+  animation: blinking 1s steps(1) infinite;
+}
+
+@keyframes blinking {
+  50% {
+    background-color: transparent;
+  }
+}

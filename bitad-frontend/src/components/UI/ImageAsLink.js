@@ -3,7 +3,7 @@ import styles from "./ImageAsLink.module.css";
 
 function ImageAsLink(props) {
   return (
-    <Link to={props.to}>
+    <Link to={props.to} onClick={props.onClick}>
       <img src={props.src} alt={props.alt} className={styles.image} />
     </Link>
   );

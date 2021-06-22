@@ -1,6 +1,7 @@
 import Navigation from "./components/Navigation/Navigation";
+import ScrollToTop from "./components/Navigation/ScrollToTop";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import About from "./pages/About";
+import About from "./pages/About/About";
 import Agenda from "./pages/Agenda";
 import Details from "./pages/Details";
 import Registration from "./pages/Registration";
@@ -8,6 +9,7 @@ import Registration from "./pages/Registration";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navigation />
       <Switch>
         <Route exact path="/">

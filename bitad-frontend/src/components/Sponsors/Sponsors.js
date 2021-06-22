@@ -1,29 +1,29 @@
 import React from "react";
-import Sponsor from "./Sponsor";
+import styles from "./Sponsors.module.css";
+import Rank from "./Rank";
 
-const SAMPLE_SPONSORS = [
-  {
-    rank: 0,
-    name: "Google",
-    picture:
-      "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-    webpage: "https://www.google.com",
-  },
-];
+const filterByRank = (rank, array) => {
+  return array.filter((e) => e.rank === rank);
+};
 
-function Sponsors() {
-  const sponsors = SAMPLE_SPONSORS.map((sponsor) => {
-    return (
-      <Sponsor
-        key={sponsor.name}
-        webpage={sponsor.webpage}
-        picture={sponsor.picture}
-        name={sponsor.name}
-      />
-    );
-  });
+function Sponsors(props) {
+  const sponsors = props.sponsors;
 
-  return <div>{sponsors}</div>;
+  const diamond = filterByRank(0, sponsors);
+  const gold = filterByRank(1, sponsors);
+  const silver = filterByRank(2, sponsors);
+
+  return (
+    <div className={styles.sponsors}>
+      {diamond.length !== 0 && (
+        <Rank title="Diamentowi sponsorzy" sponsors={diamond} />
+      )}
+      {gold.length !== 0 && <Rank title="Złoci sponsorzy" sponsors={gold} />}
+      {silver.length === 1 && (
+        <Rank title="Srebrni sponsorzy" sponsors={silver} />
+      )}
+    </div>
+  );
 }
 
 export default Sponsors;

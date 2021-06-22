@@ -23,6 +23,12 @@ function Navigation() {
     setIsOpen((prevState) => !prevState);
   };
 
+  const handleLinkClick = () => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <HideOnScroll
       className={`${bg["white-background"]} ${
@@ -32,22 +38,43 @@ function Navigation() {
       <Container>
         <nav className={styles.navigation}>
           <div className={styles.navigation__element}>
-            <ImageAsLink to="/" src={siteLogo} alt="Reset Logo" />
+            <ImageAsLink
+              to="/"
+              src={siteLogo}
+              alt="Reset Logo"
+              onClick={handleLinkClick}
+            />
           </div>
           <div className={styles.navigation__element}>
             <Hamburger isOpen={isOpen} onClick={handleHamburgerClick} />
             <ul>
               <li>
-                <NavLink to="/">O konferencji</NavLink>
+                <NavLink to="/" onClick={handleLinkClick}>
+                  O konferencji
+                </NavLink>
               </li>
               <li>
-                <NavHashLink to="/#sponsors">Sponsorzy</NavHashLink>
+                <NavHashLink
+                  to="/#sponsors"
+                  onClick={handleLinkClick}
+                  // scroll={(e) => {
+                  //   e.scrollIntoView();
+                  //   e.classList.add(bg.highlight);
+                  //   setTimeout(() => e.classList.remove(bg.highlight), 4000);
+                  // }}
+                >
+                  Sponsorzy
+                </NavHashLink>
               </li>
               <li>
-                <NavLink to="/agenda">Agenda</NavLink>
+                <NavLink to="/agenda" onClick={handleLinkClick}>
+                  Agenda
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/registration">Rejestracja</NavLink>
+                <NavLink to="/registration" onClick={handleLinkClick}>
+                  Rejestracja
+                </NavLink>
               </li>
             </ul>
           </div>

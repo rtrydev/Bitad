@@ -20,3 +20,10 @@
   background-size: 14.27rem auto, 50% auto;
   background-repeat: no-repeat, repeat-y;
 }
+
+.neutral-background {
+  background: url(../images/neutral-bg.svg);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 83.6rem;
+}

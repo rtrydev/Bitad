@@ -1,21 +1,22 @@
 import { Fragment } from "react";
-import MainHero from "../components/UI/MainHero";
-import Columns from "../components/UI/Columns";
-import MainButton from "../components/UI/MainButton";
-import Section from "../components/UI/Section";
-import DecoratedImage from "../components/UI/DecoratedImage.js";
-import ImageWithShadow from "../components/UI/ImageWithShadow.js";
-import SimpleCard from "../components/Cards/SimpleCard.js";
-import Sponsors from "../components/Sponsors/Sponsors";
+import MainHero from "../../components/UI/MainHero";
+import Columns from "../../components/UI/Columns";
+import MainButton from "../../components/UI/MainButton";
+import Section from "../../components/UI/Section";
+import DecoratedImage from "../../components/UI/DecoratedImage.js";
+import ImageWithShadow from "../../components/UI/ImageWithShadow.js";
+import SimpleCard from "../../components/Cards/SimpleCard.js";
+import SponsorsPart from "./SponsorsPart";
+import StaffPart from "./StaffPart";
 
-import bg from "../assets/css/Backgrounds.module.css";
-import typography from "../assets/css/Typography.module.css";
-import heroImage from "../assets/images/bitad-logo.svg";
-import decoratedImage from "../assets/images/lectures.jpg";
-import giftIcon from "../assets/images/gift.svg";
-import keyboardIcon from "../assets/images/keyboard.svg";
-import gamepadIcon from "../assets/images/gamepad.svg";
-import workshopImage from "../assets/images/workshop.jpg";
+import bg from "../../assets/css/Backgrounds.module.css";
+import typography from "../../assets/css/Typography.module.css";
+import heroImage from "../../assets/images/bitad-logo.svg";
+import decoratedImage from "../../assets/images/lectures.jpg";
+import giftIcon from "../../assets/images/gift.svg";
+import keyboardIcon from "../../assets/images/keyboard.svg";
+import gamepadIcon from "../../assets/images/gamepad.svg";
+import workshopImage from "../../assets/images/workshop.jpg";
 
 function About() {
   return (
@@ -97,26 +98,11 @@ function About() {
             maxWidth="900px"
           />
         </Section>
-        <Section>
-          <Columns>
-            <Sponsors />
-            <div>
-              <h2>Konferencja jest możliwa dzięki Nim!</h2>
-              <p>
-                Podjęliśmy się organizacji konferencji Beskid IT Academic Day na
-                Akademii Techniczno-Humanistycznej w Bielsku-Białej.
-              </p>
-              <p>
-                Nieustannie staramy się rozwijać nasz event, jednocześnie dbając
-                o to, aby uczestnicy, zarówno profesjonaliści, jak i amatorzy,
-                wynieśli z tego dnia ogromne pokłady wiedzy.
-              </p>
-              <p>
-                Jak i motywacji do jej dalszego poszerzania. Dodatkowo dbamy o
-                to, aby to piątkowe spotkanie.
-              </p>
-            </div>
-          </Columns>
+        <Section id="sponsors" className={bg["neutral-background"]}>
+          <SponsorsPart />
+        </Section>
+        <Section className={typography["text-align--center"]}>
+          <StaffPart />
         </Section>
       </main>
     </Fragment>

@@ -1,0 +1,13 @@
+.rank__sponosrs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--margin-m);
+  margin-bottom: var(--margin-m);
+  align-items: center;
+}
+
+@media all and (max-width: 450px) {
+  .rank__sponosrs {
+    grid-template-columns: 1fr;
+  }
+}

@@ -27,6 +27,12 @@
   );
 }
 
+@media all and (max-width: 864px) {
+  .reverse.two-columns > *:last-child {
+    grid-row-start: 1;
+  }
+}
+
 @media all and (max-width: 782px) {
   .three-columns {
     gap: var(--margin-m);
