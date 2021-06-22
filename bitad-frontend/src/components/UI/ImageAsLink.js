@@ -2,11 +2,19 @@ import { Link } from "react-router-dom";
 import styles from "./ImageAsLink.module.css";
 
 function ImageAsLink(props) {
-  return (
+  const img = <img src={props.src} alt={props.alt} className={styles.image} />;
+  const internalLink = (
     <Link to={props.to} onClick={props.onClick}>
-      <img src={props.src} alt={props.alt} className={styles.image} />
+      {img}
     </Link>
   );
+  const externalLink = (
+    <a href={props.to} onClick={props.onClick}>
+      {img}
+    </a>
+  );
+
+  return props.isExternalLink ? externalLink : internalLink;
 }
 
 export default ImageAsLink;
