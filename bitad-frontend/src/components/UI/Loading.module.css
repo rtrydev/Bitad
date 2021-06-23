@@ -3,8 +3,10 @@
   --cursor-spacing: 0.12em;
 
   display: inline-block;
-  white-space: nowrap;
   margin-right: calc(var(--cursor-width) + var(--cursor-spacing));
+  line-height: 0.5;
+  color: var(--accent);
+  white-space: nowrap;
 }
 
 .loading::after {
@@ -15,7 +17,7 @@
   left: var(--cursor-spacing);
   width: var(--cursor-width);
   height: 0.58em;
-  background-color: var(--black);
+  background-color: currentColor;
   animation: blinking 1s steps(1) infinite;
 }
 

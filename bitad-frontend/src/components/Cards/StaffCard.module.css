@@ -1,0 +1,32 @@
+.card--staff {
+  padding: var(--margin-m);
+}
+
+.staff__profile {
+  display: grid;
+  column-gap: var(--margin-xs);
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
+  margin-bottom: var(--margin-xs);
+}
+
+.profile__image {
+  --image-size: 68px;
+
+  display: block;
+  justify-self: flex-end;
+  border-radius: 50%;
+  width: var(--image-size);
+  height: var(--image-size);
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.profile__name {
+  margin-bottom: 0;
+}
+
+.staff__profile p.profile__degree,
+.card--staff p.staff__description {
+  margin-bottom: 0;
+}

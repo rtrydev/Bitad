@@ -15,7 +15,5 @@
 
 /* So complicated selector for overwrite "p:only-of-type" in section */
 .card--simple p.card__description {
-  font-size: var(--font-size-s);
-  line-height: var(--line-height-s);
   margin-bottom: var(--margin-m);
 }

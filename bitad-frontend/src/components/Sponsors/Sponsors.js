@@ -19,7 +19,7 @@ function Sponsors(props) {
         <Rank title="Diamentowi sponsorzy" sponsors={diamond} />
       )}
       {gold.length !== 0 && <Rank title="Złoci sponsorzy" sponsors={gold} />}
-      {silver.length === 1 && (
+      {silver.length !== 0 && (
         <Rank title="Srebrni sponsorzy" sponsors={silver} />
       )}
     </div>

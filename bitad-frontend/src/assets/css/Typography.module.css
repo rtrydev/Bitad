@@ -93,6 +93,11 @@ p {
   max-width: 50rem;
 }
 
+.small-p {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+}
+
 button {
   background-color: unset;
 }

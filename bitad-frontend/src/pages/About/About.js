@@ -101,7 +101,7 @@ function About() {
         <Section id="sponsors" className={bg["neutral-background"]}>
           <SponsorsPart />
         </Section>
-        <Section className={typography["text-align--center"]}>
+        <Section>
           <StaffPart />
         </Section>
       </main>
