@@ -34,8 +34,8 @@
 html,
 button {
   font-size: var(--root-font-size);
-  font-family: "PT Sans";
   line-height: 1.9;
+  font-family: "PT Sans";
   color: var(--black);
 }
 
@@ -47,6 +47,18 @@ a {
 a:hover,
 a:focus {
   color: var(--black);
+  border-color: var(--black);
+}
+
+.nav-link {
+  color: var(--black);
+  margin-right: var(--margin-m);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 h1,
@@ -79,10 +91,10 @@ h3 {
 }
 
 h4 {
+  margin-bottom: var(--margin-xs);
   font-size: var(--font-size-m);
   line-height: var(--line-height-m);
   font-weight: normal;
-  font-size: var(--font-size-m);
   letter-spacing: -0.006rem;
 }
 
@@ -98,8 +110,8 @@ p {
   line-height: var(--line-height-s);
 }
 
-button {
-  background-color: unset;
+p.small-p {
+  margin-bottom: var(--margin-m);
 }
 
 .text-align--center {
@@ -108,4 +120,12 @@ button {
 
 .text-align--right {
   text-align: right;
+}
+
+.button {
+  display: inline-block;
+  padding: var(--margin-xxs) var(--margin-xs);
+  border: var(--border);
+  border-color: var(--black);
+  border-radius: var(--border-radius);
 }

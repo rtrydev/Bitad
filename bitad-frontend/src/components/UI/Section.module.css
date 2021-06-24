@@ -3,6 +3,6 @@
   padding-bottom: var(--section-margin);
 }
 
-.section__wrapper p:only-of-type {
+.section__wrapper > div > p:only-of-type {
   margin-bottom: var(--margin-xl);
 }

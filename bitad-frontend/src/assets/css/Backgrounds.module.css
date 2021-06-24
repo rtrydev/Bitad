@@ -27,3 +27,10 @@
   background-repeat: no-repeat;
   background-size: 83.6rem;
 }
+
+.footer-background {
+  background: url(../images/gray-white-bg.svg), #ededed;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 85rem, auto;
+}

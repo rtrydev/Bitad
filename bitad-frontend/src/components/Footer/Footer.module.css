@@ -1,0 +1,40 @@
+.footer {
+  padding: var(--section-margin) 0;
+  margin-bottom: 0;
+}
+
+.footer__wrapper {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--footer-min-column), 1fr)
+  );
+  gap: var(--section-margin);
+  margin-bottom: var(--section-margin);
+}
+
+.footer p {
+  margin-bottom: var(--margin-m);
+}
+
+.patrons {
+  display: grid;
+  gap: var(--margin-m);
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
+.patrons img {
+  width: auto;
+  max-height: 5.556rem;
+}
+
+.socialmedia {
+  display: flex;
+}
+
+.socialmedia img {
+  width: auto;
+  height: 14px;
+  margin-right: var(--margin-xs);
+}

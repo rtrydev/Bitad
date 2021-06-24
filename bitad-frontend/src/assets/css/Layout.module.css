@@ -6,7 +6,7 @@
   --margin-m: 32px;
   --margin-s: 24px;
   --margin-xs: 16px;
-  --margin-xxs: 8px;
+  --margin-xxs: 4px;
 
   --max-width: 1208px;
 
@@ -49,7 +49,6 @@ html {
 
 body {
   margin: 0;
-  height: 5000px;
 }
 
 header {

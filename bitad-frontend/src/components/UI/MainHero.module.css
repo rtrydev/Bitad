@@ -15,3 +15,14 @@
 .hero h4 {
   margin-bottom: var(--margin-l);
 }
+
+.hero__link {
+  padding: 8px 32px;
+  padding: var(--margin-xxs) var(--margin-m);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-m);
+  letter-spacing: -0.1px;
+  font-weight: bold;
+  border: var(--border);
+  border-color: var(--accent);
+}

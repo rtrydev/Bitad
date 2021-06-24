@@ -13,17 +13,7 @@
 
 .navigation__element li {
   display: inline-block;
-  margin-left: var(--margin-m);
   margin-bottom: 0;
-}
-
-.navigation__element a {
-  color: var(--black);
-}
-
-.navigation__element a:hover,
-.navigation__element a:focus {
-  color: var(--accent);
 }
 
 .navigation__element img {

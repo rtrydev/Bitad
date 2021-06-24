@@ -12,8 +12,3 @@
   height: 44px;
   width: auto;
 }
-
-/* So complicated selector for overwrite "p:only-of-type" in section */
-.card--simple p.card__description {
-  margin-bottom: var(--margin-m);
-}

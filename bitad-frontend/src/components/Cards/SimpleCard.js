@@ -10,9 +10,7 @@ function SimpleCard(props) {
       <div>
         <img src={src} alt={alt} className={styles.card__image} />
         <h3 className={styles.card_title}>{props.title}</h3>
-        <p className={`${styles.card__description} ${typography["small-p"]}`}>
-          {props.description}
-        </p>
+        <p className={typography["small-p"]}>{props.description}</p>
       </div>
       <div>
         <Link to={props.link}>Dowiedz się więcej</Link>

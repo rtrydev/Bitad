@@ -1,4 +1,5 @@
 import Container from "./Container";
+import { Link } from "react-router-dom";
 import styles from "./MainHero.module.css";
 import bg from "../../assets/css/Backgrounds.module.css";
 
@@ -9,7 +10,9 @@ function MainHero(props) {
         <img src={props.imageSrc} alt={props.imageAlt} />
         <h4>{props.subtitle}</h4>
         <h1>{props.title}</h1>
-        {props.button}
+        <Link to={props.linkTo} className={styles.hero__link}>
+          {props.linkText}
+        </Link>
       </header>
     </Container>
   );

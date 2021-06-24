@@ -9,6 +9,7 @@ import Hamburger from "./Hamburger";
 import siteLogo from "../../assets/images/reset-logo-red.svg";
 import styles from "./Navigation.module.css";
 import bg from "../../assets/css/Backgrounds.module.css";
+import typography from "../../assets/css/Typography.module.css";
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +51,11 @@ function Navigation() {
             <Hamburger isOpen={isOpen} onClick={handleHamburgerClick} />
             <ul>
               <li>
-                <NavLink to="/" onClick={handleLinkClick}>
+                <NavLink
+                  to="/"
+                  onClick={handleLinkClick}
+                  className={typography["nav-link"]}
+                >
                   O konferencji
                 </NavLink>
               </li>
@@ -58,6 +63,7 @@ function Navigation() {
                 <NavHashLink
                   to="/#sponsors"
                   onClick={handleLinkClick}
+                  className={typography["nav-link"]}
                   // scroll={(e) => {
                   //   e.scrollIntoView();
                   //   e.classList.add(bg.highlight);
@@ -68,12 +74,20 @@ function Navigation() {
                 </NavHashLink>
               </li>
               <li>
-                <NavLink to="/agenda" onClick={handleLinkClick}>
+                <NavLink
+                  to="/agenda"
+                  onClick={handleLinkClick}
+                  className={typography["nav-link"]}
+                >
                   Agenda
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/registration" onClick={handleLinkClick}>
+                <NavLink
+                  to="/registration"
+                  onClick={handleLinkClick}
+                  className={`${typography["nav-link"]} ${typography.button}`}
+                >
                   Rejestracja
                 </NavLink>
               </li>

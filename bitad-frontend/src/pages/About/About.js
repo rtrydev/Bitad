@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import MainHero from "../../components/UI/MainHero";
 import Columns from "../../components/UI/Columns";
-import MainButton from "../../components/UI/MainButton";
 import Section from "../../components/UI/Section";
 import DecoratedImage from "../../components/UI/DecoratedImage.js";
 import ImageWithShadow from "../../components/UI/ImageWithShadow.js";
@@ -26,7 +25,8 @@ function About() {
         imageAlt="Logo konferencji"
         subtitle="20 marca 2020, na terenie uczelni ATH w Bielsku-Białej"
         title="Konferencja Informatyczna"
-        button={<MainButton text="Zapisz się już dziś" />}
+        linkText="Zapisz się już dziś"
+        linkTo="/"
       />
       <main>
         <Section>

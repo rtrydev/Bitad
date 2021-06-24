@@ -1,0 +1,10 @@
+.copyrights {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.copyrights__links {
+  margin-right: var(--margin-xs);
+  margin-bottom: var(--margin-xs);
+}
