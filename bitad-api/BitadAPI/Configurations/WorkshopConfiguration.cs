@@ -57,6 +57,11 @@ namespace BitadAPI.Configurations
                 .HasColumnName("title")
                 .HasColumnType("text")
                 .IsRequired();
+
+            builder.Property(x => x.End)
+                .HasColumnName("end")
+                .HasColumnType("timestamp")
+                .IsRequired();
         }
     }
 }
