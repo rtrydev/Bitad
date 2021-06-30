@@ -51,7 +51,11 @@ namespace BitadAPI.Configurations
                 .HasColumnType("timestamp")
                 .ValueGeneratedOnUpdate();
 
-            
+            builder.Property(x => x.Room)
+                .HasColumnName("room")
+                .HasColumnType("text")
+                .IsRequired(false);
+
 
         }
     }

@@ -9,6 +9,7 @@ namespace BitadAPI.Dto
         public string Room { get; set; }
         public DtoSpeaker Speaker { get; set; }
         public DateTime Start { get; set; }
+        public DateTime End { get; set; }
         public string Code { get; set; }
     }
 }

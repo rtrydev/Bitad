@@ -3,15 +3,17 @@ using System;
 using BitadAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BitadAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210630123521_agendaWorkshop")]
+    partial class agendaWorkshop
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,8 +43,7 @@ namespace BitadAPI.Migrations
                         .HasColumnName("end");
 
                     b.Property<string>("Room")
-                        .HasColumnType("text")
-                        .HasColumnName("room");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("timestamp")
@@ -301,8 +302,7 @@ namespace BitadAPI.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime>("End")
-                        .HasColumnType("timestamp")
-                        .HasColumnName("end");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("MaxParticipants")
                         .HasColumnType("int")
