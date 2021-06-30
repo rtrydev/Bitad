@@ -16,8 +16,13 @@
   margin-bottom: 0;
 }
 
+.navigation__element li:last-child a {
+  margin-right: 0;
+}
+
 .navigation__element img {
   height: 43px;
+  width: auto;
 }
 
 .no-scroll {
@@ -25,6 +30,11 @@
 }
 
 @media all and (max-width: 782px) {
+  .navigation__element .button--hide {
+    border: none;
+    padding: 0;
+  }
+
   .navigation__element ul {
     display: none;
   }

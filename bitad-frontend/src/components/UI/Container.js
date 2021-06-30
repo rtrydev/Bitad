@@ -1,12 +1,14 @@
 import styles from "./Container.module.css";
+import { parseClassName } from "../../hooks/custom-functions";
 
 function Container(props) {
-  const classes = props.className !== undefined ? props.className : "";
-  const classesWrapper =
-    props.classNameWrapper !== undefined ? props.classNameWrapper : "";
   return (
-    <div className={`${styles.container} ${classes}`}>
-      <div className={`${styles.container__wrapper} ${classesWrapper}`}>
+    <div className={`${styles.container} ${parseClassName(props.className)}`}>
+      <div
+        className={`${styles.container__wrapper} ${parseClassName(
+          props.classNameWrapper
+        )}`}
+      >
         {props.children}
       </div>
     </div>

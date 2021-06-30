@@ -10,9 +10,11 @@ function MainHero(props) {
         <img src={props.imageSrc} alt={props.imageAlt} />
         <h4>{props.subtitle}</h4>
         <h1>{props.title}</h1>
-        <Link to={props.linkTo} className={styles.hero__link}>
-          {props.linkText}
-        </Link>
+        {props.linkText !== undefined && (
+          <Link to={props.linkTo} className={styles.hero__link}>
+            {props.linkText}
+          </Link>
+        )}
       </header>
     </Container>
   );

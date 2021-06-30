@@ -1,0 +1,26 @@
+.times-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  width: var(--timeline-width);
+}
+
+/* Cover timeline background */
+.times-bar::before {
+  z-index: -1;
+  content: "";
+  background-color: var(--white);
+  height: calc(var(--margin-m) + 39px);
+  width: 100%;
+  left: 0;
+  position: absolute;
+  margin-top: calc(var(--margin-m) * -1);
+}
+
+.times-bar > *:first-child {
+  margin-right: -2ch;
+}
+
+.times-bar > *:last-child {
+  margin-left: -2ch;
+}

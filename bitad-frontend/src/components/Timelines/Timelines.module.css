@@ -1,0 +1,13 @@
+.timelines {
+  z-index: 0;
+  overflow: hidden;
+  position: relative;
+  margin-right: calc(var(--margin-m) * -5);
+  margin-left: calc(var(--margin-m) * -5);
+  padding-right: calc(var(--margin-m) * 5);
+  padding-left: calc(var(--margin-m) * 5);
+}
+
+.timelines__scroll {
+  overflow-x: auto;
+}

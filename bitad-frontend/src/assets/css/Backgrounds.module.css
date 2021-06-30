@@ -29,8 +29,28 @@
 }
 
 .footer-background {
-  background: url(../images/gray-white-bg.svg), #ededed;
+  background: url(../images/gray-white-bg.svg), var(--light-gray);
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: 85rem, auto;
+}
+
+.gradient-background {
+  background-image: linear-gradient(
+    90deg,
+    hsla(0, 0%, 100%, 0.9),
+    var(--light-gray) 10%,
+    var(--light-gray) 50%,
+    var(--light-gray) 90%,
+    hsla(0, 0%, 100%, 0.9)
+  );
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+.scale-background {
+  background-size: 130.45px;
+  background-image: url(../../assets/images/timeline-scale.svg);
+  background-repeat: repeat;
+  background-position: 0;
 }

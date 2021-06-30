@@ -3,6 +3,8 @@ import typography from "../../assets/css/Typography.module.css";
 import { Link } from "react-router-dom";
 
 function Copyrights() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <div className={styles.copyrights}>
       <div className={styles.copyrights__links}>
@@ -13,7 +15,7 @@ function Copyrights() {
           Regulamin
         </Link>
       </div>
-      <div>© 2020 Reset. Wszelkie prawa zastrzeżone</div>
+      <div>{`© ${currentYear} Reset. Wszelkie prawa zastrzeżone.`}</div>
     </div>
   );
 }

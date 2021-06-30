@@ -1,0 +1,25 @@
+.scale {
+  display: grid;
+  grid-template-columns: repeat(54, 1fr);
+  width: var(--timeline-width);
+  min-height: var(--timeline-min-height);
+}
+
+.entry--break-left {
+  grid-column-start: 1 !important;
+  border-radius: 0 var(--entry-border-radius) var(--entry-border-radius) 0;
+}
+
+.entry--break-right {
+  border-radius: var(--entry-border-radius) 0 0 var(--entry-border-radius);
+}
+
+.pink {
+  background-color: rgba(229, 0, 126, 0.22);
+  color: #e5007e;
+}
+
+.pink:hover,
+.pink:focus {
+  color: #e5007e;
+}

@@ -1,0 +1,8 @@
+.timeline {
+  --timeline-width: 1176px;
+  --timeline-min-height: 64px;
+}
+
+.timeline:not(:last-child) {
+  margin-bottom: var(--margin-m);
+}

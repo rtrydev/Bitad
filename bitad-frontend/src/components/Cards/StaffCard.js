@@ -2,7 +2,7 @@ import Card from "./Card";
 import styles from "./StaffCard.module.css";
 import typograhpy from "../../assets/css/Typography.module.css";
 
-import defaultPicture from "../../assets/images/staff.svg";
+import defaultPicture from "../../assets/images/default-picture.svg";
 
 function StaffCard(props) {
   const profilePicture =

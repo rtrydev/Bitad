@@ -1,0 +1,21 @@
+.entry {
+  --entry-border-radius: 3.666rem;
+  display: flex;
+  align-items: center;
+  border-radius: var(--entry-border-radius);
+  min-height: var(--timeline-min-height);
+}
+
+.entry__image {
+  --image-size: 54px;
+
+  margin: 5px;
+  border: var(--border);
+  border-color: currentColor;
+  display: block;
+  border-radius: 50%;
+  width: var(--image-size);
+  height: var(--image-size);
+  object-fit: cover;
+  overflow: hidden;
+}

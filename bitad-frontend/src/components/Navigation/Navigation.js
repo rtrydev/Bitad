@@ -86,7 +86,7 @@ function Navigation() {
                 <NavLink
                   to="/registration"
                   onClick={handleLinkClick}
-                  className={`${typography["nav-link"]} ${typography.button}`}
+                  className={`${typography["nav-link"]} ${typography.button} ${styles["button--hide"]}`}
                 >
                   Rejestracja
                 </NavLink>
