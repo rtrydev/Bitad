@@ -17,6 +17,8 @@
 
   --border-radius: 0.6666rem;
   --border: 2px solid var(--accent);
+
+  --hero-image-max-height: 333px;
 }
 
 @media all and (max-width: 782px) {
@@ -54,4 +56,17 @@ body {
 header {
   padding-top: var(--header-margin-top);
   padding-bottom: var(--section-margin);
+}
+
+.image--circle {
+  --image-size: 54px;
+  margin: 5px;
+  border: var(--border);
+  border-color: currentColor;
+  display: block;
+  border-radius: 50%;
+  width: var(--image-size);
+  height: var(--image-size);
+  object-fit: cover;
+  overflow: hidden;
 }

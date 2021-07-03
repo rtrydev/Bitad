@@ -1,11 +1,11 @@
-.hero {
-  text-align: center;
-}
-
 .hero img {
   display: inline-block;
   margin-bottom: var(--margin-xxl);
-  max-height: 333px;
+  max-height: var(--hero-image-max-height);
+}
+
+.hero .small-hero__image {
+  margin-bottom: 0;
 }
 
 .hero h1 {
@@ -25,4 +25,11 @@
   font-weight: bold;
   border: var(--border);
   border-color: var(--accent);
+}
+
+@media all and (max-width: 864px) {
+  .hero {
+    text-align: center;
+    gap: 0;
+  }
 }

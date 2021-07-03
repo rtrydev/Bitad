@@ -10,6 +10,8 @@
   --line-height-m: 32px;
   --font-size-s: 16px;
   --line-height-s: 24px;
+
+  --root-font-color: var(--black);
 }
 
 @media all and (max-width: 782px) {
@@ -36,7 +38,7 @@ button {
   font-size: var(--root-font-size);
   line-height: 1.9;
   font-family: "PT Sans";
-  color: var(--black);
+  color: var(--root-font-color);
 }
 
 a {

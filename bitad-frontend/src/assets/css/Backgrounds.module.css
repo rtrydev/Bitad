@@ -10,6 +10,13 @@
   background-size: auto 42.22rem;
 }
 
+.hero-background--small {
+  background-image: url(../images/small-hero-bg.svg);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: auto 28.3rem;
+}
+
 .shadow {
   box-shadow: 0 12.4px 49.3px 0 rgba(0, 0, 0, 0.24);
 }
@@ -53,4 +60,18 @@
   background-image: url(../../assets/images/timeline-scale.svg);
   background-repeat: repeat;
   background-position: 0;
+}
+
+.highlight {
+  outline: var(--accent) solid 4px;
+  animation: fadeout 4.5s;
+}
+
+@keyframes fadeout {
+  form {
+    outline-color: var(--accent);
+  }
+  to {
+    outline-color: transparent;
+  }
 }

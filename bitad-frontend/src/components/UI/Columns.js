@@ -9,6 +9,9 @@ function Columns(props) {
     case "3.5":
       classes += styles["three-columns"];
       break;
+    case "4":
+      classes += styles["four-columns"];
+      break;
     default:
       classes += styles["two-columns"];
       break;
