@@ -1,0 +1,23 @@
+.event-speaker {
+  display: flex;
+  align-items: center;
+  border-radius: 66px 0 0 66px;
+  margin-right: calc(var(--margin-xs) * -1);
+  margin-bottom: var(--margin-xs);
+  background-color: rgba(229, 0, 126, 0.22);
+  color: #e5007e;
+}
+
+.event-speaker img {
+  --image-size: 44px;
+}
+
+.event-speaker__details > * {
+  display: block;
+  color: var(--root-font-color);
+}
+
+.details__name {
+  color: var(--root-font-color);
+  line-height: 1.4;
+}

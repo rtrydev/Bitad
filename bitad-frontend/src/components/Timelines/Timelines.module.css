@@ -4,6 +4,7 @@
   position: relative;
   margin-right: calc(var(--margin-m) * -5);
   margin-left: calc(var(--margin-m) * -5);
+  margin-bottom: var(--margin-m);
   padding-right: calc(var(--margin-m) * 5);
   padding-left: calc(var(--margin-m) * 5);
 }

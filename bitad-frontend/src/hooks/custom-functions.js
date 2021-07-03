@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {string} className
+ * @returns
+ */
 export const parseClassName = (className) => {
   if (className === undefined) return "";
 

@@ -3,7 +3,7 @@ import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import ScrollMemory from "react-router-scroll-memory";
 import About from "./pages/About/About";
-import Agenda from "./pages/Agenda";
+import Agenda from "./pages/Agenda/Agenda";
 import Details from "./pages/Details";
 import Registration from "./pages/Registration";
 

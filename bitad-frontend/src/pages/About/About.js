@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import MainHero from "../../components/UI/MainHero";
+import MainHero from "../../components/Hero/MainHero";
 import Columns from "../../components/UI/Columns";
 import Section from "../../components/UI/Section";
 import DecoratedImage from "../../components/UI/DecoratedImage.js";

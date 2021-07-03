@@ -1,0 +1,27 @@
+.card--event {
+  padding: var(--margin-xs);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__title {
+  width: 100%;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.card__details {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--margin-xs);
+}
+
+.details__room {
+  width: min-content;
+}
+
+.details__time {
+  width: 100%;
+  text-align: center;
+}

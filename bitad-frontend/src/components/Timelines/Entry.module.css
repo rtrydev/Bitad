@@ -6,6 +6,15 @@
   min-height: var(--timeline-min-height);
 }
 
+.entry--break-left {
+  grid-column-start: 1 !important;
+  border-radius: 0 var(--entry-border-radius) var(--entry-border-radius) 0;
+}
+
+.entry--break-right {
+  border-radius: var(--entry-border-radius) 0 0 var(--entry-border-radius);
+}
+
 .entry__image {
   --image-size: 54px;
 

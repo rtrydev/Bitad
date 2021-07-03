@@ -33,9 +33,10 @@ export const DUMMY_STAFF = [
 
 export const DUMMY_AGENDAS = [
   {
-    title: "1",
+    title: "Potwierdzenie swoją obecność na konferencji",
     start: "2021-06-25T06:00:00.220Z",
     end: "2021-06-25T06:30:46.220Z",
+    room: "Sala L100",
     speaker: {
       picture:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
@@ -50,6 +51,7 @@ export const DUMMY_AGENDAS = [
     title: "2",
     start: "2021-06-25T06:25:46.220Z",
     end: "2021-06-25T07:30:46.220Z",
+    room: "Audytorium Główne",
     speaker: {
       picture:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
@@ -64,6 +66,7 @@ export const DUMMY_AGENDAS = [
     title: "3",
     start: "2021-06-25T09:30:46.220Z",
     end: "2021-06-25T11:30:46.220Z",
+    room: "Sala L100",
     speaker: {
       picture:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
@@ -78,6 +81,7 @@ export const DUMMY_AGENDAS = [
     title: "4",
     start: "2021-06-25T11:00:46.220Z",
     end: "2021-06-25T13:30:46.220Z",
+    room: "Sala L100",
     speaker: {
       picture:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",

@@ -64,23 +64,18 @@ function Navigation() {
                   to="/#sponsors"
                   onClick={handleLinkClick}
                   className={typography["nav-link"]}
-                  // scroll={(e) => {
-                  //   e.scrollIntoView();
-                  //   e.classList.add(bg.highlight);
-                  //   setTimeout(() => e.classList.remove(bg.highlight), 4000);
-                  // }}
                 >
                   Sponsorzy
                 </NavHashLink>
               </li>
               <li>
-                <NavLink
-                  to="/agenda"
+                <NavHashLink
+                  to="/agenda#agenda"
                   onClick={handleLinkClick}
                   className={typography["nav-link"]}
                 >
                   Agenda
-                </NavLink>
+                </NavHashLink>
               </li>
               <li>
                 <NavLink
