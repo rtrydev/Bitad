@@ -49,7 +49,6 @@ a {
 a:hover,
 a:focus {
   color: var(--black);
-  border-color: var(--black);
 }
 
 .nav-link {
@@ -58,9 +57,10 @@ a:focus {
 }
 
 .nav-link:hover,
-.nav-link:focus {
+.nav-link:focus,
+.button:hover,
+.button:focus {
   color: var(--accent);
-  border-color: var(--accent);
 }
 
 h1,
@@ -130,4 +130,11 @@ p.small-p {
   border: var(--border);
   border-color: var(--black);
   border-radius: var(--border-radius);
+  background-color: unset;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  border-color: var(--accent);
 }
