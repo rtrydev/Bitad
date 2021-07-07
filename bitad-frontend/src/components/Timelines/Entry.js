@@ -1,13 +1,10 @@
 import { HashLink } from "react-router-hash-link";
-import { parseClassName } from "../../hooks/custom-functions";
+import { parseClassName, parsePicture } from "../../hooks/custom-functions";
 import styles from "./Entry.module.css";
 import layout from "../../assets/css/Layout.module.css";
 import bg from "../../assets/css/Backgrounds.module.css";
-import defaultPicture from "../../assets/images/default-picture.svg";
 
 function Entry(props) {
-  const src = props.imageSrc === "" ? defaultPicture : props.imageSrc;
-
   return (
     <HashLink
       to={props.to}
@@ -21,7 +18,7 @@ function Entry(props) {
     >
       {props.showImage && (
         <img
-          src={src}
+          src={parsePicture(props.imageSrc)}
           alt={props.imageAlt}
           className={layout["image--circle"]}
         />

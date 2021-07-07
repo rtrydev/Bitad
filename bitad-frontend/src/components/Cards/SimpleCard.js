@@ -13,7 +13,9 @@ function SimpleCard(props) {
         <p className={typography["small-p"]}>{props.description}</p>
       </div>
       <div>
-        <Link to={props.link}>Dowiedz się więcej</Link>
+        <Link to={props.link} className={typography["small-p"]}>
+          Dowiedz się więcej
+        </Link>
       </div>
     </Card>
   );

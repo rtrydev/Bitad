@@ -1,0 +1,16 @@
+.details__section:not(:first-child) > div {
+  padding-top: 0;
+}
+
+.details__section > div > p:only-of-type {
+  margin-bottom: var(--margin-xs);
+}
+
+.details h3 {
+  margin-top: var(--margin-m);
+  font-weight: bold;
+}
+
+.details ul {
+  padding-left: 20px;
+}

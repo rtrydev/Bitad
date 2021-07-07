@@ -10,15 +10,13 @@ import siteLogo from "../../assets/images/reset-logo-red.svg";
 import styles from "./Navigation.module.css";
 import bg from "../../assets/css/Backgrounds.module.css";
 import typography from "../../assets/css/Typography.module.css";
+import { setNoScroll } from "../../hooks/custom-functions";
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const html = document.querySelector("html");
-    isOpen
-      ? html.classList.add(styles["no-scroll"])
-      : html.classList.remove(styles["no-scroll"]);
+    setNoScroll(isOpen);
   }, [isOpen]);
 
   const handleHamburgerClick = () => {

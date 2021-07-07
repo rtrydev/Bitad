@@ -27,6 +27,11 @@
   border-color: var(--accent);
 }
 
+.hero__link:focus,
+.hero__link:hover {
+  border-color: var(--black);
+}
+
 @media all and (max-width: 864px) {
   .hero {
     text-align: center;

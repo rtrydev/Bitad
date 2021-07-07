@@ -20,7 +20,6 @@
 
   margin: 5px;
   border: var(--border);
-  border-color: currentColor;
   display: block;
   border-radius: 50%;
   width: var(--image-size);

@@ -62,11 +62,15 @@ header {
   --image-size: 54px;
   margin: 5px;
   border: var(--border);
-  border-color: currentColor;
+  /* border-color: currentColor; */
   display: block;
   border-radius: 50%;
   width: var(--image-size);
   height: var(--image-size);
   object-fit: cover;
   overflow: hidden;
+}
+
+.no-scroll {
+  overflow-y: hidden;
 }

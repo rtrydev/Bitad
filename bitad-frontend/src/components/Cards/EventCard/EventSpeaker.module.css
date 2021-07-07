@@ -5,8 +5,6 @@
   margin-right: calc(var(--margin-xs) * -1);
   margin-bottom: var(--margin-xs);
   padding-right: var(--margin-xs);
-  background-color: rgba(229, 0, 126, 0.22);
-  color: #e5007e;
 }
 
 .event-speaker img {

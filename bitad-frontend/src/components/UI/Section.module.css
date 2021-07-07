@@ -3,6 +3,11 @@
   padding-bottom: var(--section-margin);
 }
 
+.section__wrapper--small {
+  padding-top: var(--margin-xl);
+  padding-bottom: var(--margin-xl);
+}
+
 .section__wrapper > div > p:only-of-type {
   margin-bottom: var(--margin-xl);
 }

@@ -4,13 +4,3 @@
   width: var(--timeline-width);
   min-height: var(--timeline-min-height);
 }
-
-.pink {
-  background-color: rgba(229, 0, 126, 0.22);
-  color: #e5007e;
-}
-
-.pink:hover,
-.pink:focus {
-  color: #e5007e;
-}

@@ -4,7 +4,6 @@ import Container from "../UI/Container";
 import Columns from "../UI/Columns";
 import styles from "./Hero.module.css";
 import bg from "../../assets/css/Backgrounds.module.css";
-import typography from "../../assets/css/Typography.module.css";
 
 export default function SmallHero(props) {
   return (

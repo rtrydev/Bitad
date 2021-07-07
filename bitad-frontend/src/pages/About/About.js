@@ -26,7 +26,7 @@ function About() {
         subtitle="20 marca 2020, na terenie uczelni ATH w Bielsku-Białej"
         title="Konferencja Informatyczna"
         linkText="Zapisz się już dziś!"
-        linkTo="/"
+        linkTo="/registration"
       />
       <main>
         <Section>
@@ -68,19 +68,19 @@ function About() {
               title="Powitalnej paczki"
               description="Dlatego każdy z Was zaraz po potwierdzeniu swojej obecności na konferencji będzie czekała powitalna paczka."
               image={{ src: giftIcon, alt: "Ikona prezentu" }}
-              link="/description"
+              link="/details"
             />
             <SimpleCard
               title="Warsztatów"
               description="Warsztaty mają na celu zaprezentowanie podstaw tematów będących na czasie w praktyce."
               image={{ src: keyboardIcon, alt: "Ikona klawiatury" }}
-              link="/description"
+              link="/details"
             />
             <SimpleCard
               title="Gry QR Code"
               description="Baw się z nami i zdobywaj punkty podczas udziału w prelekcjach i warsztatach. "
               image={{ src: gamepadIcon, alt: "Ikona pada do gier" }}
-              link="/description"
+              link="/details"
             />
           </Columns>
         </Section>

@@ -41,6 +41,10 @@ button {
   color: var(--root-font-color);
 }
 
+button {
+  cursor: pointer;
+}
+
 a {
   color: var(--accent);
   text-decoration: none;
@@ -102,8 +106,6 @@ h4 {
 
 p {
   margin-bottom: var(--margin-xs);
-  margin-left: auto;
-  margin-right: auto;
   max-width: 50rem;
 }
 
@@ -118,6 +120,12 @@ p.small-p {
 
 .text-align--center {
   text-align: center;
+}
+
+.text-align--center p,
+p.text-align--center {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .text-align--right {

@@ -5,7 +5,7 @@ function EventsPart() {
   return (
     <div>
       <Events title="Wykłady" events={DUMMY_AGENDAS} />
-      <Events title="Warsztaty" events={DUMMY_AGENDAS} />
+      {/* <Events title="Warsztaty" events={DUMMY_AGENDAS} /> */}
     </div>
   );
 }

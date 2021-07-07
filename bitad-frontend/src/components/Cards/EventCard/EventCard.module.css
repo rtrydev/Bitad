@@ -25,3 +25,12 @@
   width: 100%;
   text-align: center;
 }
+
+.card__button {
+  background-color: unset;
+  color: var(--accent);
+  padding: 0;
+  border: none;
+  margin: 0 auto;
+  display: block;
+}

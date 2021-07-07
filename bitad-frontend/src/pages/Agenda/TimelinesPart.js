@@ -6,7 +6,7 @@ function TimelinesPart() {
   return (
     <div className={styles.timelines}>
       <Timelines title="Wykłady" events={DUMMY_AGENDAS} />
-      <Timelines title="Warsztaty" events={DUMMY_AGENDAS} />
+      {/* <Timelines title="Warsztaty" events={DUMMY_AGENDAS} /> */}
     </div>
   );
 }

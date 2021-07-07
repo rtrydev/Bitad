@@ -5,6 +5,7 @@ import { isSameTime, isAfterTime, isBeforeTime } from "./time-functions";
 
 import styles from "./Scale.module.css";
 import bg from "../../assets/css/Backgrounds.module.css";
+import { accentColorToClassName } from "../../hooks/custom-functions";
 
 /**
  *
@@ -46,7 +47,9 @@ function Scale(props) {
 
     const classes = `${
       startColumn === -1 && entryStyles["entry--break-left"]
-    } ${endColumn === -1 && entryStyles["entry--break-right"]} ${styles.pink}`;
+    } ${
+      endColumn === -1 && entryStyles["entry--break-right"]
+    } ${accentColorToClassName(entry.accentColor)}`;
 
     return (
       <Entry

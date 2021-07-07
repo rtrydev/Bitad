@@ -14,7 +14,7 @@
   background-image: url(../images/small-hero-bg.svg);
   background-repeat: no-repeat;
   background-position: top;
-  background-size: auto 28.3rem;
+  background-size: auto 42.3rem;
 }
 
 .shadow {
@@ -74,4 +74,28 @@
   to {
     outline-color: transparent;
   }
+}
+
+.pink {
+  background-color: rgba(229, 0, 126, 0.22);
+}
+
+.pink img {
+  border-color: #e5007e;
+}
+
+.green {
+  background-color: rgba(10, 209, 143, 0.22);
+}
+
+.green img {
+  border-color: #0ad18f;
+}
+
+.purple {
+  background-color: rgba(110, 3, 228, 0.22);
+}
+
+.purple img {
+  border-color: #6e03e4;
 }

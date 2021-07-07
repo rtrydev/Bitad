@@ -1,12 +1,21 @@
 import styles from "./EventSpeaker.module.css";
 import typography from "../../../assets/css/Typography.module.css";
 import layout from "../../../assets/css/Layout.module.css";
+import {
+  accentColorToClassName,
+  parsePicture,
+} from "../../../hooks/custom-functions";
 
 function EventSpeaker(props) {
+  console.log(props.accentColor);
   return (
-    <div className={styles["event-speaker"]}>
+    <div
+      className={`${styles["event-speaker"]} ${accentColorToClassName(
+        props.accentColor
+      )}`}
+    >
       <img
-        src={props.picture}
+        src={parsePicture(props.picture)}
         alt={props.name}
         className={layout["image--circle"]}
       />

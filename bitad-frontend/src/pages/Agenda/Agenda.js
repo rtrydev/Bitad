@@ -15,12 +15,10 @@ function Agenda() {
         subtitle="20 marca 2020, na terenie uczelni ATH w Bielsku-Białej"
         title="Konferencja Informatyczna"
         linkText="Zapisz się już dziś!"
-        linkTo="/"
+        linkTo="/registration"
       />
-      <Section>
-        <h2 id="agenda" className={typography["text-align--center"]}>
-          Agenda
-        </h2>
+      <Section id="agenda">
+        <h2 className={typography["text-align--center"]}>Agenda</h2>
         <TimelinesPart />
         <EventsPart />
       </Section>

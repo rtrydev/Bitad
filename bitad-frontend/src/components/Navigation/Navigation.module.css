@@ -25,10 +25,6 @@
   width: auto;
 }
 
-.no-scroll {
-  overflow-y: hidden;
-}
-
 @media all and (max-width: 782px) {
   .navigation__element .button--hide {
     border: none;

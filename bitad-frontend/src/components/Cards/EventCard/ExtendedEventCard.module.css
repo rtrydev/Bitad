@@ -1,11 +1,23 @@
 .card--extended-event {
-  position: absolute;
+  z-index: 2;
+  position: fixed;
+  overflow-y: auto;
   padding: var(--margin-xs);
-  left: var(--margin-xs);
-  right: var(--margin-xs);
+  width: calc(100vw - (var(--margin-m) * 2));
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  max-height: calc(100vh - (var(--margin-m) * 2));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.backdrop {
+  z-index: 2;
+  content: "";
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsla(0, 0%, 100%, 0.85);
 }
 
 .card__header {
