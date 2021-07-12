@@ -1,0 +1,73 @@
+.form {
+  margin-top: var(--margin-l);
+}
+
+.form label {
+  display: inline-block;
+  line-height: 1.6;
+}
+
+.form__section {
+  margin-bottom: var(--margin-xs);
+}
+
+.form__button {
+  margin-top: var(--margin-l);
+}
+
+.section__field {
+  margin-bottom: calc(var(--margin-xs) / 2);
+}
+
+.section__field--checkbox {
+  padding-left: 29px;
+  position: relative;
+}
+
+.field__input {
+  padding-left: var(--margin-xxs);
+}
+
+.field__input,
+.field__checkbox {
+  width: 100%;
+  border: var(--border);
+  border-color: var(--black);
+}
+
+.field__checkbox {
+  --size: 21px;
+  -webkit-appearance: none;
+  position: absolute;
+  left: 0;
+  top: 7px;
+  height: var(--size);
+  width: var(--size);
+  margin: 0;
+}
+
+.field__checkbox:checked:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 13px;
+  border-bottom: var(--border);
+  border-right: var(--border);
+  border-color: var(--black);
+  left: 4px;
+  transform: rotate(45deg);
+}
+
+.form__field-wrapper {
+  display: flex;
+}
+
+.form__field-wrapper > * {
+  flex-grow: 1;
+  margin-right: var(--margin-xs);
+}
+
+.form__field-wrapper > *:last-child {
+  margin-right: 0;
+}

@@ -34,7 +34,8 @@
 }
 
 html,
-button {
+button,
+input {
   font-size: var(--root-font-size);
   line-height: 1.9;
   font-family: "PT Sans";
@@ -53,6 +54,7 @@ a {
 a:hover,
 a:focus {
   color: var(--black);
+  text-decoration: underline;
 }
 
 .nav-link {
@@ -65,6 +67,7 @@ a:focus {
 .button:hover,
 .button:focus {
   color: var(--accent);
+  text-decoration: none;
 }
 
 h1,

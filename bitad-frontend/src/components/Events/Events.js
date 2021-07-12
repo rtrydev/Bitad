@@ -23,7 +23,6 @@ function Events(props) {
     setIsShowExtendedCard(false);
   };
 
-  const e = DUMMY_AGENDAS[0];
   const events = DUMMY_AGENDAS.map((event) => {
     return (
       <EventCard key={event.title} event={event} onClick={openExtendedCard} />

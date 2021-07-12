@@ -1,0 +1,17 @@
+.registration {
+  padding-top: var(--margin-xl);
+}
+
+.registration--two-columns {
+  grid-template-columns: 2fr 1fr;
+}
+
+.registration--two-columns > img {
+  align-self: center;
+}
+
+@media all and (max-width: 864px) {
+  .registration--two-columns > *:last-child {
+    display: none;
+  }
+}

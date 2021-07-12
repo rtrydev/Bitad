@@ -68,19 +68,19 @@ function About() {
               title="Powitalnej paczki"
               description="Dlatego każdy z Was zaraz po potwierdzeniu swojej obecności na konferencji będzie czekała powitalna paczka."
               image={{ src: giftIcon, alt: "Ikona prezentu" }}
-              link="/details"
+              link="/details#gift"
             />
             <SimpleCard
               title="Warsztatów"
               description="Warsztaty mają na celu zaprezentowanie podstaw tematów będących na czasie w praktyce."
               image={{ src: keyboardIcon, alt: "Ikona klawiatury" }}
-              link="/details"
+              link="/details#workshops"
             />
             <SimpleCard
               title="Gry QR Code"
               description="Baw się z nami i zdobywaj punkty podczas udziału w prelekcjach i warsztatach. "
               image={{ src: gamepadIcon, alt: "Ikona pada do gier" }}
-              link="/details"
+              link="/details#game"
             />
           </Columns>
         </Section>

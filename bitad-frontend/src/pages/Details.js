@@ -17,7 +17,11 @@ function Details() {
         linkTo="/registration"
       />
       <main className={styles.details}>
-        <Section className={styles.details__section} isSmallSection={true}>
+        <Section
+          className={styles.details__section}
+          isSmallSection={true}
+          id="gift"
+        >
           <h2>Powitalna paczka</h2>
           <p>
             Podjęliśmy się organizacji konferencji Beskid IT Academic Day na
@@ -48,7 +52,11 @@ function Details() {
             </li>
           </ul>
         </Section>
-        <Section className={styles.details__section} isSmallSection={true}>
+        <Section
+          className={styles.details__section}
+          isSmallSection={true}
+          id="workshops"
+        >
           <h2>Warsztaty</h2>
           <p>
             Podjęliśmy się organizacji konferencji Beskid IT Academic Day na
@@ -60,7 +68,11 @@ function Details() {
           </p>
           <HashLink to="/agenda#agenda">Link do agendy</HashLink>
         </Section>
-        <Section className={styles.details__section} isSmallSection={true}>
+        <Section
+          className={styles.details__section}
+          isSmallSection={true}
+          id="game"
+        >
           <h2>Gra QR Code</h2>
           <p>
             Podjęliśmy się organizacji konferencji Beskid IT Academic Day na

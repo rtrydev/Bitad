@@ -62,6 +62,13 @@
   background-position: 0;
 }
 
+.registration-background {
+  background: url(../../assets/images/registration-bg1.svg);
+  background-position: top;
+  background-size: 1535px auto;
+  background-repeat: no-repeat;
+}
+
 .highlight {
   outline: var(--accent) solid 4px;
   animation: fadeout 4.5s;

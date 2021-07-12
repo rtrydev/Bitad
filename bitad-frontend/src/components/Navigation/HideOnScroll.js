@@ -10,6 +10,7 @@ function HideOnScroll(props) {
     const handleScroll = (e) => {
       const scrollPosition = e.target.documentElement.scrollTop;
 
+      if (scrollPosition < 100) return;
       setLastScrollPosition(scrollPosition);
       setIsScrollingUp(scrollPosition > lastScrollPosition);
     };

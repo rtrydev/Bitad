@@ -30,6 +30,7 @@
 .hero__link:focus,
 .hero__link:hover {
   border-color: var(--black);
+  text-decoration: none;
 }
 
 @media all and (max-width: 864px) {

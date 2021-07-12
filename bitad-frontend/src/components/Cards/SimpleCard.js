@@ -1,7 +1,7 @@
 import Card from "./Card";
 import styles from "./SimpleCard.module.css";
 import typography from "../../assets/css/Typography.module.css";
-import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 function SimpleCard(props) {
   const { src, alt } = props.image;
@@ -13,9 +13,9 @@ function SimpleCard(props) {
         <p className={typography["small-p"]}>{props.description}</p>
       </div>
       <div>
-        <Link to={props.link} className={typography["small-p"]}>
+        <HashLink to={props.link} className={typography["small-p"]}>
           Dowiedz się więcej
-        </Link>
+        </HashLink>
       </div>
     </Card>
   );

@@ -1,7 +1,9 @@
 import styles from "./Columns.module.css";
+import { parseClassName } from "../../hooks/custom-functions";
 
 function Columns(props) {
-  let classes = props.reverse ? `${styles.reverse} ` : "";
+  let classes = parseClassName(props.className);
+  classes += props.reverse ? ` ${styles.reverse} ` : " ";
   switch (props.columns) {
     case "3":
       classes += `${styles["three-columns"]} ${styles["three-columns--small"]}`;

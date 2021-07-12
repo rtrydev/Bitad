@@ -5,7 +5,7 @@ import ScrollMemory from "react-router-scroll-memory";
 import About from "./pages/About/About";
 import Agenda from "./pages/Agenda/Agenda";
 import Details from "./pages/Details";
-import Registration from "./pages/Registration";
+import Registration from "./pages/Registration/Registration";
 
 function App() {
   return (

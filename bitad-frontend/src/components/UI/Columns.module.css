@@ -36,7 +36,7 @@
 
 @media all and (max-width: 864px) {
   .two-columns {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
   .reverse.two-columns > *:last-child {
     grid-row-start: 1;

@@ -17,7 +17,7 @@ const Overlay = (props) => {
       <div className={styles.card__header}>
         <EntryDetails room={event.room} start={event.start} end={event.end} />
         <EventSpeaker
-          picture="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+          picture={event.speaker.picture}
           name={event.speaker.name}
           website={event.speaker.website}
         />
