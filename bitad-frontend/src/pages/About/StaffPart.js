@@ -7,9 +7,9 @@ function StaffPart() {
     <Fragment>
       <h2 className={typography["text-align--center"]}>Organizatorzy</h2>
       <p className={typography["text-align--center"]}>
-        Jak i motywacji do jej dalszego poszerzania. Dodatkowo dbamy o to, aby
-        to piątkowe spotkanie było przede wszystkim. Mile spędzonym czasem,
-        dlatego wzbogaciliśmy konferencję o dodatkowe atrakcje.
+        Musieliśmy się tutaj wpisać. Przygotowaliśmy konferencję dla Was i
+        serdecznie wszystkich na nią zapraszamy. Będziecie mogli z nami się
+        spotkać i porozmawiać podczas Bitadu.
       </p>
       <Staff />
     </Fragment>

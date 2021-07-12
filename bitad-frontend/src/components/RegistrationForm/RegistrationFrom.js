@@ -42,19 +42,21 @@ function RegistrationFrom() {
           <FormTextInput labelText="Imię" name="firstName" />
           <FormTextInput labelText="Nazwisko" name="lastName" />
         </FieldWrapper>
-        <FormTextInput labelText="Adres mailowy" name="mail" />
-        <FieldWrapper>
-          <FormTextInput
-            labelText="Hasło"
-            name="password"
-            inputType="password"
-          />
-          <FormTextInput
-            labelText="Powtórz hasło"
-            name="repeatedPassword"
-            inputType="password"
-          />
-        </FieldWrapper>
+        <FormTextInput labelText="Adres email" name="email" inputType="email" />
+        <FormTextInput
+          labelText={
+            <>
+              Hasło do <Link to="/">aplikacji QR Code</Link>
+            </>
+          }
+          name="password"
+          inputType="password"
+        />
+        <FormTextInput
+          labelText="Powtórz hasło"
+          name="repeatedPassword"
+          inputType="password"
+        />
       </div>
       <div>
         <CheckboxField
@@ -77,5 +79,4 @@ function RegistrationFrom() {
     </form>
   );
 }
-
 export default RegistrationFrom;

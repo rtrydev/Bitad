@@ -37,17 +37,19 @@ function About() {
                 kolejny, 10 raz
               </h2>
               <p>
-                Podjęliśmy się organizacji konferencji Beskid IT Academic Day na
-                Akademii Techniczno-Humanistycznej w Bielsku-Białej.
+                Już po raz dziesiąty podjęliśmy się organizacji konferencji
+                Beskid IT Academic Day na Akademii Techniczno-Humanistycznej w
+                Bielsku-Białej.
               </p>
               <p>
-                Nieustannie staramy się rozwijać nasz event, jednocześnie dbając
-                o to, aby uczestnicy, zarówno profesjonaliści, jak i amatorzy,
-                wynieśli z tego dnia ogromne pokłady wiedzy.
+                Nieustannie staramy się rozwijać Bitad. Jednocześnie dbając o
+                to, aby uczestnicy, zarówno profesjonaliści, jak i pasjonaci,
+                wynieśli z tego dnia ogromne pokłady wiedzy oraz motywacji do
+                dalszego rozwijania się.
               </p>
               <p>
-                Jak i motywacji do jej dalszego poszerzania. Dodatkowo dbamy o
-                to, aby to piątkowe spotkanie.
+                Dbamy również aby spędzony czas z nami był jak najlepiej
+                spożytkowany.
               </p>
             </div>
             <DecoratedImage
@@ -66,13 +68,13 @@ function About() {
           <Columns columns="3.5">
             <SimpleCard
               title="Powitalnej paczki"
-              description="Dlatego każdy z Was zaraz po potwierdzeniu swojej obecności na konferencji będzie czekała powitalna paczka."
+              description="Na każdego z Was po potwierdzeniu rejestracji online będzie czekała powitalna paczka w dniu konferencji."
               image={{ src: giftIcon, alt: "Ikona prezentu" }}
               link="/details#gift"
             />
             <SimpleCard
               title="Warsztatów"
-              description="Warsztaty mają na celu zaprezentowanie podstaw tematów będących na czasie w praktyce."
+              description="Biorąc udział w warsztatach będziesz mógł w praktyce rozwinąć się w wybranym temacie pod okiem profesjonalistów."
               image={{ src: keyboardIcon, alt: "Ikona klawiatury" }}
               link="/details#workshops"
             />

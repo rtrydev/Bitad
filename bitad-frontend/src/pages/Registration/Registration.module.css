@@ -2,6 +2,10 @@
   padding-top: var(--margin-xl);
 }
 
+.registration h4 {
+  margin-bottom: var(--margin-s);
+}
+
 .registration--two-columns {
   grid-template-columns: 2fr 1fr;
 }
