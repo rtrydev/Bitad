@@ -40,6 +40,8 @@ services:
     depends_on:
       - api
       - db
+    volumes:
+      - ./bitad-frontend/public/images:/usr/share/nginx/html/images
     networks:
       - app-network
 networks:
