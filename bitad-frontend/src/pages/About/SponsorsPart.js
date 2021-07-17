@@ -1,8 +1,23 @@
 import Columns from "../../components/UI/Columns";
 import Sponsors from "../../components/Sponsors/Sponsors";
 import { DUMMY_SPONSORS } from "../../dummy-data/dummyData";
+import { useEffect, useState } from "react";
+import api from "../../api/api";
 
 function SponsorsPart() {
+  const [sponsors, setSponsors] = useState();
+
+  useEffect(() => {
+    api
+      .get("/Sponsor/GetSponsors")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <Columns reverse={true}>
       <Sponsors sponsors={DUMMY_SPONSORS} />

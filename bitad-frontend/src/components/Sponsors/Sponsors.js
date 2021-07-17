@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Sponsors.module.css";
 import Rank from "./Rank";
 
@@ -9,9 +8,9 @@ const filterByRank = (rank, array) => {
 function Sponsors(props) {
   const sponsors = props.sponsors;
 
-  const diamond = filterByRank(0, sponsors);
-  const gold = filterByRank(1, sponsors);
-  const silver = filterByRank(2, sponsors);
+  const diamond = filterByRank(1, sponsors);
+  const gold = filterByRank(2, sponsors);
+  const silver = filterByRank(3, sponsors);
 
   return (
     <div className={styles.sponsors}>
