@@ -1,10 +1,10 @@
 import EventCard from "../Cards/EventCard/EventCard";
 import ExtendedEventCard from "../Cards/EventCard/ExtendedEventCard";
 import Columns from "../UI/Columns";
-import { DUMMY_AGENDAS } from "../../dummy-data/dummyData";
-import styles from "./Events.module.css";
 import { useState, useEffect } from "react";
 import { setNoScroll } from "../../hooks/custom-functions";
+
+import styles from "./Events.module.css";
 
 function Events(props) {
   const [isShowExtendedCard, setIsShowExtendedCard] = useState(false);
@@ -23,7 +23,7 @@ function Events(props) {
     setIsShowExtendedCard(false);
   };
 
-  const events = DUMMY_AGENDAS.map((event) => {
+  const events = props.events.map((event) => {
     return (
       <EventCard key={event.title} event={event} onClick={openExtendedCard} />
     );

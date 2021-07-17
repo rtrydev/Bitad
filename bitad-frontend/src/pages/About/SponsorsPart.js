@@ -1,26 +1,18 @@
 import Columns from "../../components/UI/Columns";
 import Sponsors from "../../components/Sponsors/Sponsors";
-import { DUMMY_SPONSORS } from "../../dummy-data/dummyData";
-import { useEffect, useState } from "react";
-import api from "../../api/api";
+import Loading from "../../components/UI/Loading";
+import { useGetRequest } from "../../hooks/http-requests";
 
 function SponsorsPart() {
-  const [sponsors, setSponsors] = useState();
-
-  useEffect(() => {
-    api
-      .get("/Sponsor/GetSponsors")
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const { response, isLoading } = useGetRequest("/Sponsor/GetSponsors");
 
   return (
     <Columns reverse={true}>
-      <Sponsors sponsors={DUMMY_SPONSORS} />
+      {isLoading ? (
+        <Loading fontSize="120px" />
+      ) : (
+        <Sponsors sponsors={response} />
+      )}
       <div>
         <h2>
           Konferencja jest

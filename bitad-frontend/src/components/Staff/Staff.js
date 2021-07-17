@@ -1,9 +1,8 @@
 import StaffCard from "../Cards/StaffCard";
 import Columns from "../UI/Columns";
-import { DUMMY_STAFF } from "../../dummy-data/dummyData";
 
-function Staff() {
-  const staff = DUMMY_STAFF.map((e) => (
+function Staff(props) {
+  const staff = props.staff.map((e) => (
     <StaffCard
       key={e.name}
       picture={e.picture}

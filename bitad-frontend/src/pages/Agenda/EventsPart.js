@@ -1,11 +1,10 @@
 import Events from "../../components/Events/Events";
-import { DUMMY_AGENDAS } from "../../dummy-data/dummyData";
 
-function EventsPart() {
+function EventsPart(props) {
   return (
     <div>
-      <Events title="Wykłady" events={DUMMY_AGENDAS} />
-      {/* <Events title="Warsztaty" events={DUMMY_AGENDAS} /> */}
+      <Events title="Wykłady" events={props.agendas} />
+      <Events title="Warsztaty" events={props.workshops} />
     </div>
   );
 }

@@ -19,7 +19,6 @@ export const parseClassName = (className) => {
 };
 
 /**
- *
  * @param {Boolean} isNoScroll
  */
 export const setNoScroll = (isNoScroll = false) => {
@@ -29,6 +28,9 @@ export const setNoScroll = (isNoScroll = false) => {
     : html.classList.remove(layout["no-scroll"]);
 };
 
+/**
+ * @param {string} accentColor
+ */
 export const accentColorToClassName = (accentColor) => {
   switch (accentColor) {
     case "pink":
@@ -41,6 +43,9 @@ export const accentColorToClassName = (accentColor) => {
   }
 };
 
+/**
+ * @param {string} pictureUrl
+ */
 export const parsePicture = (pictureUrl) => {
   return pictureUrl === "" ? defaultPicture : pictureUrl;
 };
