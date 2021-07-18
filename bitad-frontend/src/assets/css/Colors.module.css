@@ -4,4 +4,5 @@
   --white: hsl(0, 0%, 100%);
   --white-transparent: hsla(0, 0%, 100%, 0.97);
   --light-gray: hsl(0, 0%, 93%);
+  --error: #c71d24;
 }

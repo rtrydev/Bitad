@@ -67,3 +67,8 @@
 .form__field-wrapper > *:last-child {
   margin-right: 0;
 }
+
+.field__error {
+  margin-bottom: 0;
+  color: var(--error);
+}

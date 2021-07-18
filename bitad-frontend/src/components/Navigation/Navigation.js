@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import Container from "../UI/Container";
 import ImageAsLink from "../UI/ImageAsLink";
-import HideOnScroll from "./HideOnScroll";
 import Hamburger from "./Hamburger";
 
 import siteLogo from "../../assets/images/reset-logo-red.svg";
@@ -30,65 +29,63 @@ function Navigation() {
   };
 
   return (
-    <HideOnScroll
+    <Container
       className={`${bg["white-background"]} ${
         isOpen ? styles["navigation--open"] : ""
       } `}
     >
-      <Container>
-        <nav className={styles.navigation}>
-          <div className={styles.navigation__element}>
-            <ImageAsLink
-              to="/"
-              src={siteLogo}
-              alt="Reset Logo"
-              onClick={handleLinkClick}
-            />
-          </div>
-          <div className={styles.navigation__element}>
-            <Hamburger isOpen={isOpen} onClick={handleHamburgerClick} />
-            <ul>
-              <li>
-                <NavLink
-                  to="/"
-                  onClick={handleLinkClick}
-                  className={typography["nav-link"]}
-                >
-                  O konferencji
-                </NavLink>
-              </li>
-              <li>
-                <NavHashLink
-                  to="/#sponsors"
-                  onClick={handleLinkClick}
-                  className={typography["nav-link"]}
-                >
-                  Sponsorzy
-                </NavHashLink>
-              </li>
-              <li>
-                <NavHashLink
-                  to="/agenda#agenda"
-                  onClick={handleLinkClick}
-                  className={typography["nav-link"]}
-                >
-                  Agenda
-                </NavHashLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/registration"
-                  onClick={handleLinkClick}
-                  className={`${typography["nav-link"]} ${typography.button} ${styles["button--hide"]}`}
-                >
-                  Rejestracja
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </Container>
-    </HideOnScroll>
+      <nav className={styles.navigation}>
+        <div className={styles.navigation__element}>
+          <ImageAsLink
+            to="/"
+            src={siteLogo}
+            alt="Reset Logo"
+            onClick={handleLinkClick}
+          />
+        </div>
+        <div className={styles.navigation__element}>
+          <Hamburger isOpen={isOpen} onClick={handleHamburgerClick} />
+          <ul>
+            <li>
+              <NavLink
+                to="/"
+                onClick={handleLinkClick}
+                className={typography["nav-link"]}
+              >
+                O konferencji
+              </NavLink>
+            </li>
+            <li>
+              <NavHashLink
+                to="/#sponsors"
+                onClick={handleLinkClick}
+                className={typography["nav-link"]}
+              >
+                Sponsorzy
+              </NavHashLink>
+            </li>
+            <li>
+              <NavHashLink
+                to="/agenda#agenda"
+                onClick={handleLinkClick}
+                className={typography["nav-link"]}
+              >
+                Agenda
+              </NavHashLink>
+            </li>
+            <li>
+              <NavLink
+                to="/registration"
+                onClick={handleLinkClick}
+                className={`${typography["nav-link"]} ${typography.button} ${styles["button--hide"]}`}
+              >
+                Rejestracja
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </Container>
   );
 }
 

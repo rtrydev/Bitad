@@ -12,7 +12,7 @@
 
   --section-margin: 96px;
   --footer-min-column: 340px;
-  --header-margin-top: 134px;
+  --header-margin-top: var(--margin-xl);
   --navigation-spacing: 7.45rem;
 
   --border-radius: 0.6666rem;

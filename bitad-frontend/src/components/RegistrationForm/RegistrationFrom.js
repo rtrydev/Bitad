@@ -1,76 +1,90 @@
 import styles from "./RegistrationFrom.module.css";
 import { Link } from "react-router-dom";
 import typography from "../../assets/css/Typography.module.css";
+import { CheckboxField } from "./CheckboxField";
+import { FieldWrapper } from "./FieldWrapper";
+import { FormTextInput } from "./FormTextInput";
+import { useForm } from "react-hook-form";
+import { FormEmailInput } from "./FormEmailInput";
 
-const FormTextInput = (props) => {
+const FormPasswordWrapper = ({ register, errors }) => {
   return (
-    <div className={styles.section__field}>
-      <label htmlFor={props.name}>{props.labelText}</label>
-      <input
-        id={props.name}
-        type={props.inputType ? props.inputType : "text"}
-        className={styles.field__input}
+    <>
+      <FormTextInput
+        labelText={
+          <>
+            Hasło do <Link to="/">aplikacji QR Code</Link>*
+          </>
+        }
+        type="password"
+        name="password"
+        register={register}
+        errors={errors}
       />
-    </div>
-  );
-};
-
-const FieldWrapper = (props) => {
-  return <div className={styles["form__field-wrapper"]}>{props.children}</div>;
-};
-
-const CheckboxField = (props) => {
-  return (
-    <div
-      className={`${styles.section__field} ${styles["section__field--checkbox"]}`}
-    >
-      <input
-        id={props.name}
-        type="checkbox"
-        className={styles.field__checkbox}
+      <FormTextInput
+        labelText="Powtórz hasło*"
+        type="password"
+        name="repeatedPassword"
+        register={register}
+        errors={errors}
       />
-      <label htmlFor={props.name}>{props.text}</label>
-    </div>
+    </>
   );
 };
 
 function RegistrationFrom() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    reset({});
+  };
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className={styles.form__section}>
         <FieldWrapper>
-          <FormTextInput labelText="Imię" name="firstName" />
-          <FormTextInput labelText="Nazwisko" name="lastName" />
+          <FormTextInput
+            labelText="Imię*"
+            name="firstName"
+            register={register}
+            errors={errors}
+          />
+          <FormTextInput
+            labelText="Nazwisko*"
+            name="lastName"
+            register={register}
+            errors={errors}
+          />
         </FieldWrapper>
-        <FormTextInput labelText="Adres email" name="email" inputType="email" />
-        <FormTextInput
-          labelText={
-            <>
-              Hasło do <Link to="/">aplikacji QR Code</Link>
-            </>
-          }
-          name="password"
-          inputType="password"
+        <FormEmailInput
+          labelText="Adres email*"
+          name="email"
+          register={register}
+          errors={errors}
         />
-        <FormTextInput
-          labelText="Powtórz hasło"
-          name="repeatedPassword"
-          inputType="password"
-        />
+        <FormPasswordWrapper register={register} errors={errors} />
       </div>
       <div>
         <CheckboxField
           name="terms1"
+          register={register}
           text={
             <>
               Zapoznałem/am się z <Link to="/">Polityką Prywatności</Link> oraz
               z <Link to="/">Regulaminem</Link>.*
             </>
           }
+          errors={errors}
         />
         <CheckboxField
           name="terms2"
+          register={register}
           text="Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do udziału w konferencji.*"
+          errors={errors}
         />
       </div>
       <button className={`${typography.button} ${styles.form__button}`}>
