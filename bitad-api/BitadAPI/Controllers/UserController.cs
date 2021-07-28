@@ -6,6 +6,7 @@ using BitadAPI.Dto;
 using BitadAPI.Repositories;
 using BitadAPI.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BitadAPI.Controllers
@@ -15,17 +16,20 @@ namespace BitadAPI.Controllers
     {
         private IUserService _userService;
         private IJwtService _jwtService;
+        private IHttpContextAccessor _accessor;
 
-        public UserController(IUserService userService, IJwtService jwtService)
+        public UserController(IUserService userService, IJwtService jwtService, IHttpContextAccessor accessor)
         {
             _userService = userService;
             _jwtService = jwtService;
+            _accessor = accessor;
         }
 
         [HttpPost("RegisterUser")]
         public async Task<ActionResult<DtoRegistrationResponse>> RegisterUser([FromBody] DtoRegistration registrationData)
         {
-            var result = await _userService.RegisterUser(registrationData);
+            var ip = _accessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            var result = await _userService.RegisterUser(registrationData, ip);
             if (result is null) return Forbid();
 
             return Ok(result);

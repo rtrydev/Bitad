@@ -20,7 +20,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
 using BitadAPI.Services;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace BitadAPI
 {
@@ -84,6 +87,9 @@ namespace BitadAPI
                     }
                 });
             });
+            
+            services.AddHttpContextAccessor();
+            services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -128,6 +134,13 @@ namespace BitadAPI
                     .AllowAnyOrigin()
                     .AllowAnyMethod())
                 .Build();
+            
+            
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+                                   ForwardedHeaders.XForwardedProto
+            });  
 
             app.UseHttpsRedirection();
 

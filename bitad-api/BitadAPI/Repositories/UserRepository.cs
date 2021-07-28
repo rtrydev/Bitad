@@ -18,6 +18,7 @@ namespace BitadAPI.Repositories
         public Task<ICollection<User>> GetAll();
         public Task<User> GetById(int id);
         public Task<User> GetByPredicate(Expression<Func<User, bool>> predicate);
+        public Task<ICollection<User>> GetManyByPredicate(Expression<Func<User, bool>> predicate);
         public Task<User> AddPoints(int id, int points);
         public Task<ICollection<User>> GetTopUsers(int amount);
         public Task<User> CreateUser(User user);
@@ -43,6 +44,10 @@ namespace BitadAPI.Repositories
         public async Task<User> GetByPredicate(Expression<Func<User, bool>> predicate)
         {
             return await GetAll().Include(x => x.Workshop).FirstOrDefaultAsync(predicate);
+        }
+        public async Task<ICollection<User>> GetManyByPredicate(Expression<Func<User, bool>> predicate)
+        {
+            return await GetAll().Include(x => x.Workshop).Where(predicate).ToListAsync();
         }
 
         public async Task<User> AddPoints(int id, int points)

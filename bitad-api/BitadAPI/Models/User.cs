@@ -18,5 +18,7 @@ namespace BitadAPI.Models
         public string CurrentJwt { get; set; }
         public Workshop Workshop { get; set; }
         public string PasswordSalt { get; set; }
+        
+        public string CreationIp { get; set; }
     }
 }

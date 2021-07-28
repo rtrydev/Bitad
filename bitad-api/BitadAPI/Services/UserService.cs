@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +8,6 @@ using BitadAPI.Dto;
 using BitadAPI.Models;
 using BitadAPI.Repositories;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Microsoft.IdentityModel.Tokens;
 
 namespace BitadAPI.Services
 {
@@ -20,7 +16,7 @@ namespace BitadAPI.Services
         public Task<TokenRefreshResponse<DtoUser>> AuthenticateUser(DtoUserLogin userLogin);
         public Task<TokenRefreshResponse<DtoUser>> GetUserById(int id);
         public Task<TokenRefreshResponse<ICollection<DtoLeader>>> GetLeaders(int userid);
-        public Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData);
+        public Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData, string ip);
         public Task<TokenRefreshResponse<DtoWorkshop>> SelectWorkshop(int userId, string workshopCode);
 
     }
@@ -92,8 +88,12 @@ namespace BitadAPI.Services
 
 
 
-        public async Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData)
+        public async Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData, string ip)
         {
+            var registered = await _userRepository.GetManyByPredicate(x => x.CreationIp == ip);
+            if (registered.Count > 3)
+                return null;
+
             if (await _userRepository.GetByPredicate(x => x.Email == registrationData.Email || x.Username == registrationData.Username) is not null)
                 return null;
 
@@ -108,7 +108,8 @@ namespace BitadAPI.Services
                 CurrentScore = 0,
                 Password = hashed.password,
                 PasswordSalt = hashed.salt,
-                Workshop = await _workshopRepository.GetByCode(registrationData.WorkshopCode)
+                Workshop = await _workshopRepository.GetByCode(registrationData.WorkshopCode),
+                CreationIp = ip
             };
 
 
