@@ -39,7 +39,9 @@ namespace BitadAPI.Controllers
         public async Task<ActionResult<DtoUser>> AuthenticateUser([FromBody] DtoUserLogin userLogin)
         {
             var result = await _userService.AuthenticateUser(userLogin);
-            if (result is null) return Forbid();
+            if (result is null) return NotFound();
+            if (result.Code == 2) return Forbid();
+            
             HttpContext.Response.Headers.Add("AuthToken", result.Token);
 
             return Ok(result.Body);
@@ -77,7 +79,7 @@ namespace BitadAPI.Controllers
             return Ok(result.Body);
         }
 
-        [HttpPost("SelectWorkshop")]
+        [HttpPut("SelectWorkshop")]
         [Authorize]
         public async Task<ActionResult<DtoWorkshop>> SelectWorkshop(string workshopCode)
         {

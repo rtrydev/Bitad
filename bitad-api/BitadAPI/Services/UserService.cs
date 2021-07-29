@@ -47,6 +47,16 @@ namespace BitadAPI.Services
 
             if (user.Password != hashedPassword) return null;
 
+            if (user.ActivationDate is null)
+            {
+                return new TokenRefreshResponse<DtoUser>
+                {
+                    Token = null,
+                    Body = null,
+                    Code = 2
+                };
+            }
+
             var dtoUser = _mapper.Map<DtoUser>(user);
             return new TokenRefreshResponse<DtoUser>
             {
