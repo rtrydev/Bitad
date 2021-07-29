@@ -6,5 +6,6 @@ namespace BitadAPI.Dto
         public static TokenRefreshResponse<T> NullResponse(string token) => new TokenRefreshResponse<T> { Body = default, Token = token };
         public T Body { get; set; }
         public string Token { get; set; }
+        public int Code { get; set; }
     }
 }

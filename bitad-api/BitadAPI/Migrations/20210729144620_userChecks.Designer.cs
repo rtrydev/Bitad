@@ -3,15 +3,17 @@ using System;
 using BitadAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BitadAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210729144620_userChecks")]
+    partial class userChecks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,31 +235,22 @@ namespace BitadAPI.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("ActivationCode")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("activation_code");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("ActivationDate")
-                        .HasColumnType("timestamp")
-                        .HasColumnName("activation_date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("AttendanceCheckDate")
-                        .HasColumnType("timestamp")
-                        .HasColumnName("attendance_check_date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("AttendanceCode")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("attendance_code");
+                        .HasColumnType("text");
 
                     b.Property<string>("ConfirmCode")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("confirm_code");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("ConfirmDate")
-                        .HasColumnType("timestamp")
-                        .HasColumnName("confirm_date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreationIp")
                         .IsRequired()
@@ -300,8 +293,7 @@ namespace BitadAPI.Migrations
                         .HasColumnName("password_salt");
 
                     b.Property<int>("Role")
-                        .HasColumnType("int")
-                        .HasColumnName("role");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Username")
                         .IsRequired()

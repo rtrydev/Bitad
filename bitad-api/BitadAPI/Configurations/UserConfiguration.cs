@@ -64,6 +64,41 @@ namespace BitadAPI.Configurations
                 .HasColumnType("text")
                 .IsRequired();
 
+            builder.Property(x => x.Role)
+                .HasColumnName("role")
+                .HasColumnType("int")
+                .IsRequired();
+
+            builder.Property(x => x.ActivationCode)
+                .HasColumnName("activation_code")
+                .HasColumnType("text")
+                .IsRequired();
+
+            builder.Property(x => x.ActivationDate)
+                .HasColumnName("activation_date")
+                .HasColumnType("timestamp")
+                .IsRequired(false);
+
+            builder.Property(x => x.ConfirmCode)
+                .HasColumnName("confirm_code")
+                .HasColumnType("text")
+                .IsRequired();
+
+            builder.Property(x => x.ConfirmDate)
+                .HasColumnName("confirm_date")
+                .HasColumnType("timestamp")
+                .IsRequired(false);
+
+            builder.Property(x => x.AttendanceCode)
+                .HasColumnName("attendance_code")
+                .HasColumnType("text")
+                .IsRequired();
+
+            builder.Property(x => x.AttendanceCheckDate)
+                .HasColumnName("attendance_check_date")
+                .HasColumnType("timestamp")
+                .IsRequired(false);
+
         }
     }
 }

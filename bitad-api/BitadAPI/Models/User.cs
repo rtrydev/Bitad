@@ -6,6 +6,11 @@ using System.Text.Json.Serialization;
 
 namespace BitadAPI.Models
 {
+    public enum UserRole
+    {
+        Guest,
+        Admin
+    }
     public class User
     {
         public int Id { get; set; }
@@ -18,7 +23,13 @@ namespace BitadAPI.Models
         public string CurrentJwt { get; set; }
         public Workshop Workshop { get; set; }
         public string PasswordSalt { get; set; }
-        
         public string CreationIp { get; set; }
+        public string ActivationCode { get; set; }
+        public DateTime? ActivationDate { get; set; }
+        public string ConfirmCode { get; set; }
+        public DateTime? ConfirmDate { get; set; }
+        public string AttendanceCode { get; set; }
+        public DateTime? AttendanceCheckDate { get; set; }
+        public UserRole Role { get; set; }
     }
 }

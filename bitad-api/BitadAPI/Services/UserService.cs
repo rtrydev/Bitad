@@ -18,6 +18,8 @@ namespace BitadAPI.Services
         public Task<TokenRefreshResponse<ICollection<DtoLeader>>> GetLeaders(int userid);
         public Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData, string ip);
         public Task<TokenRefreshResponse<DtoWorkshop>> SelectWorkshop(int userId, string workshopCode);
+        public Task<TokenRefreshResponse<DtoUser>> CheckAttendance(int issuerId, string attendanceCode);
+        public Task<DtoUser> ActivateAccount(string activationCode);
 
     }
 
@@ -49,7 +51,8 @@ namespace BitadAPI.Services
             return new TokenRefreshResponse<DtoUser>
             {
                 Token = await _jwtService.GetNewToken(user.Id),
-                Body = dtoUser
+                Body = dtoUser,
+                Code = 0
             };
 
         }
@@ -71,7 +74,8 @@ namespace BitadAPI.Services
             return new TokenRefreshResponse<ICollection<DtoLeader>>
             {
                 Token = await _jwtService.GetNewToken(userId),
-                Body = leaders
+                Body = leaders,
+                Code = 0
             };
         }
 
@@ -82,7 +86,8 @@ namespace BitadAPI.Services
             return new TokenRefreshResponse<DtoUser>
             {
                 Body = dtoUser,
-                Token = await _jwtService.GetNewToken(id)
+                Token = await _jwtService.GetNewToken(id),
+                Code = 0
             };
         }
 
@@ -109,7 +114,12 @@ namespace BitadAPI.Services
                 Password = hashed.password,
                 PasswordSalt = hashed.salt,
                 Workshop = await _workshopRepository.GetByCode(registrationData.WorkshopCode),
-                CreationIp = ip
+                CreationIp = ip,
+                ActivationCode = GenerateRandomCode(),
+                ConfirmCode = GenerateRandomCode(),
+                AttendanceCode = GenerateRandomCode(),
+                Role = UserRole.Guest
+                
             };
 
 
@@ -142,7 +152,8 @@ namespace BitadAPI.Services
                 return new TokenRefreshResponse<DtoWorkshop>
                 {
                     Body = null,
-                    Token = refreshToken
+                    Token = refreshToken,
+                    Code = 403
                 };
             }
 
@@ -152,7 +163,8 @@ namespace BitadAPI.Services
                 return new TokenRefreshResponse<DtoWorkshop>
                 {
                     Body = null,
-                    Token = refreshToken
+                    Token = refreshToken,
+                    Code = 1
                 };
 
             user.Workshop = workshop;
@@ -160,8 +172,75 @@ namespace BitadAPI.Services
             return new TokenRefreshResponse<DtoWorkshop>
             {
                 Body = _mapper.Map<DtoWorkshop>(workshop),
-                Token = refreshToken
+                Token = refreshToken,
+                Code = 0
             };
+        }
+
+        public async Task<TokenRefreshResponse<DtoUser>> CheckAttendance(int issuerId, string attendanceCode)
+        {
+            var issuer = await _userRepository.GetById(issuerId);
+            var refreshToken = await _jwtService.GetNewToken(issuerId);
+            if (issuer.Role != UserRole.Admin)
+            {
+                return new TokenRefreshResponse<DtoUser>
+                {
+                    Body = null,
+                    Token = refreshToken,
+                    Code = 403
+                };
+            }
+                
+            var user = await _userRepository.GetByPredicate(x => x.AttendanceCode == attendanceCode);
+            if (user is null)
+            {
+                return new TokenRefreshResponse<DtoUser>
+                {
+                    Body = null,
+                    Token = refreshToken,
+                    Code = 404
+                };
+            }
+
+            if (user.ActivationDate is null)
+            {
+                return new TokenRefreshResponse<DtoUser>
+                {
+                    Body = null,
+                    Token = refreshToken,
+                    Code = 2
+                };
+            }
+            
+            if (user.AttendanceCheckDate is not null)
+            {
+                return new TokenRefreshResponse<DtoUser>
+                {
+                    Body = null,
+                    Token = refreshToken,
+                    Code = 1
+                };
+            }
+            
+            user.AttendanceCheckDate = DateTime.Now;
+            var result = await _userRepository.UpdateUser(user);
+            return new TokenRefreshResponse<DtoUser>
+            {
+                Body = _mapper.Map<DtoUser>(result),
+                Token = refreshToken,
+                Code = 0
+            }; 
+
+        }
+
+        public async Task<DtoUser> ActivateAccount(string activationCode)
+        {
+            var user = await _userRepository.GetByPredicate(x => x.ActivationCode == activationCode);
+            if (user is null) return null;
+            if (user.ActivationDate is not null) return null;
+            user.ActivationDate = DateTime.Now;
+            var result = await _userRepository.UpdateUser(user);
+            return _mapper.Map<DtoUser>(result);
         }
 
         private string GenerateLoginCode()
@@ -173,6 +252,15 @@ namespace BitadAPI.Services
                 codeBuilder.Append((char)rnd.Next('A', 'Z'));
             }
             return codeBuilder.ToString();
+        }
+
+        private string GenerateRandomCode()
+        {
+            Guid g = Guid.NewGuid();
+            string stringCode = Convert.ToBase64String(g.ToByteArray());
+            return stringCode.Replace("=", "").
+                Replace("/", "").
+                Replace("+", "");
         }
 
         private (string password, string salt) HashPassword(string password)

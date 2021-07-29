@@ -94,5 +94,29 @@ namespace BitadAPI.Controllers
             if (result.Body is null) return Forbid();
             return Ok(result.Body);
         }
+
+        [HttpPut("CheckAttendance")]
+        [Authorize]
+        public async Task<ActionResult<DtoUser>> CheckAttendance(string attendanceCode)
+        {
+            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
+            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
+            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _userService.CheckAttendance(id, attendanceCode);
+            if (result.Body is null) return Forbid();
+            return Ok(result.Body);
+        }
+
+        [HttpPut("ActivateAccount")]
+        public async Task<ActionResult<DtoUser>> ActivateAccount(string activationCode)
+        {
+            var result = await _userService.ActivateAccount(activationCode);
+            if (result is null) return Forbid();
+            return result;
+        }
     }
 }
