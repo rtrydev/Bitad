@@ -15,5 +15,6 @@ namespace BitadAPI.Dto
         public string Email { get; set; }
         public int CurrentScore { get; set; }
         public DtoWorkshop Workshop { get; set; }
+        public string AttendanceCode { get; set; }
     }
 }
