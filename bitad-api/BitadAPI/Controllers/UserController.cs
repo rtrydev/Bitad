@@ -28,6 +28,7 @@ namespace BitadAPI.Controllers
         [HttpPost("RegisterUser")]
         public async Task<ActionResult<DtoRegistrationResponse>> RegisterUser([FromBody] DtoRegistration registrationData)
         {
+            if (!ModelState.IsValid) return BadRequest();
             var ip = _accessor.HttpContext.Connection.RemoteIpAddress.ToString();
             var result = await _userService.RegisterUser(registrationData, ip);
             if (result is null) return Forbid();
