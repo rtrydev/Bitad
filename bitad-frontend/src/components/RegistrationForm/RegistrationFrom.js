@@ -3,32 +3,52 @@ import { Link } from "react-router-dom";
 import typography from "../../assets/css/Typography.module.css";
 import { CheckboxField } from "./CheckboxField";
 import { FieldWrapper } from "./FieldWrapper";
-import { FormTextInput } from "./FormTextInput";
 import { useForm } from "react-hook-form";
-import { FormEmailInput } from "./FormEmailInput";
 
-const FormPasswordWrapper = ({ register, errors }) => {
+const Input = ({ name, errors, register, type, validate }) => {
+  const maxLength = { value: 50, message: "Maksymalnie 50 znaków" };
+  const minLength = { value: 3, message: "Minimum 3 znaki" };
+  const required = "Pole wymagane";
   return (
     <>
-      <FormTextInput
-        labelText={
-          <>
-            Hasło do <Link to="/">aplikacji QR Code</Link>*
-          </>
-        }
-        type="password"
-        name="password"
-        register={register}
-        errors={errors}
+      <input
+        type={type ? type : "text"}
+        {...register(name, { required, minLength, maxLength, validate })}
+        className={styles.field__input}
       />
-      <FormTextInput
-        labelText="Powtórz hasło*"
-        type="password"
-        name="repeatedPassword"
-        register={register}
-        errors={errors}
-      />
+      {errors[name] !== undefined && (
+        <p className={styles.field__error}>{errors[name]?.message}</p>
+      )}
     </>
+  );
+};
+const InputEmail = ({ name, errors, register }) => {
+  const required = "Pole wymagane";
+  const pattern = {
+    value:
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    message: "Niewłaściwy adres email",
+  };
+  return (
+    <>
+      <input
+        {...register(name, { required, pattern })}
+        type="email"
+        className={styles.field__input}
+      />
+      {errors[name] !== undefined && (
+        <p className={styles.field__error}>{errors[name]?.message}</p>
+      )}
+    </>
+  );
+};
+
+const FildInput = ({ name, labelText, ...rest }) => {
+  return (
+    <div className={styles.section__field}>
+      <label htmlFor={name}>{labelText}</label>
+      {rest.children}
+    </div>
   );
 };
 
@@ -37,36 +57,48 @@ function RegistrationFrom() {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data);
     reset({});
   };
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className={styles.form__section}>
         <FieldWrapper>
-          <FormTextInput
-            labelText="Imię*"
-            name="firstName"
-            register={register}
-            errors={errors}
-          />
-          <FormTextInput
-            labelText="Nazwisko*"
-            name="lastName"
-            register={register}
-            errors={errors}
-          />
+          <FildInput name="password" labelText="Imię*">
+            <Input register={register} errors={errors} name="firstName" />
+          </FildInput>
+          <FildInput name="password" labelText="Nazwisko*">
+            <Input register={register} errors={errors} name="lastName" />
+          </FildInput>
         </FieldWrapper>
-        <FormEmailInput
-          labelText="Adres email*"
-          name="email"
-          register={register}
-          errors={errors}
-        />
-        <FormPasswordWrapper register={register} errors={errors} />
+        <FildInput name="email" labelText="Adres email">
+          <InputEmail register={register} errors={errors} name="email" />
+        </FildInput>
+        <FildInput
+          name="password"
+          labelText={
+            <>
+              Hasło do <Link to="/">aplikacji QR Code</Link>*
+            </>
+          }
+        >
+          <Input register={register} errors={errors} name="password" />
+        </FildInput>
+        <FildInput name="repeatedPassword" labelText="Powtórz hasło">
+          <Input
+            name="repeatedPassword"
+            register={register}
+            validate={{
+              checkIfEquole: (value) =>
+                value === getValues("password") || "Hasła nie są takie same",
+            }}
+            errors={errors}
+          />
+        </FildInput>
       </div>
       <div>
         <CheckboxField
