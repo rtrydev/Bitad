@@ -29,13 +29,15 @@ namespace BitadAPI.Services
         private IWorkshopRepository _workshopRepository;
         private IMapper _mapper;
         private IJwtService _jwtService;
+        private IMailService _mailService;
 
-        public UserService(IUserRepository userRepository, IWorkshopRepository workshopRepository, IMapper mapper, IJwtService jwtService)
+        public UserService(IUserRepository userRepository, IWorkshopRepository workshopRepository, IMapper mapper, IJwtService jwtService, IMailService mailService)
         {
             _userRepository = userRepository;
             _workshopRepository = workshopRepository;
             _mapper = mapper;
             _jwtService = jwtService;
+            _mailService = mailService;
         }
 
         public async Task<TokenRefreshResponse<DtoUser>> AuthenticateUser(DtoUserLogin userLogin)
@@ -140,6 +142,8 @@ namespace BitadAPI.Services
             {
                 resultUser.Workshop = await _workshopRepository.AddParticipant(resultUser.Workshop.Id, resultUser);
             }
+            //wysylanie emaili aktywacyjnych - na razie wylaczone
+            //await _mailService.SendActivationMail(user.Email, user.ActivationCode, user.Username);
 
             return new DtoRegistrationResponse
             {

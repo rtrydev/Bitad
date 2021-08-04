@@ -91,6 +91,8 @@ namespace BitadAPI
             services.AddHttpContextAccessor();
             services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
+            services.AddSingleton<IMailService, MailService>();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddDbContext<RepositoryContext>();
@@ -103,7 +105,7 @@ namespace BitadAPI
             services.AddTransient<IQrCodeRedeemRepository, QrCodeRedeemRepository>();
             services.AddTransient<IQrCodeRepository, QrCodeRepository>();
             services.AddTransient<ISponsorRepository, SponsorRepository>();
-
+            
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IWorkshopService, WorkshopService>();
             services.AddScoped<IAgendaService, AgendaService>();
