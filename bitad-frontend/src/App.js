@@ -6,6 +6,7 @@ import About from "./pages/About/About";
 import Agenda from "./pages/Agenda/Agenda";
 import Details from "./pages/Details";
 import Registration from "./pages/Registration/Registration";
+import AccountActivation from "./pages/AccountActivation";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path="/registration">
           <Registration />
+        </Route>
+        <Route path="/account-activation/:code">
+          <AccountActivation />
         </Route>
       </Switch>
       <Footer />
