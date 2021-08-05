@@ -24,6 +24,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:80"
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      EMAIL_ADDRESS: ${EMAIL_ADDRESS}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
     depends_on:
       - db
     networks:

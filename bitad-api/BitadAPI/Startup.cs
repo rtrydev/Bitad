@@ -52,7 +52,7 @@ namespace BitadAPI
                         options.TokenValidationParameters = new TokenValidationParameters()
                         {
                             ValidateIssuerSigningKey = true,
-                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("secretstringverysecure")),
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET"))),
                             ValidateIssuer = false,
                             ValidateAudience = false
                         };
