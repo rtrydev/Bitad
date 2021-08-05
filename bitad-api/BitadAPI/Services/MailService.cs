@@ -28,7 +28,7 @@ namespace BitadAPI.Services
             message.From.Add(new MailboxAddress("Bitad2021", _emailAddress));
             message.To.Add(new MailboxAddress(receiver, address));
             message.Subject = "Aktywacja konta Bitad2021";
-            var text = $"http://localhost:8080/User/ActivateAccount?activationCode={activationCode}";
+            var text = $"http://localhost/account-activation/{activationCode}";
             message.Body = new TextPart("plain"){ Text = text };
             
             using (var client = new SmtpClient()) {
