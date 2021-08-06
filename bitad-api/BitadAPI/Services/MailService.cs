@@ -32,7 +32,7 @@ namespace BitadAPI.Services
             message.Body = new TextPart("plain"){ Text = text };
             
             using (var client = new SmtpClient()) {
-                await client.ConnectAsync ("smtp.gmail.com", 465, SecureSocketOptions.SslOnConnect);
+                await client.ConnectAsync ("smtp.office365.com", 587, SecureSocketOptions.StartTls);
                 await client.AuthenticateAsync (_emailAddress, _emailPassword);
 
                 await client.SendAsync(message);
