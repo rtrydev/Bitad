@@ -143,9 +143,10 @@ namespace BitadAPI.Services
                 resultUser.Workshop = await _workshopRepository.AddParticipant(resultUser.Workshop.Id, resultUser);
             }
 
-            // wysylanie maili
-
-            //_ = Task.Run(async () => await _mailService.SendActivationMail(user.Email, user.ActivationCode, user.Username));
+            if(Environment.GetEnvironmentVariable("EMAIL_ENABLED") == "true")
+            {
+                _ = Task.Run(async () => await _mailService.SendActivationMail(user.Email, user.ActivationCode, user.Username));
+            }
 
             return new DtoRegistrationResponse
             {
