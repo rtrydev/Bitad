@@ -29,6 +29,7 @@ services:
       EMAIL_ADDRESS: ${EMAIL_ADDRESS}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
       EMAIL_ENABLED: ${EMAIL_ENABLED}
+      SERVER_URL: ${SERVER_URL}
     depends_on:
       - db
     networks:
