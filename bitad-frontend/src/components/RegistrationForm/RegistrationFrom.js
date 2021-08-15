@@ -4,53 +4,12 @@ import typography from "../../assets/css/Typography.module.css";
 import { CheckboxField } from "./CheckboxField";
 import { FieldWrapper } from "./FieldWrapper";
 import { useForm } from "react-hook-form";
-
-const Input = ({ name, errors, register, type, validate }) => {
-  const maxLength = { value: 50, message: "Maksymalnie 50 znaków" };
-  const minLength = { value: 3, message: "Minimum 3 znaki" };
-  const required = "Pole wymagane";
-  return (
-    <>
-      <input
-        type={type ? type : "text"}
-        {...register(name, { required, minLength, maxLength, validate })}
-        className={styles.field__input}
-      />
-      {errors[name] !== undefined && (
-        <p className={styles.field__error}>{errors[name]?.message}</p>
-      )}
-    </>
-  );
-};
-const InputEmail = ({ name, errors, register }) => {
-  const required = "Pole wymagane";
-  const pattern = {
-    value:
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    message: "Niewłaściwy adres email",
-  };
-  return (
-    <>
-      <input
-        {...register(name, { required, pattern })}
-        type="email"
-        className={styles.field__input}
-      />
-      {errors[name] !== undefined && (
-        <p className={styles.field__error}>{errors[name]?.message}</p>
-      )}
-    </>
-  );
-};
-
-const FildInput = ({ name, labelText, ...rest }) => {
-  return (
-    <div className={styles.section__field}>
-      <label htmlFor={name}>{labelText}</label>
-      {rest.children}
-    </div>
-  );
-};
+import { Input } from "./Input";
+import { InputEmail } from "./InputEmail";
+import { FieldInput } from "./FieldInput";
+import { Select } from "./Select";
+import api from "../../api/api";
+import { useState } from "react";
 
 function RegistrationFrom() {
   const {
@@ -61,24 +20,50 @@ function RegistrationFrom() {
     formState: { errors },
   } = useForm();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [response, setResponse] = useState({});
+
+  // TODO: 1) Add workshop select. 2) Proper indication of form submission. 3) Add Google Recaptcha
+
   const onSubmit = (data) => {
+    const { email, firstName, lastName, password } = data;
+    setIsSubmitting(true);
+    api
+      .post("/User/RegisterUser", {
+        email,
+        firstName,
+        lastName,
+        username: "test",
+        password,
+        workshopCode: "string",
+      })
+      .then((res) => {
+        if (!Array.isArray(res.data)) return;
+        setResponse(res.data);
+        setIsSubmitting(false);
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     reset({});
   };
+
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className={styles.form__section}>
         <FieldWrapper>
-          <FildInput name="password" labelText="Imię*">
+          <FieldInput name="firstName" labelText="Imię*">
             <Input register={register} errors={errors} name="firstName" />
-          </FildInput>
-          <FildInput name="password" labelText="Nazwisko*">
+          </FieldInput>
+          <FieldInput name="lastName" labelText="Nazwisko*">
             <Input register={register} errors={errors} name="lastName" />
-          </FildInput>
+          </FieldInput>
         </FieldWrapper>
-        <FildInput name="email" labelText="Adres email">
+        <FieldInput name="email" labelText="Adres email">
           <InputEmail register={register} errors={errors} name="email" />
-        </FildInput>
-        <FildInput
+        </FieldInput>
+        <FieldInput
           name="password"
           labelText={
             <>
@@ -87,8 +72,8 @@ function RegistrationFrom() {
           }
         >
           <Input register={register} errors={errors} name="password" />
-        </FildInput>
-        <FildInput name="repeatedPassword" labelText="Powtórz hasło">
+        </FieldInput>
+        <FieldInput name="repeatedPassword" labelText="Powtórz hasło">
           <Input
             name="repeatedPassword"
             register={register}
@@ -98,7 +83,19 @@ function RegistrationFrom() {
             }}
             errors={errors}
           />
-        </FildInput>
+        </FieldInput>
+        <FieldInput name="shirtSize" labelText="Rozmiar koszulki">
+          <Select
+            name="shirtSize"
+            register={register}
+            errors={errors}
+            options={[
+              { value: "xl", label: "XL" },
+              { value: "l", label: "L" },
+              { value: "m", label: "M" },
+            ]}
+          />
+        </FieldInput>
       </div>
       <div>
         <CheckboxField

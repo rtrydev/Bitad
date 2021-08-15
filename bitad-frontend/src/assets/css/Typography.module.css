@@ -35,7 +35,8 @@
 
 html,
 button,
-input {
+input,
+select {
   font-size: var(--root-font-size);
   line-height: 1.9;
   font-family: "PT Sans";

@@ -25,7 +25,8 @@
 }
 
 .field__input,
-.field__checkbox {
+.field__checkbox,
+.field__select {
   width: 100%;
   border: var(--border);
   border-color: var(--black);
@@ -53,6 +54,10 @@
   border-color: var(--black);
   left: 4px;
   transform: rotate(45deg);
+}
+
+.field__select {
+  height: 40px;
 }
 
 .form__field-wrapper {

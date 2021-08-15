@@ -24,7 +24,7 @@ function AccountActivation() {
         setIsError(true);
       });
     setIsLoading(false);
-  }, []);
+  }, [code]);
 
   const shortMessage = (title, description) => {
     return (
