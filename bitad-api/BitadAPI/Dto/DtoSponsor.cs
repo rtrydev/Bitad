@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace BitadAPI.Dto
 {
     public enum SponsorRank

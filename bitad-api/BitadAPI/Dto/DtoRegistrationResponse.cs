@@ -1,4 +1,6 @@
 ﻿using System;
+using BitadAPI.Models;
+
 namespace BitadAPI.Dto
 {
     public class DtoRegistrationResponse
@@ -8,6 +10,7 @@ namespace BitadAPI.Dto
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DtoWorkshop Workshop { get; set; }
+        public ShirtSize ShirtSize { get; set; }
 
     }
 }

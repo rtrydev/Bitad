@@ -3,15 +3,17 @@ using System;
 using BitadAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BitadAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210815125223_shirtSize")]
+    partial class shirtSize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,9 +305,8 @@ namespace BitadAPI.Migrations
                         .HasColumnType("int")
                         .HasColumnName("role");
 
-                    b.Property<int?>("ShirtSize")
-                        .HasColumnType("int")
-                        .HasColumnName("shirt_size");
+                    b.Property<int>("ShirtSize")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Username")
                         .IsRequired()

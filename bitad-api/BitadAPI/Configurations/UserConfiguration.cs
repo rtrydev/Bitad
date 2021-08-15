@@ -99,6 +99,11 @@ namespace BitadAPI.Configurations
                 .HasColumnType("timestamp")
                 .IsRequired(false);
 
+            builder.Property(x => x.ShirtSize)
+                .HasColumnName("shirt_size")
+                .HasColumnType("int")
+                .IsRequired(false);
+
         }
     }
 }

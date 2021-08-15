@@ -130,7 +130,8 @@ namespace BitadAPI.Services
                 ActivationCode = GenerateRandomCode(),
                 ConfirmCode = GenerateRandomCode(),
                 AttendanceCode = GenerateRandomCode(),
-                Role = UserRole.Guest
+                Role = UserRole.Guest,
+                ShirtSize = registrationData.ShirtSize
                 
             };
 

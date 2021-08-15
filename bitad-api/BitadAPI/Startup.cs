@@ -18,6 +18,7 @@ using BitadAPI.Repositories;
 using BitadAPI.Context;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 using AutoMapper;
 using BitadAPI.Services;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -42,6 +43,7 @@ namespace BitadAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddCors();
             services.AddAuthentication(options => options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(
@@ -114,7 +116,10 @@ namespace BitadAPI
             services.AddScoped<ISponsorService, SponsorService>();
             services.AddScoped<IJwtService, JwtService>();
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

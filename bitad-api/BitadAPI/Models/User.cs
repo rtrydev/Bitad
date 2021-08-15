@@ -11,6 +11,18 @@ namespace BitadAPI.Models
         Guest,
         Admin
     }
+
+    public enum ShirtSize
+    {
+        XS,
+        S,
+        M,
+        L,
+        XL,
+        XXL,
+        XXXL,
+        XXXXL
+    }
     public class User
     {
         public int Id { get; set; }
@@ -31,5 +43,7 @@ namespace BitadAPI.Models
         public string AttendanceCode { get; set; }
         public DateTime? AttendanceCheckDate { get; set; }
         public UserRole Role { get; set; }
+        
+        public ShirtSize? ShirtSize { get; set; }
     }
 }
