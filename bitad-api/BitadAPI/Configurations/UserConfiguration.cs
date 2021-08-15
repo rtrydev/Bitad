@@ -37,12 +37,12 @@ namespace BitadAPI.Configurations
             builder.Property(x => x.FirstName)
                 .HasColumnName("first_name")
                 .HasColumnType("text")
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property(x => x.LastName)
                 .HasColumnName("last_name")
                 .HasColumnType("text")
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property(x => x.Password)
                 .HasColumnName("password")
