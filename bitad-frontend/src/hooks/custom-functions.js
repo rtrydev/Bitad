@@ -47,5 +47,7 @@ export const accentColorToClassName = (accentColor) => {
  * @param {string} pictureUrl
  */
 export const parsePicture = (pictureUrl) => {
-  return pictureUrl === "" ? defaultPicture : pictureUrl;
+  return pictureUrl === "" || typeof pictureUrl === "object"
+    ? defaultPicture
+    : pictureUrl;
 };

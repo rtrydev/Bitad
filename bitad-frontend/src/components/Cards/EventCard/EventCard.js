@@ -6,6 +6,7 @@ import typography from "../../../assets/css/Typography.module.css";
 
 function EventCard(props) {
   const event = props.event;
+
   return (
     <Card id={event.title} className={styles["card--event"]}>
       <EntryDetails room={event.room} start={event.start} end={event.end} />
@@ -17,12 +18,16 @@ function EventCard(props) {
           website={event.speaker.website}
           accentColor={event.accentColor}
         />
-        <button
-          onClick={() => props.onClick(event)}
-          className={`${typography["small-p"]} ${styles.card__button}`}
-        >
-          Dowiedz się więcej
-        </button>
+        {!!event.description ? (
+          <button
+            onClick={() => props.onClick(event)}
+            className={`${typography["small-p"]} ${styles.card__button}`}
+          >
+            Dowiedz się więcej
+          </button>
+        ) : (
+          <span className={styles["card__button--spacer"]} />
+        )}
       </div>
     </Card>
   );

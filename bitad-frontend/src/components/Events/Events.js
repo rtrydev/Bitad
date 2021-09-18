@@ -23,10 +23,8 @@ function Events(props) {
     setIsShowExtendedCard(false);
   };
 
-  const events = props.events.map((event) => {
-    return (
-      <EventCard key={event.title} event={event} onClick={openExtendedCard} />
-    );
+  const events = props.events.map((event, index) => {
+    return <EventCard key={index} event={event} onClick={openExtendedCard} />;
   });
   return (
     <div className={styles.event}>

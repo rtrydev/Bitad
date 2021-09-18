@@ -5,24 +5,28 @@ import { filterEventsByTime } from "./time-functions";
 import styles from "./Timelines.module.css";
 import bg from "../../assets/css/Backgrounds.module.css";
 
-function Timelines(props) {
+function Timelines({ title, events = [], timelineCount = 2 }) {
   const firstTimelineStart = m({ hour: 8, minute: 0, second: 0 });
-  const secondTimelineStart = m({ hour: 12, minute: 30, second: 0 });
+  const duration = 270;
+  const timelines = [];
+
+  for (let i = 0; i < timelineCount; i++) {
+    const timelineDuration = duration * i;
+    const startTime = m(firstTimelineStart).add(timelineDuration, "minutes");
+    timelines.push(
+      <Timeline
+        key={i}
+        startTime={startTime}
+        events={filterEventsByTime(events, startTime)}
+      />
+    );
+  }
 
   return (
     <div>
-      <h4>{props.title}</h4>
+      <h4>{title}</h4>
       <div className={`${styles.timelines} ${bg["gradient-background"]}`}>
-        <div className={styles.timelines__scroll}>
-          <Timeline
-            startTime={firstTimelineStart}
-            events={filterEventsByTime(props.events, firstTimelineStart)}
-          />
-          <Timeline
-            startTime={secondTimelineStart}
-            events={filterEventsByTime(props.events, secondTimelineStart)}
-          />
-        </div>
+        <div className={styles.timelines__scroll}>{timelines}</div>
       </div>
     </div>
   );

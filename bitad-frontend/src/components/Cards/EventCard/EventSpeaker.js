@@ -7,7 +7,6 @@ import {
 } from "../../../hooks/custom-functions";
 
 function EventSpeaker(props) {
-  console.log(props.accentColor);
   return (
     <div
       className={`${styles["event-speaker"]} ${accentColorToClassName(

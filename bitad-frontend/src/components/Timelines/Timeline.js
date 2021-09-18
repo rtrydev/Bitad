@@ -8,7 +8,7 @@ function Timeline(props) {
   return (
     <div className={styles.timeline}>
       <TimesBar className={styles.time} times={createTimes(props.startTime)} />
-      <Scale entrys={props.events} times={createTimes(props.startTime, 5)} />
+      <Scale entries={props.events} times={createTimes(props.startTime, 5)} />
     </div>
   );
 }

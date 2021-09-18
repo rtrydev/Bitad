@@ -34,3 +34,8 @@
   margin: 0 auto;
   display: block;
 }
+
+.card__button--spacer {
+  display: block;
+  height: 24px;
+}

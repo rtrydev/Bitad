@@ -36,7 +36,7 @@ const findColumnsForEntry = (
 };
 
 function Scale(props) {
-  const entrys = props.entrys.map((entry) => {
+  const entries = props.entries.map((entry, index) => {
     const startColumn = findColumnsForEntry(entry.start, props.times, false);
     const endColumn = findColumnsForEntry(entry.end, props.times);
 
@@ -53,7 +53,7 @@ function Scale(props) {
 
     return (
       <Entry
-        key={entry.title}
+        key={index}
         showImage={startColumn !== -1}
         imageSrc={entry.speaker.picture}
         imageAlt={entry.speaker.name}
@@ -64,7 +64,7 @@ function Scale(props) {
     );
   });
   return (
-    <div className={`${styles.scale} ${bg["scale-background"]}`}>{entrys}</div>
+    <div className={`${styles.scale} ${bg["scale-background"]}`}>{entries}</div>
   );
 }
 
