@@ -8,9 +8,9 @@ const filterByRank = (rank, array) => {
 function Sponsors(props) {
   const sponsors = props.sponsors;
 
-  const diamond = filterByRank(1, sponsors);
-  const gold = filterByRank(2, sponsors);
-  const silver = filterByRank(3, sponsors);
+  const diamond = filterByRank("Diamond", sponsors);
+  const gold = filterByRank("Gold", sponsors);
+  const silver = filterByRank("Silver", sponsors);
 
   return (
     <div className={styles.sponsors}>
