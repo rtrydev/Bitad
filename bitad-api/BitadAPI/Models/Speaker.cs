@@ -13,6 +13,7 @@ namespace BitadAPI.Models
         public string Company { get; set; }
         public string Website { get; set; }
         public string WebsiteLink { get; set; }
+        public string AccentColor { get; set; }
 
     }
 }

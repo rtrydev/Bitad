@@ -33,6 +33,11 @@ namespace BitadAPI.Configurations
                 .HasColumnType("text")
                 .IsRequired(false);
 
+            builder.Property(x => x.Degree)
+                .HasColumnName("degree")
+                .HasColumnType("text")
+                .IsRequired(false);
+
         }
     }
 }

@@ -48,6 +48,11 @@ namespace BitadAPI.Configurations
                 .HasColumnType("text")
                 .IsRequired(false);
 
+            builder.Property(x => x.AccentColor)
+                .HasColumnName("accent_color")
+                .HasColumnType("text")
+                .IsRequired(false);
+
         }
     }
 }
