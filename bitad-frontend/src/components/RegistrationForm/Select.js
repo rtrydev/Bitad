@@ -9,8 +9,8 @@ export function Select({ name, options = [], errors, register }) {
         {...register(name, { required })}
         className={styles.field__select}
       >
-        {options.map((option) => (
-          <option key={option.value} name={option.value}>
+        {options.map((option, index) => (
+          <option key={index} name={option.value} disabled={option.disabled}>
             {option.label}
           </option>
         ))}

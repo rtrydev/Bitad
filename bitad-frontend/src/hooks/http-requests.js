@@ -2,9 +2,10 @@ import api from "../api/api";
 import { useEffect, useState } from "react";
 
 /**
- * @param {string}
+ * @param shortUrl
+ * @param toggle
  */
-export const useGetRequest = (shortUrl) => {
+export const useGetRequest = (shortUrl, toggle = false) => {
   const [response, setResponse] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,6 +21,6 @@ export const useGetRequest = (shortUrl) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [shortUrl]);
+  }, [shortUrl, toggle]);
   return { response, isLoading };
 };

@@ -7,9 +7,9 @@ import { useForm } from "react-hook-form";
 import { Input } from "./Input";
 import { InputEmail } from "./InputEmail";
 import { FieldInput } from "./FieldInput";
-import { Select } from "./Select";
 import api from "../../api/api";
 import { useState } from "react";
+import { WorkshopSelect } from "./WorkshopSelect";
 
 function RegistrationFrom() {
   const {
@@ -24,29 +24,30 @@ function RegistrationFrom() {
   const [submitError, setSubmitError] = useState(false);
   const [response, setResponse] = useState({});
 
-  // TODO: 1) Add workshop select. 2) Proper indication of form submission. 3) Add Google Recaptcha
+  // TODO: 1) Fix workshop select, add value. Fix form submit (no submit message)
 
   const onSubmit = (data) => {
-    const { email, username, password } = data;
+    const { email, username, password, workshopCode } = data;
     setIsSubmitting(true);
     api
       .post("/User/RegisterUser", {
         email,
         username,
         password,
-        workshopCode: "string",
+        workshopCode,
       })
       .then((res) => {
         if (!Array.isArray(res.data)) return;
         setResponse(res.data);
         setSubmitError(false);
-        reset({});
       })
       .catch((err) => {
         setSubmitError(true);
         setIsSubmitting(false);
         console.log(err);
       });
+
+    if (isSubmitting === false && submitError === false) reset({});
   };
 
   return (
@@ -87,16 +88,14 @@ function RegistrationFrom() {
             errors={errors}
           />
         </FieldInput>
-        <FieldInput name="shirtSize" labelText="Warsztat">
-          <Select
-            name="shirtSize"
+        <FieldInput
+          name="workshopCode"
+          labelText="Opcjonalny zapis na warsztaty"
+        >
+          <WorkshopSelect
+            name="workshopCode"
             register={register}
             errors={errors}
-            options={[
-              { value: "xl", label: "XL" },
-              { value: "l", label: "L" },
-              { value: "m", label: "M" },
-            ]}
           />
         </FieldInput>
       </div>
