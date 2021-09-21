@@ -16,7 +16,7 @@ function EventCard(props) {
           picture={event.speaker.picture}
           name={event.speaker.name}
           website={event.speaker.website}
-          accentColor={event.accentColor}
+          accentColor={event.speaker.accentColor}
         />
         {!!event.description ? (
           <button

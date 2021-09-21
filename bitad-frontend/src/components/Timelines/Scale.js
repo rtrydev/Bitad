@@ -49,7 +49,7 @@ function Scale(props) {
       startColumn === -1 && entryStyles["entry--break-left"]
     } ${
       endColumn === -1 && entryStyles["entry--break-right"]
-    } ${accentColorToClassName(entry.accentColor)}`;
+    } ${accentColorToClassName(entry.speaker.accentColor)}`;
 
     return (
       <Entry

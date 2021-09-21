@@ -8,7 +8,20 @@
 }
 
 .form__button {
+  min-width: max-content;
+}
+
+.form__accept {
+  color: var(--accent);
+  line-height: 1.5;
+  margin-left: var(--margin-xs);
+}
+
+.form__submit {
   margin-top: var(--margin-l);
+  display: flex;
+  align-items: center;
+  grid-template-columns: auto auto;
 }
 
 .section__field {
@@ -30,6 +43,11 @@
   width: 100%;
   border: var(--border);
   border-color: var(--black);
+}
+
+input[type="password"].field__input {
+  font-size: 13px;
+  height: 40px;
 }
 
 .field__checkbox {

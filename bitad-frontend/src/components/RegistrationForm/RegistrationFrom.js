@@ -21,43 +21,40 @@ function RegistrationFrom() {
   } = useForm();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const [response, setResponse] = useState({});
 
   // TODO: 1) Add workshop select. 2) Proper indication of form submission. 3) Add Google Recaptcha
 
   const onSubmit = (data) => {
-    const { email, firstName, lastName, password } = data;
+    const { email, username, password } = data;
     setIsSubmitting(true);
     api
       .post("/User/RegisterUser", {
         email,
-        firstName,
-        lastName,
-        username: "test",
+        username,
         password,
         workshopCode: "string",
       })
       .then((res) => {
         if (!Array.isArray(res.data)) return;
         setResponse(res.data);
-        setIsSubmitting(false);
-        console.log(response);
+        setSubmitError(false);
+        reset({});
       })
       .catch((err) => {
+        setSubmitError(true);
+        setIsSubmitting(false);
         console.log(err);
       });
-    reset({});
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className={styles.form__section}>
         <FieldWrapper>
-          <FieldInput name="firstName" labelText="Imię*">
-            <Input register={register} errors={errors} name="firstName" />
-          </FieldInput>
-          <FieldInput name="lastName" labelText="Nazwisko*">
-            <Input register={register} errors={errors} name="lastName" />
+          <FieldInput name="username" labelText="Pseudonim">
+            <Input register={register} errors={errors} name="username" />
           </FieldInput>
         </FieldWrapper>
         <FieldInput name="email" labelText="Adres email">
@@ -71,12 +68,18 @@ function RegistrationFrom() {
             </>
           }
         >
-          <Input register={register} errors={errors} name="password" />
+          <Input
+            register={register}
+            errors={errors}
+            name="password"
+            type="password"
+          />
         </FieldInput>
         <FieldInput name="repeatedPassword" labelText="Powtórz hasło">
           <Input
             name="repeatedPassword"
             register={register}
+            type="password"
             validate={{
               checkIfEquole: (value) =>
                 value === getValues("password") || "Hasła nie są takie same",
@@ -84,7 +87,7 @@ function RegistrationFrom() {
             errors={errors}
           />
         </FieldInput>
-        <FieldInput name="shirtSize" labelText="Rozmiar koszulki">
+        <FieldInput name="shirtSize" labelText="Warsztat">
           <Select
             name="shirtSize"
             register={register}
@@ -116,9 +119,24 @@ function RegistrationFrom() {
           errors={errors}
         />
       </div>
-      <button className={`${typography.button} ${styles.form__button}`}>
-        Zapisz się
-      </button>
+      <div className={styles.form__submit}>
+        <button className={`${typography.button} ${styles.form__button}`}>
+          Zapisz się
+        </button>
+        {isSubmitting === false &&
+          submitError === false &&
+          Object.keys(response).length !== 0 && (
+            <span className={styles.form__accept}>
+              Udało się założyć konto. Wiadomość z potwierdzeniem obecności
+              została wysłana na podany email.
+            </span>
+          )}
+        {isSubmitting === false && submitError && (
+          <span className={`${styles.field__error} ${styles.form__accept}`}>
+            Coś poszło nie tak.
+          </span>
+        )}
+      </div>
     </form>
   );
 }
