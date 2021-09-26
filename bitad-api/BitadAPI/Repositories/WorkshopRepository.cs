@@ -37,7 +37,10 @@ namespace BitadAPI.Repositories
 
         async Task<ICollection<Workshop>> IWorkshopRepository.GetAll()
         {
-            return await GetAll().Include(x => x.Participants).Include(x => x.Speaker).ToListAsync();
+            return await GetAll().Include(x => x.Participants)
+                .Include(x => x.Speaker)
+                .OrderBy(x => x.Start)
+                .ToListAsync();
         }
 
         public async Task<Workshop> GetById(int id)

@@ -21,7 +21,10 @@ namespace BitadAPI.Repositories
 
         async Task<ICollection<Agenda>> IAgendaRepository.GetAll()
         {
-            return await GetAll().Include(x => x.Speaker).ToListAsync();
+            return await GetAll()
+                .Include(x => x.Speaker)
+                .OrderBy(x => x.Start)
+                .ToListAsync();
         }
     }
 }
