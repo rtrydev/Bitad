@@ -18,7 +18,7 @@ namespace BitadAPI.Services
         public Task<TokenRefreshResponse<ICollection<DtoLeader>>> GetLeaders(int userid);
         public Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData, string ip);
         public Task<TokenRefreshResponse<DtoWorkshop>> SelectWorkshop(int userId, string workshopCode);
-        public Task<TokenRefreshResponse<DtoUser>> CheckAttendance(int issuerId, string attendanceCode);
+        public Task<TokenRefreshResponse<DtoAttendanceResult>> CheckAttendance(int issuerId, string attendanceCode);
         public Task<DtoUser> ActivateAccount(string activationCode);
 
     }
@@ -195,15 +195,15 @@ namespace BitadAPI.Services
             };
         }
 
-        public async Task<TokenRefreshResponse<DtoUser>> CheckAttendance(int issuerId, string attendanceCode)
+        public async Task<TokenRefreshResponse<DtoAttendanceResult>> CheckAttendance(int issuerId, string attendanceCode)
         {
             var issuer = await _userRepository.GetById(issuerId);
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             if (issuer.Role != UserRole.Admin)
             {
-                return new TokenRefreshResponse<DtoUser>
+                return new TokenRefreshResponse<DtoAttendanceResult>
                 {
-                    Body = null,
+                    Body = new DtoAttendanceResult {Code = 401, Message = "Unauthorized"},
                     Token = refreshToken,
                     Code = 403
                 };
@@ -212,9 +212,14 @@ namespace BitadAPI.Services
             var user = await _userRepository.GetByPredicate(x => x.AttendanceCode == attendanceCode);
             if (user is null)
             {
-                return new TokenRefreshResponse<DtoUser>
+                user = await _userRepository.GetByPredicate(x => x.Email == attendanceCode);
+            }
+            
+            if (user is null)
+            {
+                return new TokenRefreshResponse<DtoAttendanceResult>
                 {
-                    Body = null,
+                    Body = new DtoAttendanceResult {Code = 404, Message = "No such user"},
                     Token = refreshToken,
                     Code = 404
                 };
@@ -222,9 +227,9 @@ namespace BitadAPI.Services
 
             if (user.ActivationDate is null)
             {
-                return new TokenRefreshResponse<DtoUser>
+                return new TokenRefreshResponse<DtoAttendanceResult>
                 {
-                    Body = null,
+                    Body = new DtoAttendanceResult {Code = 2, Message = "Not activated"},
                     Token = refreshToken,
                     Code = 2
                 };
@@ -232,9 +237,9 @@ namespace BitadAPI.Services
             
             if (user.AttendanceCheckDate is not null)
             {
-                return new TokenRefreshResponse<DtoUser>
+                return new TokenRefreshResponse<DtoAttendanceResult>
                 {
-                    Body = null,
+                    Body = new DtoAttendanceResult {Code = 1, Message = "Already checked"},
                     Token = refreshToken,
                     Code = 1
                 };
@@ -242,9 +247,9 @@ namespace BitadAPI.Services
             
             user.AttendanceCheckDate = DateTime.Now;
             var result = await _userRepository.UpdateUser(user);
-            return new TokenRefreshResponse<DtoUser>
+            return new TokenRefreshResponse<DtoAttendanceResult>
             {
-                Body = _mapper.Map<DtoUser>(result),
+                Body = new DtoAttendanceResult {Code = 0, Message = "Ok"},
                 Token = refreshToken,
                 Code = 0
             }; 

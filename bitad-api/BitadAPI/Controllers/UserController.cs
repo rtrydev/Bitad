@@ -100,7 +100,7 @@ namespace BitadAPI.Controllers
 
         [HttpPut("CheckAttendance")]
         [Authorize]
-        public async Task<ActionResult<DtoUser>> CheckAttendance(string attendanceCode)
+        public async Task<ActionResult<DtoAttendanceResult>> CheckAttendance(string attendanceCode)
         {
             var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
             var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
@@ -111,11 +111,8 @@ namespace BitadAPI.Controllers
 
             var result = await _userService.CheckAttendance(id, attendanceCode);
             HttpContext.Response.Headers.Add("AuthToken", result.Token);
-            if (result.Code == 403) return Forbid();
-            if (result.Code == 404) return NotFound();
-            if (result.Code == 1) return Ok("Already checked");
-            if (result.Code == 2) return Ok("Account not activated");
             return Ok(result.Body);
+
         }
 
         [HttpPut("ActivateAccount")]
