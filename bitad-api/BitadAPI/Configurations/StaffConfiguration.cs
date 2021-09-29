@@ -38,6 +38,10 @@ namespace BitadAPI.Configurations
                 .HasColumnType("text")
                 .IsRequired(false);
 
+            builder.Property(x => x.Contact)
+                .HasColumnName("contact")
+                .HasColumnType("text")
+                .IsRequired(false);
         }
     }
 }
