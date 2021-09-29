@@ -1,5 +1,5 @@
 import styles from "./RegistrationFrom.module.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import typography from "../../assets/css/Typography.module.css";
 import { CheckboxField } from "./CheckboxField";
 import { FieldWrapper } from "./FieldWrapper";
@@ -22,13 +22,14 @@ function RegistrationFrom() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
-  const [response, setResponse] = useState({});
+  const history = useHistory();
 
   // TODO: 1) Fix workshop select, add value. Fix form submit (no submit message)
 
   const onSubmit = (data) => {
     const { email, username, password, workshopCode } = data;
     setIsSubmitting(true);
+
     api
       .post("/User/RegisterUser", {
         email,
@@ -36,14 +37,14 @@ function RegistrationFrom() {
         password,
         workshopCode,
       })
-      .then((res) => {
-        if (!Array.isArray(res.data)) return;
-        setResponse(res.data);
+      .then(() => {
         setSubmitError(false);
+        history.push("/account-creation-info/success");
       })
       .catch((err) => {
         setSubmitError(true);
         setIsSubmitting(false);
+        history.push("/account-creation-info/error");
         console.log(err);
       });
 
@@ -122,19 +123,6 @@ function RegistrationFrom() {
         <button className={`${typography.button} ${styles.form__button}`}>
           Zapisz się
         </button>
-        {isSubmitting === false &&
-          submitError === false &&
-          Object.keys(response).length !== 0 && (
-            <span className={styles.form__accept}>
-              Udało się założyć konto. Wiadomość z potwierdzeniem obecności
-              została wysłana na podany email.
-            </span>
-          )}
-        {isSubmitting === false && submitError && (
-          <span className={`${styles.field__error} ${styles.form__accept}`}>
-            Coś poszło nie tak.
-          </span>
-        )}
       </div>
     </form>
   );

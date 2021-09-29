@@ -7,6 +7,7 @@ import Agenda from "./pages/Agenda/Agenda";
 import Details from "./pages/Details";
 import Registration from "./pages/Registration/Registration";
 import AccountActivation from "./pages/AccountActivation";
+import AccountCreationInfo from "./pages/AccountCreationInfo";
 
 function App() {
   return (
@@ -28,6 +29,15 @@ function App() {
         </Route>
         <Route path="/account-activation/:code">
           <AccountActivation />
+        </Route>
+        <Route path="/account-creation-info/success">
+          <AccountCreationInfo />
+        </Route>
+        <Route path="/account-creation-info/error">
+          <AccountCreationInfo
+            title="Coś poszło nie tak"
+            description="Spróbuj ponownie później"
+          />
         </Route>
       </Switch>
       <Footer />
