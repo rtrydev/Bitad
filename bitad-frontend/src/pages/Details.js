@@ -11,7 +11,7 @@ function Details() {
       <SmallHero
         imageSrc={heroImage}
         imageAlt="Logo konferencji"
-        subtitle="20 marca 2020, na terenie uczelni ATH w Bielsku-Białej"
+        subtitle="19 listopada 2020, na terenie uczelni ATH w Bielsku-Białej"
         title="Konferencja Informatyczna"
         linkText="Zapisz się już dziś!"
         linkTo="/registration"

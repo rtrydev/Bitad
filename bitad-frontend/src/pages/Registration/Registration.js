@@ -15,7 +15,7 @@ function Registration() {
         <Columns className={styles["registration--two-columns"]}>
           <div>
             <h2>Rejestracja na konferencję</h2>
-            <h4>20 marca 2020, na terenie uczelni ATH w Bielsku-Białej</h4>
+            <h4>19 listopada 2020, na terenie uczelni ATH w Bielsku-Białej</h4>
             <p>
               Po zapisaniu się na podany adres email wyślemy Ci potwierdzenie
               rejestracji. Aby wziąć udział w konferencji należy je potwierdzić.

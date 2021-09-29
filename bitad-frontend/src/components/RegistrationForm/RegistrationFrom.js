@@ -55,11 +55,11 @@ function RegistrationFrom() {
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className={styles.form__section}>
         <FieldWrapper>
-          <FieldInput name="username" labelText="Pseudonim">
+          <FieldInput name="username" labelText="Pseudonim*">
             <Input register={register} errors={errors} name="username" />
           </FieldInput>
         </FieldWrapper>
-        <FieldInput name="email" labelText="Adres email">
+        <FieldInput name="email" labelText="Adres email*">
           <InputEmail register={register} errors={errors} name="email" />
         </FieldInput>
         <FieldInput
@@ -77,7 +77,7 @@ function RegistrationFrom() {
             type="password"
           />
         </FieldInput>
-        <FieldInput name="repeatedPassword" labelText="Powtórz hasło">
+        <FieldInput name="repeatedPassword" labelText="Powtórz hasło*">
           <Input
             name="repeatedPassword"
             register={register}
