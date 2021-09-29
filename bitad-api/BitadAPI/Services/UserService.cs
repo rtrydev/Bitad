@@ -212,6 +212,11 @@ namespace BitadAPI.Services
             var user = await _userRepository.GetByPredicate(x => x.AttendanceCode == attendanceCode);
             if (user is null)
             {
+                user = await _userRepository.GetByPredicate(x => x.Email == attendanceCode);
+            }
+            
+            if (user is null)
+            {
                 return new TokenRefreshResponse<DtoUser>
                 {
                     Body = null,
