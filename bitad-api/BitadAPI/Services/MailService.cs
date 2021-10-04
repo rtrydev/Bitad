@@ -15,12 +15,14 @@ namespace BitadAPI.Services
         private string _emailAddress;
         private string _emailPassword;
         private string _serverUrl;
+        private string _smtpServer;
         
         public MailService()
         {
             _emailAddress = Environment.GetEnvironmentVariable("EMAIL_ADDRESS");
             _emailPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD");
             _serverUrl = Environment.GetEnvironmentVariable("SERVER_URL");
+            _smtpServer = Environment.GetEnvironmentVariable("SMTP_SERVER");
         }
         
         public async Task SendActivationMail(string address, string activationCode, string receiver)
@@ -31,10 +33,10 @@ namespace BitadAPI.Services
             message.To.Add(new MailboxAddress(receiver, address));
             message.Subject = "Aktywacja konta Bitad2021";
             var text = $"{_serverUrl}/account-activation/{activationCode}";
-            message.Body = new TextPart("plain"){ Text = text };
+            message.Body = new TextPart("plain"){ Text = text.Replace("//", "/") };
             
             using (var client = new SmtpClient()) {
-                await client.ConnectAsync ("smtp.office365.com", 587, SecureSocketOptions.StartTls);
+                await client.ConnectAsync (_smtpServer, 587, SecureSocketOptions.StartTls);
                 await client.AuthenticateAsync (_emailAddress, _emailPassword);
 
                 await client.SendAsync(message);
