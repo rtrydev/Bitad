@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BitadAPI.Dto;
+using BitadAPI.Models;
 using BitadAPI.Repositories;
 using BitadAPI.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -122,5 +123,25 @@ namespace BitadAPI.Controllers
             if (result is null) return Forbid();
             return result;
         }
+
+        [HttpGet("Winners")]
+        public async Task<ActionResult<ICollection<DtoUser>>> GetWinners(int numberOfWinners)
+        {
+            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
+            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
+            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
+            {
+                return Unauthorized();
+            }
+
+            var userRole = (await _userService.GetUserById(id)).Body.Role;
+            if (userRole != UserRole.Super)
+            {
+                return Forbid();
+            }
+            
+            return await _userService.GetWinners(numberOfWinners);
+        }
+
     }
 }

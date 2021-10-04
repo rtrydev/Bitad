@@ -8,6 +8,7 @@ using BitadAPI.Dto;
 using BitadAPI.Models;
 using BitadAPI.Repositories;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BitadAPI.Services
 {
@@ -21,6 +22,7 @@ namespace BitadAPI.Services
         public Task<TokenRefreshResponse<DtoAttendanceResult>> CheckAttendance(int issuerId, string attendanceCode);
         public Task<DtoUser> ActivateAccount(string activationCode);
 
+        public Task<ActionResult<ICollection<DtoUser>>> GetWinners(int numberOfWinners);
     }
 
     public class UserService : IUserService
@@ -264,6 +266,11 @@ namespace BitadAPI.Services
             user.ActivationDate = DateTime.Now;
             var result = await _userRepository.UpdateUser(user);
             return _mapper.Map<DtoUser>(result);
+        }
+
+        public async Task<ActionResult<ICollection<DtoUser>>> GetWinners(int numberOfWinners)
+        {
+            throw new NotImplementedException();
         }
 
         private string GenerateLoginCode()
