@@ -125,6 +125,7 @@ namespace BitadAPI.Controllers
         }
 
         [HttpGet("Winners")]
+        [Authorize]
         public async Task<ActionResult<ICollection<DtoUser>>> GetWinners(int numberOfWinners)
         {
             var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
