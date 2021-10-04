@@ -33,7 +33,7 @@ namespace BitadAPI.Services
             message.To.Add(new MailboxAddress(receiver, address));
             message.Subject = "Aktywacja konta Bitad2021";
             var text = $"{_serverUrl}/account-activation/{activationCode}";
-            message.Body = new TextPart("plain"){ Text = text.Replace("//", "/") };
+            message.Body = new TextPart("plain"){ Text = text };
             
             using (var client = new SmtpClient()) {
                 await client.ConnectAsync (_smtpServer, 587, SecureSocketOptions.StartTls);
