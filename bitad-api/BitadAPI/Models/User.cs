@@ -9,7 +9,8 @@ namespace BitadAPI.Models
     public enum UserRole
     {
         Guest,
-        Admin
+        Admin,
+        Super
     }
 
     public enum ShirtSize
