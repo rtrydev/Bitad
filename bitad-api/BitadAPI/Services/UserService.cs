@@ -10,7 +10,6 @@ using BitadAPI.Models;
 using BitadAPI.Repositories;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 
 namespace BitadAPI.Services
 {
