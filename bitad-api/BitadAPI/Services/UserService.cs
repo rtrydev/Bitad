@@ -202,7 +202,7 @@ namespace BitadAPI.Services
         {
             var issuer = await _userRepository.GetById(issuerId);
             var refreshToken = await _jwtService.GetNewToken(issuerId);
-            if (issuer.Role != UserRole.Admin)
+            if (issuer.Role == UserRole.Guest)
             {
                 return new TokenRefreshResponse<DtoAttendanceResult>
                 {
@@ -281,7 +281,7 @@ namespace BitadAPI.Services
                 
                 .Sum(x => x.CurrentScore == 0 ? 10 : x.CurrentScore)/10;
 
-            if (users.Count == 0)
+            if (users.Count < numberOfWinners)
                 return new TokenRefreshResponse<ICollection<DtoUser>>
                 {
                     Body = winners,
