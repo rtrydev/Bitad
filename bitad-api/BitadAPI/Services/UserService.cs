@@ -281,6 +281,14 @@ namespace BitadAPI.Services
                 
                 .Sum(x => x.CurrentScore == 0 ? 10 : x.CurrentScore)/10;
 
+            if (users.Count == 0)
+                return new TokenRefreshResponse<ICollection<DtoUser>>
+                {
+                    Body = winners,
+                    Token = refreshToken,
+                    Code = 3
+                };
+
             while (winners.Count < numberOfWinners)
             {
                 var winningTicket = rand.Next(0, (int) maxTicket);
@@ -301,7 +309,6 @@ namespace BitadAPI.Services
                     currentTicket = userEndTicket;
                 }
 
-                Console.WriteLine();
             }
 
             return new TokenRefreshResponse<ICollection<DtoUser>>
