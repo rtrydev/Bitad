@@ -140,8 +140,9 @@ namespace BitadAPI.Controllers
             {
                 return Forbid();
             }
-            
-            return await _userService.GetWinners(numberOfWinners);
+            var result = await _userService.GetWinners(id, numberOfWinners);
+            HttpContext.Response.Headers.Add("AuthToken", result.Token);
+            return Ok(result.Body);
         }
 
     }

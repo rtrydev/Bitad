@@ -23,7 +23,7 @@ namespace BitadAPI.Services
         public Task<TokenRefreshResponse<DtoAttendanceResult>> CheckAttendance(int issuerId, string attendanceCode);
         public Task<DtoUser> ActivateAccount(string activationCode);
 
-        public Task<ActionResult<ICollection<DtoUser>>> GetWinners(int numberOfWinners);
+        public Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners);
     }
 
     public class UserService : IUserService
@@ -269,8 +269,9 @@ namespace BitadAPI.Services
             return _mapper.Map<DtoUser>(result);
         }
 
-        public async Task<ActionResult<ICollection<DtoUser>>> GetWinners(int numberOfWinners)
+        public async Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners)
         {
+            var refreshToken = await _jwtService.GetNewToken(issuerId);
             var rand = new Random();
             var users = (await _userRepository.GetAll())
                 .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest).ToList();
@@ -303,7 +304,12 @@ namespace BitadAPI.Services
                 Console.WriteLine();
             }
 
-            return winners;
+            return new TokenRefreshResponse<ICollection<DtoUser>>
+            {
+                Body = winners,
+                Token = refreshToken,
+                Code = 2
+            };
         }
 
         private string GenerateLoginCode()
