@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using BitadAPI.Dto;
 using BitadAPI.Models;
 using BitadAPI.Repositories;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BitadAPI.Services
 {
@@ -21,6 +23,7 @@ namespace BitadAPI.Services
         public Task<TokenRefreshResponse<DtoAttendanceResult>> CheckAttendance(int issuerId, string attendanceCode);
         public Task<DtoUser> ActivateAccount(string activationCode);
 
+        public Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners);
     }
 
     public class UserService : IUserService
@@ -199,7 +202,7 @@ namespace BitadAPI.Services
         {
             var issuer = await _userRepository.GetById(issuerId);
             var refreshToken = await _jwtService.GetNewToken(issuerId);
-            if (issuer.Role != UserRole.Admin)
+            if (issuer.Role == UserRole.Guest)
             {
                 return new TokenRefreshResponse<DtoAttendanceResult>
                 {
@@ -264,6 +267,56 @@ namespace BitadAPI.Services
             user.ActivationDate = DateTime.Now;
             var result = await _userRepository.UpdateUser(user);
             return _mapper.Map<DtoUser>(result);
+        }
+
+        public async Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners)
+        {
+            var refreshToken = await _jwtService.GetNewToken(issuerId);
+            var rand = new Random();
+            var users = (await _userRepository.GetAll())
+                .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest).ToList();
+            var winners = new List<DtoUser>();
+
+            var maxTicket = users
+                
+                .Sum(x => x.CurrentScore == 0 ? 10 : x.CurrentScore)/10;
+
+            if (users.Count < numberOfWinners)
+                return new TokenRefreshResponse<ICollection<DtoUser>>
+                {
+                    Body = winners,
+                    Token = refreshToken,
+                    Code = 3
+                };
+
+            while (winners.Count < numberOfWinners)
+            {
+                var winningTicket = rand.Next(0, (int) maxTicket);
+                var currentTicket = 0;
+                foreach (var user in users)
+                {
+                    var userStartTicket = currentTicket;
+                    var userEndTicket = currentTicket + user.CurrentScore == 0 ? 10 : user.CurrentScore / 10;
+
+                    if (winningTicket >= userStartTicket && winningTicket < userEndTicket)
+                    {
+                        winners.Add(_mapper.Map<DtoUser>(user));
+                        users.Remove(user);
+                        maxTicket -= user.CurrentScore / 10;
+                        break;
+                    }
+
+                    currentTicket = userEndTicket;
+                }
+
+            }
+
+            return new TokenRefreshResponse<ICollection<DtoUser>>
+            {
+                Body = winners,
+                Token = refreshToken,
+                Code = 2
+            };
         }
 
         private string GenerateLoginCode()
