@@ -16,7 +16,7 @@ export function WorkshopSelect({ name, errors, register }) {
     const isDisabled = entry.maxParticipants <= entry.participantsNumber;
     return {
       label: entry.title,
-      value: entry.workshopCode,
+      value: entry.code,
       disabled: isDisabled,
     };
   });
