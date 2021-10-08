@@ -49,6 +49,10 @@ namespace BitadAPI.Services
                 return nullResponse;
 
             var user = await _userRepository.GetById(userId);
+
+            if (user.AttendanceCheckDate is null)
+                return nullResponse;
+            
             var result = await _qrCodeRedeemRepository.RedeemQrCode(qrCode, user);
             await _userRepository.AddPoints(userId, qrCode.Points);
 
