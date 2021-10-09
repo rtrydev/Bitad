@@ -49,7 +49,7 @@ function App() {
             description="Kod do odzyskiwania konta został już wykorzystany"
           />
         </Route>
-        <Route path="/account-reset-password/:code">
+        <Route path="/password-reset/:code">
           <AccountRestartPassword />
         </Route>
       </Switch>
