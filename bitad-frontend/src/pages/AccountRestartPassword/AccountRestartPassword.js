@@ -18,7 +18,6 @@ function AccountRestartPassword({ title = "Podaj nowe hasło" }) {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     api
       .patch(`/User/ResetPassword?code=${code}&password=${data.password}`)
       .then(() => {
