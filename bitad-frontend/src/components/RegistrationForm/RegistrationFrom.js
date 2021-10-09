@@ -1,6 +1,5 @@
 import styles from "./RegistrationFrom.module.css";
 import { Link, useHistory } from "react-router-dom";
-import typography from "../../assets/css/Typography.module.css";
 import { CheckboxField } from "./CheckboxField";
 import { FieldWrapper } from "./FieldWrapper";
 import { useForm } from "react-hook-form";
@@ -10,6 +9,7 @@ import { FieldInput } from "./FieldInput";
 import api from "../../api/api";
 import { useState } from "react";
 import { WorkshopSelect } from "./WorkshopSelect";
+import SubmitButton from "./SubmitButton";
 
 function RegistrationFrom() {
   const {
@@ -23,8 +23,6 @@ function RegistrationFrom() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
   const history = useHistory();
-
-  // TODO: 1) Fix workshop select, add value. Fix form submit (no submit message)
 
   const onSubmit = (data) => {
     const { email, username, password, workshopCode } = data;
@@ -119,11 +117,7 @@ function RegistrationFrom() {
           errors={errors}
         />
       </div>
-      <div className={styles.form__submit}>
-        <button className={`${typography.button} ${styles.form__button}`}>
-          Zapisz się
-        </button>
-      </div>
+      <SubmitButton>Zapisz się</SubmitButton>
     </form>
   );
 }

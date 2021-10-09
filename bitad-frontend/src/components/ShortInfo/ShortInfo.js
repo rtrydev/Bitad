@@ -5,11 +5,11 @@ import Container from "../UI/Container";
 import image from "../../assets/images/bitad-logo.svg";
 import Loading from "../UI/Loading";
 
-function ShortInfo({ title, description, isLoading = false }) {
+function ShortInfo({ title, description, isLoading = false, children }) {
   const shortMessage = (
     <>
       <h2>{title}</h2>
-      <h4>{description}</h4>
+      {description && <h4>{description}</h4>}
     </>
   );
 
@@ -18,6 +18,7 @@ function ShortInfo({ title, description, isLoading = false }) {
       <header className={`${styles.hero} ${typography["text-align--center"]}`}>
         {isLoading && <Loading fontSize="120px" />}
         {!isLoading && shortMessage}
+        {!isLoading && children}
         {!isLoading && <img src={image} alt="Logo Bitadu" />}
       </header>
     </Container>

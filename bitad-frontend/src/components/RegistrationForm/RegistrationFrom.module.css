@@ -9,6 +9,7 @@
 
 .form__button {
   min-width: max-content;
+  background-color: var(--white);
 }
 
 .form__accept {

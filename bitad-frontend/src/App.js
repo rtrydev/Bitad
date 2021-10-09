@@ -8,6 +8,7 @@ import Details from "./pages/Details";
 import Registration from "./pages/Registration/Registration";
 import AccountActivation from "./pages/AccountActivation";
 import AccountCreationInfo from "./pages/AccountCreationInfo";
+import AccountRestartPassword from "./pages/AccountRestartPassword/AccountRestartPassword";
 
 function App() {
   return (
@@ -38,6 +39,18 @@ function App() {
             title="Coś poszło nie tak"
             description="Spróbuj ponownie później"
           />
+        </Route>
+        <Route path="/account-reset-password-info/success">
+          <AccountCreationInfo title="Hasło zostało zmienione" description="" />
+        </Route>
+        <Route path="/account-reset-password-info/error">
+          <AccountCreationInfo
+            title="Coś poszło nie tak"
+            description="Kod do odzyskiwania konta został już wykorzystany"
+          />
+        </Route>
+        <Route path="/account-reset-password/:code">
+          <AccountRestartPassword />
         </Route>
       </Switch>
       <Footer />
