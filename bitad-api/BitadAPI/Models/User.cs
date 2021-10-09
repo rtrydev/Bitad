@@ -44,7 +44,8 @@ namespace BitadAPI.Models
         public string AttendanceCode { get; set; }
         public DateTime? AttendanceCheckDate { get; set; }
         public UserRole Role { get; set; }
-        
         public ShirtSize? ShirtSize { get; set; }
+        public String PasswordResetCode { get; set; }
+        public  DateTime? LastPasswordReset { get; set; }
     }
 }

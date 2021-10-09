@@ -104,6 +104,16 @@ namespace BitadAPI.Configurations
                 .HasColumnType("int")
                 .IsRequired(false);
 
+            builder.Property(x => x.PasswordResetCode)
+                .HasColumnName("password_reset_code")
+                .HasColumnType("text")
+                .IsRequired(false);
+
+            builder.Property(x => x.LastPasswordReset)
+                .HasColumnName("last_password_reset")
+                .HasColumnType("timestamp")
+                .IsRequired(false);
+
         }
     }
 }

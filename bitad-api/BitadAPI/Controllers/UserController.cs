@@ -145,5 +145,21 @@ namespace BitadAPI.Controllers
             return Ok(result.Body);
         }
 
+        [HttpPut("IssuePasswordReset")]
+        public async Task<ActionResult> IssuePasswordReset(string email)
+        {
+            var result = await _userService.IssuePasswordReset(email);
+            if (result is not null) return Ok();
+            return Forbid();
+        }
+
+        [HttpPatch("ResetPassword")]
+        public async Task<ActionResult> ResetPassword(string code, string password)
+        {
+            var result = await _userService.ResetPassword(code, password);
+            if (result is not null) return Ok();
+            return Forbid();
+        }
+
     }
 }

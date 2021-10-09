@@ -10,6 +10,7 @@ using BitadAPI.Models;
 using BitadAPI.Repositories;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Asn1.Cms;
 
 namespace BitadAPI.Services
 {
@@ -22,8 +23,9 @@ namespace BitadAPI.Services
         public Task<TokenRefreshResponse<DtoWorkshop>> SelectWorkshop(int userId, string workshopCode);
         public Task<TokenRefreshResponse<DtoAttendanceResult>> CheckAttendance(int issuerId, string attendanceCode);
         public Task<DtoUser> ActivateAccount(string activationCode);
-
         public Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners);
+        public Task<DtoUser> IssuePasswordReset(string mail);
+        public Task<DtoUser> ResetPassword(string resetCode, string newPassword);
     }
 
     public class UserService : IUserService
@@ -110,6 +112,11 @@ namespace BitadAPI.Services
 
         public async Task<DtoRegistrationResponse> RegisterUser(DtoRegistration registrationData, string ip)
         {
+            if (Environment.GetEnvironmentVariable("REGISTRATION_ENALBED") == "disabled")
+            {
+                return null;
+            }
+
             var registered = await _userRepository.GetManyByPredicate(x => x.CreationIp == ip);
             if (registered.Count > 3)
                 return null;
@@ -317,6 +324,42 @@ namespace BitadAPI.Services
                 Token = refreshToken,
                 Code = 2
             };
+        }
+
+        public async Task<DtoUser> IssuePasswordReset(string mail)
+        {
+            var user = await _userRepository.GetByPredicate(x => x.Email == mail);
+            if (user is null) return null;
+            if (user.LastPasswordReset > DateTime.Now.AddHours(-1)) return null;
+
+            var resetCode = GenerateRandomCode();
+            user.PasswordResetCode = resetCode;
+            user.LastPasswordReset = DateTime.Now;
+            
+            var result = await _userRepository.UpdateUser(user);
+            
+            if(Environment.GetEnvironmentVariable("EMAIL_ENABLED") == "enabled")
+            {
+                _ = Task.Run(async () => await _mailService.SendPasswordResetMail(result.Email, result.PasswordResetCode, result.Username));
+            }
+
+            return _mapper.Map<DtoUser>(result);
+
+        }
+
+        public async Task<DtoUser> ResetPassword(string resetCode, string newPassword)
+        {
+            var user = await _userRepository.GetByPredicate(x => x.PasswordResetCode == resetCode);
+            if (user is null) return null;
+            if (user.LastPasswordReset < DateTime.Now.AddDays(-1)) return null;
+
+            var hashed = HashPassword(newPassword);
+            user.Password = hashed.password;
+            user.PasswordSalt = hashed.salt;
+            user.PasswordResetCode = null;
+
+            var result = await _userRepository.UpdateUser(user);
+            return _mapper.Map<DtoUser>(result);
         }
 
         private string GenerateLoginCode()
