@@ -11,7 +11,7 @@ function Details() {
       <SmallHero
         imageSrc={heroImage}
         imageAlt="Logo konferencji"
-        subtitle="19 listopada 2020, na terenie uczelni ATH w Bielsku-Białej"
+        subtitle="19 listopada 2021, na terenie uczelni ATH w Bielsku-Białej"
         title="Konferencja Informatyczna"
         linkText="Zapisz się już dziś!"
         linkTo="/registration"
@@ -24,33 +24,12 @@ function Details() {
         >
           <h2>Powitalna paczka</h2>
           <p>
-            Podjęliśmy się organizacji konferencji Beskid IT Academic Day na
-            Akademii Techniczno-Humanistycznej w Bielsku-Białej. Nieustannie
-            staramy się rozwijać nasz event, jednocześnie dbając o to, aby
-            uczestnicy, zarówno profesjonaliści, jak i amatorzy, wynieśli z tego
-            dnia ogromne pokłady wiedzy.
+            Dla każdego uczestnika, który dokona rejestracji na Akademii
+            Techniczno-Humanistycznej, czekać będzie StartPack, dzięki temu
+            będziecie w stanie bardziej zaznajomić się z wydarzeniem, agendą
+            oraz nagrodami. Dodatkowo czekać będą na Was niespodzianki w postaci
+            długopisów, smyczy i wielu, wielu więcej!
           </p>
-          <p>
-            Jak i motywacji do jej dalszego poszerzania. Dodatkowo dbamy o to,
-            aby to piątkowe spotkanie. Podjęliśmy się organizacji konferencji
-            Beskid IT Academic Day na Akademii Techniczno-Humanistycznej w
-            Bielsku-Białej. Nieustannie staramy się rozwijać nasz event,
-            jednocześnie dbając.
-          </p>
-          <h3>Między innymi</h3>
-          <ul>
-            <li>
-              Zaopatrzysz się w koszulkę o rozmiarze jaki wybierzesz podczas
-              rejestracji (s/m/l/xl/xxl).
-            </li>
-            <li>
-              Możesz się spodziewać wielu różności i ciekawych rzeczy jak
-              zeszytu, długopisów lub nawet smyczy.
-            </li>
-            <li>
-              Nieustannie staramy się rozwijać nasz event, jednocześnie dbając.
-            </li>
-          </ul>
         </Section>
         <Section
           className={styles.details__section}
@@ -59,14 +38,15 @@ function Details() {
         >
           <h2>Warsztaty</h2>
           <p>
-            Podjęliśmy się organizacji konferencji Beskid IT Academic Day na
-            Akademii Techniczno-Humanistycznej w Bielsku-Białej. Nieustannie
-            staramy się rozwijać nasz event, jednocześnie dbając o to, aby
-            uczestnicy, zarówno profesjonaliści, jak i amatorzy, wynieśli z tego
-            dnia ogromne pokłady wiedzy. Jak i motywacji do jej dalszego
-            poszerzania. Dodatkowo dbamy o to, aby to piątkowe spotkanie.
+            Wiemy, że najlepszy sposób nauki to ciągła praktyka i stawianie
+            czoła nowym wyzwaniom. Dlatego na warsztatach będziecie w stanie
+            pogłębić wiedzę na dany, interesujący Was temat pod okiem
+            profesjonalistów. Będzie ciekawie, będą przekąski… zapraszamy!
           </p>
-          <HashLink to="/agenda#agenda">Link do agendy</HashLink>
+          <p>
+            Zapraszamy do wzięcia udziału:{" "}
+            <HashLink to="/agenda#agenda">Link do agendy</HashLink>.
+          </p>
         </Section>
         <Section
           className={styles.details__section}
@@ -75,12 +55,10 @@ function Details() {
         >
           <h2>Gra QR Code</h2>
           <p>
-            Podjęliśmy się organizacji konferencji Beskid IT Academic Day na
-            Akademii Techniczno-Humanistycznej w Bielsku-Białej. Nieustannie
-            staramy się rozwijać nasz event, jednocześnie dbając o to, aby
-            uczestnicy, zarówno profesjonaliści, jak i amatorzy, wynieśli z tego
-            dnia ogromne pokłady wiedzy. Jak i motywacji do jej dalszego
-            poszerzania. Dodatkowo dbamy o to, aby to piątkowe spotkanie.
+            Biorąc udział w warsztatach będziecie mogli zbierać punkty z kodów
+            QR, które potem, przybliżą Was przy losowaniu, do głównej nagrody.
+            Punkty będziemy również rozdawać na strefie gier. Serdecznie
+            zapraszamy do zabawy.
           </p>
         </Section>
       </main>
