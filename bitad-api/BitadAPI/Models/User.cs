@@ -47,5 +47,6 @@ namespace BitadAPI.Models
         public ShirtSize? ShirtSize { get; set; }
         public String PasswordResetCode { get; set; }
         public  DateTime? LastPasswordReset { get; set; }
+        public DateTime? ActivationCodeResent { get; set; }
     }
 }

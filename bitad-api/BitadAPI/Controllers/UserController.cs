@@ -161,5 +161,14 @@ namespace BitadAPI.Controllers
             return Forbid();
         }
 
+        [HttpPut("RequestActivationResend")]
+        public async Task<ActionResult> RequestActivationResend(string mail)
+        {
+            var result = await _userService.ResendActivation(mail);
+            if (result is null) return Ok();
+            return Forbid();
+
+        }
+
     }
 }

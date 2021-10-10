@@ -26,6 +26,7 @@ namespace BitadAPI.Services
         public Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners);
         public Task<DtoUser> IssuePasswordReset(string mail);
         public Task<DtoUser> ResetPassword(string resetCode, string newPassword);
+        public Task<DtoUser> ResendActivation(string mail);
     }
 
     public class UserService : IUserService
@@ -360,6 +361,24 @@ namespace BitadAPI.Services
 
             var result = await _userRepository.UpdateUser(user);
             return _mapper.Map<DtoUser>(result);
+        }
+
+        public async Task<DtoUser> ResendActivation(string mail)
+        {
+            var user = await _userRepository.GetByPredicate(x => x.Email == mail);
+            if (user is null) return null;
+            if (user.ActivationDate is not null) return null;
+            if (user.ActivationCodeResent > DateTime.Now.AddHours(-1)) return null;
+            
+            user.ActivationCodeResent = DateTime.Now;
+            var result = await _userRepository.UpdateUser(user);
+            if(Environment.GetEnvironmentVariable("EMAIL_ENABLED") == "enabled")
+            {
+                _ = Task.Run(async () => await _mailService.SendActivationMail(result.Email, result.ActivationCode, result.Username));
+            }
+
+            return _mapper.Map<DtoUser>(user);
+
         }
 
         private string GenerateLoginCode()
