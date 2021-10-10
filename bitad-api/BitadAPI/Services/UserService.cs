@@ -24,9 +24,9 @@ namespace BitadAPI.Services
         public Task<TokenRefreshResponse<DtoAttendanceResult>> CheckAttendance(int issuerId, string attendanceCode);
         public Task<DtoUser> ActivateAccount(string activationCode);
         public Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners);
-        public Task<DtoUser> IssuePasswordReset(string mail);
+        public Task<DtoUser> IssuePasswordReset(string username);
         public Task<DtoUser> ResetPassword(string resetCode, string newPassword);
-        public Task<DtoUser> ResendActivation(string mail);
+        public Task<DtoUser> ResendActivation(string username);
     }
 
     public class UserService : IUserService
@@ -327,9 +327,9 @@ namespace BitadAPI.Services
             };
         }
 
-        public async Task<DtoUser> IssuePasswordReset(string mail)
+        public async Task<DtoUser> IssuePasswordReset(string username)
         {
-            var user = await _userRepository.GetByPredicate(x => x.Email == mail);
+            var user = await _userRepository.GetByPredicate(x => x.Username == username);
             if (user is null) return null;
             if (user.LastPasswordReset > DateTime.Now.AddHours(-1)) return null;
 
@@ -363,9 +363,9 @@ namespace BitadAPI.Services
             return _mapper.Map<DtoUser>(result);
         }
 
-        public async Task<DtoUser> ResendActivation(string mail)
+        public async Task<DtoUser> ResendActivation(string username)
         {
-            var user = await _userRepository.GetByPredicate(x => x.Email == mail);
+            var user = await _userRepository.GetByPredicate(x => x.Username == username);
             if (user is null) return null;
             if (user.ActivationDate is not null) return null;
             if (user.ActivationCodeResent > DateTime.Now.AddHours(-1)) return null;
