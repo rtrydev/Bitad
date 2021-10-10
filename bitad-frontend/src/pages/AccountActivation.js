@@ -45,7 +45,7 @@ function AccountActivation() {
             )
           : shortMessage(
               "Konto zostało aktywowane",
-              "Zapraszamy na konferencję 20 marca 2020 na uczelni ATH w Bielsku-Białej"
+              "Zapraszamy na konferencję 19 listopada 2021 na uczelni ATH w Bielsku-Białej"
             )}
         {!isLoading && <img src={image} alt="Logo Bitadu" />}
       </header>
