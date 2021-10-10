@@ -23,7 +23,7 @@ function About() {
       <MainHero
         imageSrc={heroImage}
         imageAlt="Logo konferencji"
-        subtitle="19 listopada 2020, na terenie uczelni ATH w Bielsku-Białej"
+        subtitle="19 listopada 2021, na terenie uczelni ATH w Bielsku-Białej"
         title="Konferencja Informatyczna"
         linkText="Zapisz się już dziś!"
         linkTo="/registration"
@@ -32,20 +32,18 @@ function About() {
         <Section>
           <Columns>
             <div>
-              <h2>
-                Spotykamy się już <br />
-                kolejny, 10 raz
-              </h2>
+              <h2>Powrót do przeszłości…</h2>
               <p>
-                Już po raz dziesiąty podjęliśmy się organizacji konferencji
-                Beskid IT Academic Day na Akademii Techniczno-Humanistycznej w
-                Bielsku-Białej.
+                Przez pandemię ominęła nas rok temu nauka i dobra zabawa, więc
+                tym bardziej inkrementacyjna edycja 2020++ konferencji jest
+                wyjątkowa. Powracamy jeszcze bardziej zmotywowani do działania
+                przy organizacji Beskid IT Academic Day na Akademii
+                Techniczno-Humanistycznej w Bielsku-Białej.
               </p>
               <p>
-                Nieustannie staramy się rozwijać Bitad. Jednocześnie dbając o
-                to, aby uczestnicy, zarówno profesjonaliści, jak i pasjonaci,
-                wynieśli z tego dnia ogromne pokłady wiedzy oraz motywacji do
-                dalszego rozwijania się.
+                Zadbaliśmy, aby każdy uczestnik wyniósł z tego dnia ogromne
+                pokłady wiedzy oraz motywacji do dalszego rozwijania się,
+                poprzez liczne warsztaty oraz wykłady.
               </p>
               <p>
                 Dbamy również aby spędzony czas z nami był jak najlepiej
@@ -89,9 +87,11 @@ function About() {
         <Section className={typography["text-align--center"]}>
           <h2>Ciągle rozwijamy się dla Ciebie</h2>
           <p>
-            Jak i motywacji do jej dalszego poszerzania. Dodatkowo dbamy o to,
-            aby to piątkowe spotkanie było przede wszystkim. Mile spędzonym
-            czasem, dlatego wzbogaciliśmy konferencję o dodatkowe atrakcje.
+            Dbamy o to, aby to piątkowe spotkanie było przede wszystkim mile
+            spędzonym czasem. Dlatego nie zapominając, że nauka to potęgi klucz,
+            powinniśmy znaleźć również czas na relaks. Więc stworzyliśmy strefę
+            gier komputerowych i planszowych. Każdy znajdzie coś dla siebie,
+            przyjemnie spożytkując czas.
           </p>
           <ImageWithShadow
             src={workshopImage}

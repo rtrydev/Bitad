@@ -35,7 +35,7 @@ function AccountRestartPassword({ title = "Podaj nowe hasło" }) {
         noValidate
         className={styles.form}
       >
-        <FieldInput name="password" labelText="Nowe hasło">
+        <FieldInput name="password" labelText="Nowe hasło*">
           <Input
             register={register}
             errors={errors}

@@ -19,17 +19,10 @@ function SponsorsPart() {
           <br /> możliwa dzięki Nim!
         </h2>
         <p>
-          Podjęliśmy się organizacji konferencji Beskid IT Academic Day na
-          Akademii Techniczno-Humanistycznej w Bielsku-Białej.
-        </p>
-        <p>
-          Nieustannie staramy się rozwijać nasz event, jednocześnie dbając o to,
-          aby uczestnicy, zarówno profesjonaliści, jak i amatorzy, wynieśli z
-          tego dnia ogromne pokłady wiedzy.
-        </p>
-        <p>
-          Jak i motywacji do jej dalszego poszerzania. Dodatkowo dbamy o to, aby
-          to piątkowe spotkanie.
+          Staramy się, aby konferencja była wyjątkowym przeżyciem, aby każdy
+          mógł zgłębić pasjonujące Go tematy z dziedziny informatyki. Ale sami
+          nie dalibyśmy rady.. jesteśmy wdzięczni za Waszą pomoc. Dzięki Wam
+          BITAD 2020++ się odbędzie!
         </p>
       </div>
     </Columns>
