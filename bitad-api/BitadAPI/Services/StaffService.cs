@@ -31,7 +31,7 @@ namespace BitadAPI.Services
 
         public async Task<ICollection<DtoStaff>> GetAll()
         {
-            var staff = await staffRepository.GetAll();
+            var staff = await staffRepository.GetAllPublic();
             foreach (var s in staff)
             {
                 s.Contact = null;

@@ -32,6 +32,7 @@ services:
       SERVER_URL: ${SERVER_URL}
       EMAIL_LOGIN: ${EMAIL_LOGIN}
       SMTP_SERVER: ${SMTP_SERVER}
+      REGISTRATION_ENALBED: ${REGISTRATION_ENALBED}
     depends_on:
       - db
     networks:

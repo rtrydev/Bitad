@@ -11,6 +11,7 @@ namespace BitadAPI.Repositories
     public interface IStaffRepository
     {
         public Task<ICollection<Staff>> GetAll();
+        public Task<ICollection<Staff>> GetAllPublic();
     }
 
     public class StaffRepository : Repository<Staff>, IStaffRepository
@@ -21,7 +22,12 @@ namespace BitadAPI.Repositories
 
         async Task<ICollection<Staff>> IStaffRepository.GetAll()
         {
-            return await GetAll().ToListAsync();
+            return await GetAll().OrderBy(x => x.Id).ToListAsync();
+        }
+
+        public async Task<ICollection<Staff>> GetAllPublic()
+        {
+            return await GetAll().Where(x => x.IsPublic).OrderBy(x => x.Id).ToListAsync();
         }
     }
 }
