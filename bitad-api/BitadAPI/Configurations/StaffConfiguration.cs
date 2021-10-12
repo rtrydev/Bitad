@@ -42,6 +42,11 @@ namespace BitadAPI.Configurations
                 .HasColumnName("contact")
                 .HasColumnType("text")
                 .IsRequired(false);
+
+            builder.Property(x => x.IsPublic)
+                .HasColumnName("is_public")
+                .HasColumnType("bool")
+                .IsRequired();
         }
     }
 }

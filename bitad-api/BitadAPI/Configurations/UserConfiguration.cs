@@ -114,6 +114,11 @@ namespace BitadAPI.Configurations
                 .HasColumnType("timestamp")
                 .IsRequired(false);
 
+            builder.Property(x => x.ActivationCodeResent)
+                .HasColumnName("activation_code_resent")
+                .HasColumnType("timestamp")
+                .IsRequired(false);
+
         }
     }
 }
