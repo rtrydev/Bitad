@@ -8,6 +8,7 @@ import Copyrights from "./Copyrights";
 import bg from "../../assets/css/Backgrounds.module.css";
 import typography from "../../assets/css/Typography.module.css";
 import patron from "../../assets/images/becon.png";
+import patron1 from "../../assets/images/FabLab-logo.png";
 import fbLogo from "../../assets/images/fb-logo.svg";
 import ytLogo from "../../assets/images/yt-logo.svg";
 import twLogo from "../../assets/images/tw-logo.svg";
@@ -32,8 +33,14 @@ function Footer() {
             </HashLink>
           </div>
           <div>
-            <h4>Patron</h4>
+            <h4>Partnerzy</h4>
             <div className={styles.patrons}>
+              <ImageAsLink
+                isExternalLink={true}
+                src={patron1}
+                alt="FabLab"
+                to="https://www.facebook.com/klubbecon/"
+              />
               <ImageAsLink
                 isExternalLink={true}
                 src={patron}
