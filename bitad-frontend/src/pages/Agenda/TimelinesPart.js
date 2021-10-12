@@ -4,7 +4,7 @@ import styles from "./TimelinesPart.module.css";
 function TimelinesPart(props) {
   return (
     <div className={styles.timelines}>
-      <Timelines title="Wykłady" events={props.agendas} timelineCount={3} />
+      <Timelines title="Wykłady" events={props.agendas} />
       <Timelines title="Warsztaty" events={props.workshops} />
     </div>
   );

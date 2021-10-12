@@ -19,7 +19,7 @@
 }
 
 .form__submit {
-  margin-top: var(--margin-l);
+  margin-top: var(--margin-m);
   display: flex;
   align-items: center;
   grid-template-columns: auto auto;

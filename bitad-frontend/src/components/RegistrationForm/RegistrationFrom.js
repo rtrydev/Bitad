@@ -117,6 +117,7 @@ function RegistrationFrom() {
           errors={errors}
         />
       </div>
+      <p>*pole wymagane</p>
       <SubmitButton>Zapisz się</SubmitButton>
     </form>
   );

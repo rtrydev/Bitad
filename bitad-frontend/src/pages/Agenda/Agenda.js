@@ -32,8 +32,14 @@ function Agenda() {
         imageAlt="Logo konferencji"
         subtitle="19 listopada 2021, na terenie uczelni ATH w Bielsku-Białej"
         title="Konferencja Informatyczna"
-        linkText="Zapisz się już dziś!"
-        linkTo="/registration"
+        linkText={
+          !process.env.REACT_APP_ENABLE_REGISTRATION
+            ? "Zapisz się już dziś!"
+            : "Rejestracja już wkrótce"
+        }
+        linkTo={
+          !process.env.REACT_APP_ENABLE_REGISTRATION ? "/registration" : "#"
+        }
       />
       <Section id="agenda">
         <h2 className={typography["text-align--center"]}>Agenda</h2>

@@ -9,7 +9,8 @@
     auto-fill,
     minmax(var(--footer-min-column), 1fr)
   );
-  gap: var(--section-margin);
+  column-gap: var(--section-margin);
+  row-gap: var(--margin-l);
   margin-bottom: var(--section-margin);
 }
 
