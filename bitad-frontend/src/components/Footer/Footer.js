@@ -33,7 +33,7 @@ function Footer() {
             </HashLink>
           </div>
           <div>
-            <h4>Patron</h4>
+            <h4>Partnerzy</h4>
             <div className={styles.patrons}>
               <ImageAsLink
                 isExternalLink={true}
