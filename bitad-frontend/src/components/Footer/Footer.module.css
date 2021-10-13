@@ -29,6 +29,7 @@
 .patrons img {
   width: auto;
   max-height: 5.556rem;
+  max-width: 100%;
 }
 
 .socialmedia {
