@@ -6,28 +6,35 @@ import EventSpeaker from "./EventSpeaker";
 import styles from "./ExtendedEventCard.module.css";
 import typography from "../../../assets/css/Typography.module.css";
 
-const Backdrop = (props) => {
-  return <div onClick={props.onClick} className={styles["backdrop"]} />;
+const Backdrop = ({ onClick }) => {
+  return <div onClick={onClick} className={styles["backdrop"]} />;
 };
 
-const Overlay = (props) => {
-  const event = props.event;
+const Overlay = ({
+  title,
+  description,
+  speaker,
+  room,
+  start,
+  end,
+  onClick,
+}) => {
   return (
     <Card className={styles["card--extended-event"]}>
       <div className={styles.card__header}>
-        <EntryDetails room={event.room} start={event.start} end={event.end} />
+        <EntryDetails room={room} start={start} end={end} />
         <EventSpeaker
-          picture={event.speaker.picture}
-          name={event.speaker.name}
-          website={event.speaker.website}
+          picture={speaker.picture}
+          name={speaker.name}
+          website={speaker.website}
         />
       </div>
       <div className={styles.card__main}>
-        <h3>{event.title}</h3>
-        <p>{event.description}</p>
+        <h3>{title}</h3>
+        <p>{description}</p>
       </div>
       <div className={typography["text-align--center"]}>
-        <button onClick={props.onClick} className={typography.button}>
+        <button onClick={onClick} className={typography.button}>
           Zamknij
         </button>
       </div>
@@ -35,15 +42,31 @@ const Overlay = (props) => {
   );
 };
 
-function ExtendedEventCard(props) {
+function ExtendedEventCard({
+  onClick,
+  title,
+  description,
+  speaker,
+  room,
+  start,
+  end,
+}) {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <Backdrop onClick={props.onClick} />,
+        <Backdrop onClick={onClick} />,
         document.getElementById("backdrop-root")
       )}
       {ReactDOM.createPortal(
-        <Overlay event={props.event} onClick={props.onClick} />,
+        <Overlay
+          title={title}
+          description={description}
+          speaker={speaker}
+          room={room}
+          start={start}
+          end={end}
+          onClick={onClick}
+        />,
         document.getElementById("overlay-root")
       )}
     </Fragment>

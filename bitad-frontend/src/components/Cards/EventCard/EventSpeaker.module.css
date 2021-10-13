@@ -7,6 +7,10 @@
   padding-right: var(--margin-xs);
 }
 
+.event-speaker_clickable {
+  cursor: pointer;
+}
+
 .event-speaker img {
   --image-size: 44px;
   min-width: var(--image-size);

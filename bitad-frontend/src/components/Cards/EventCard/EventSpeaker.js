@@ -11,7 +11,8 @@ function EventSpeaker(props) {
     <div
       className={`${styles["event-speaker"]} ${accentColorToClassName(
         props.accentColor
-      )}`}
+      )} ${props.onClick && styles["event-speaker_clickable"]}`}
+      onClick={props.onClick}
     >
       <img
         src={parsePicture(props.picture)}
