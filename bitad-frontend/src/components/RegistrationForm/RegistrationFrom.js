@@ -60,14 +60,7 @@ function RegistrationFrom() {
         <FieldInput name="email" labelText="Adres email*">
           <InputEmail register={register} errors={errors} name="email" />
         </FieldInput>
-        <FieldInput
-          name="password"
-          labelText={
-            <>
-              Hasło do <Link to="/">aplikacji QR Code</Link>*
-            </>
-          }
-        >
+        <FieldInput name="password" labelText="Hasło do aplikacji QR Code*">
           <Input
             register={register}
             errors={errors}
@@ -104,8 +97,7 @@ function RegistrationFrom() {
           register={register}
           text={
             <>
-              Zapoznałem/am się z <Link to="/">Polityką Prywatności</Link> oraz
-              z <Link to="/">Regulaminem</Link>.*
+              Zapoznałem/am się z <Link to="/Regulamin.pdf">Regulaminem</Link>.*
             </>
           }
           errors={errors}
