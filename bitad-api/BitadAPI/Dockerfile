@@ -17,6 +17,7 @@ WORKDIR /app
 EXPOSE 80
 
 COPY --from=build-env /app/out .
+COPY --from=build-env /app/bitad-email-template bitad-email-template
 ENTRYPOINT ["dotnet", "BitadAPI.dll"]
 
 
