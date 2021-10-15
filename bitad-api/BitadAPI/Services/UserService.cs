@@ -299,12 +299,12 @@ namespace BitadAPI.Services
 
             while (winners.Count < numberOfWinners)
             {
-                var winningTicket = rand.Next(0, (int) maxTicket);
+                var winningTicket = rand.Next(0, (int) maxTicket + 1);
                 var currentTicket = 0;
                 foreach (var user in users)
                 {
                     var userStartTicket = currentTicket;
-                    var userEndTicket = currentTicket + user.CurrentScore == 0 ? 10 : user.CurrentScore / 10;
+                    var userEndTicket = currentTicket + (user.CurrentScore == 0 ? 10 : user.CurrentScore) / 10;
 
                     if (winningTicket >= userStartTicket && winningTicket < userEndTicket)
                     {
