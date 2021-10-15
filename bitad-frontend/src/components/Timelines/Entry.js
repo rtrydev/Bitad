@@ -1,20 +1,13 @@
-import { HashLink } from "react-router-hash-link";
 import { parseClassName, parsePicture } from "../../hooks/custom-functions";
 import styles from "./Entry.module.css";
 import layout from "../../assets/css/Layout.module.css";
-import bg from "../../assets/css/Backgrounds.module.css";
 
 function Entry(props) {
   return (
-    <HashLink
-      to={props.to}
+    <div
       style={props.style}
       className={`${parseClassName(props.className)} ${styles.entry}`}
-      scroll={(e) => {
-        e.scrollIntoView();
-        e.classList.add(bg.highlight);
-        setTimeout(() => e.classList.remove(bg.highlight), 4000);
-      }}
+      onClick={props.onClick}
     >
       {props.showImage && (
         <img
@@ -23,7 +16,7 @@ function Entry(props) {
           className={layout["image--circle"]}
         />
       )}
-    </HashLink>
+    </div>
   );
 }
 

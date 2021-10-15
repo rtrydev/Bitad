@@ -17,6 +17,7 @@ function EventCard(props) {
           name={event.speaker.name}
           website={event.speaker.website}
           accentColor={event.speaker.accentColor}
+          onClick={() => props.onProfileClick(event)}
         />
         {!!event.description ? (
           <button

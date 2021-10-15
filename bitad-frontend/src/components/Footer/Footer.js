@@ -58,19 +58,21 @@ function Footer() {
             </p>
             <a href="mailto:reset@ath.bielsko.pl">reset@ath.bielsko.pl</a>
           </div>
-          <div>
-            <h4>Dołacz do nas</h4>
-            <p>
-              Zarejestruj się i zostań uczestnikiem konferencji Beskid IT
-              Academic Day już teraz. Nie zwlekaj, miejsca są ograniczone.
-            </p>
-            <Link
-              to="/registration"
-              className={`${typography.button} ${typography["nav-link"]}`}
-            >
-              Rejestracja
-            </Link>
-          </div>
+          {!process.env.REACT_APP_ENABLE_REGISTRATION && (
+            <div>
+              <h4>Dołacz do nas</h4>
+              <p>
+                Zarejestruj się i zostań uczestnikiem konferencji Beskid IT
+                Academic Day już teraz. Nie zwlekaj, miejsca są ograniczone.
+              </p>
+              <Link
+                to="/registration"
+                className={`${typography.button} ${typography["nav-link"]}`}
+              >
+                Rejestracja
+              </Link>
+            </div>
+          )}
           <div>
             <h4>Poznaj nas bliżej!</h4>
             <p>Znajdziesz nas również w mediach społecznościowych.</p>
@@ -78,19 +80,19 @@ function Footer() {
               <ImageAsLink
                 isExternalLink={true}
                 src={fbLogo}
-                alt="Logo Wydziału Budowy Maszyn i Informatyki"
+                alt="Facebook"
                 to="https://www.facebook.com/ResetATH"
               />
               <ImageAsLink
                 isExternalLink={true}
                 src={ytLogo}
-                alt="Logo Wydziału Budowy Maszyn i Informatyki"
+                alt="Youtube"
                 to="https://www.youtube.com/channel/UCBiN0uFfdjb-Q0gtqqwCgWw"
               />
               <ImageAsLink
                 isExternalLink={true}
                 src={twLogo}
-                alt="Logo Wydziału Budowy Maszyn i Informatyki"
+                alt="Twitter"
                 to="https://twitter.com/resetath"
               />
             </div>

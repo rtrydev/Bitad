@@ -73,15 +73,17 @@ function Navigation() {
                 Agenda
               </NavHashLink>
             </li>
-            <li>
-              <NavLink
-                to="/registration"
-                onClick={handleLinkClick}
-                className={`${typography["nav-link"]} ${typography.button} ${styles["button--hide"]}`}
-              >
-                Rejestracja
-              </NavLink>
-            </li>
+            {!process.env.REACT_APP_ENABLE_REGISTRATION && (
+              <li>
+                <NavLink
+                  to="/registration"
+                  onClick={handleLinkClick}
+                  className={`${typography["nav-link"]} ${typography.button} ${styles["button--hide"]}`}
+                >
+                  Rejestracja
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </nav>

@@ -2,24 +2,28 @@ import Entry from "./Entry";
 import entryStyles from "./Entry.module.css";
 import m from "moment";
 import { isSameTime, isAfterTime, isBeforeTime } from "./time-functions";
-
 import styles from "./Scale.module.css";
 import bg from "../../assets/css/Backgrounds.module.css";
-import { accentColorToClassName } from "../../hooks/custom-functions";
+import {
+  accentColorToClassName,
+  setNoScroll,
+} from "../../hooks/custom-functions";
+import ExtendedEventCard from "../Cards/EventCard/ExtendedEventCard";
+import { useState, useEffect } from "react";
 
 /**
  *
  * @param {m[]} entryTime
  * @param {m[]} times
- * @param {Boolean} startsFindingFromBegining
+ * @param {Boolean} startsFindingFromBeginning
  * @returns
  */
 const findColumnsForEntry = (
   entryTime,
   times,
-  startsFindingFromBegining = true
+  startsFindingFromBeginning = true
 ) => {
-  if (startsFindingFromBegining) {
+  if (startsFindingFromBeginning) {
     return times.findIndex((time) => {
       return isBeforeTime(m(entryTime), time) || isSameTime(m(entryTime), time);
     });
@@ -36,6 +40,22 @@ const findColumnsForEntry = (
 };
 
 function Scale(props) {
+  const [clickedEntry, setClickedEntry] = useState({});
+  const [isShowExtendedCard, setIsShowExtendedCard] = useState(false);
+
+  useEffect(() => {
+    setNoScroll(isShowExtendedCard);
+  }, [isShowExtendedCard]);
+
+  const handleOpenExtendedCard = (e) => {
+    setIsShowExtendedCard(true);
+    setClickedEntry(e);
+  };
+
+  const handleCloseExtendedCard = () => {
+    setIsShowExtendedCard(false);
+  };
+
   const entries = props.entries.map((entry, index) => {
     const startColumn = findColumnsForEntry(entry.start, props.times, false);
     const endColumn = findColumnsForEntry(entry.end, props.times);
@@ -57,14 +77,24 @@ function Scale(props) {
         showImage={startColumn !== -1}
         imageSrc={entry.speaker.picture}
         imageAlt={entry.speaker.name}
-        to={`#${entry.title}`}
         style={style}
         className={classes}
+        onClick={() => handleOpenExtendedCard(entry)}
       />
     );
   });
   return (
-    <div className={`${styles.scale} ${bg["scale-background"]}`}>{entries}</div>
+    <>
+      <div className={`${styles.scale} ${bg["scale-background"]}`}>
+        {entries}
+      </div>
+      {isShowExtendedCard && (
+        <ExtendedEventCard
+          {...clickedEntry}
+          onClick={handleCloseExtendedCard}
+        />
+      )}
+    </>
   );
 }
 

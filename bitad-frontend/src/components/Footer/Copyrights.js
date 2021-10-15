@@ -8,10 +8,11 @@ function Copyrights() {
   return (
     <div className={styles.copyrights}>
       <div className={styles.copyrights__links}>
-        <Link to="/" className={typography["nav-link"]}>
-          Polityka prywatności
-        </Link>
-        <Link to="/" className={typography["nav-link"]}>
+        <Link
+          to="/Regulamin.pdf"
+          className={typography["nav-link"]}
+          target="_blank"
+        >
           Regulamin
         </Link>
       </div>

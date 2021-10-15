@@ -25,9 +25,11 @@ function App() {
         <Route path="/details">
           <Details />
         </Route>
-        <Route path="/registration">
-          <Registration />
-        </Route>
+        {!process.env.REACT_APP_ENABLE_REGISTRATION && (
+          <Route path="/registration">
+            <Registration />
+          </Route>
+        )}
         <Route path="/account-activation/:code">
           <AccountActivation />
         </Route>

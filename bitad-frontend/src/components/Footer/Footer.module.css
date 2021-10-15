@@ -1,5 +1,6 @@
 .footer {
-  padding: var(--section-margin) 0;
+  padding-top: var(--section-margin);
+  padding-bottom: var(--margin-xs);
   margin-bottom: 0;
 }
 
@@ -9,8 +10,9 @@
     auto-fill,
     minmax(var(--footer-min-column), 1fr)
   );
-  gap: var(--section-margin);
-  margin-bottom: var(--section-margin);
+  column-gap: var(--section-margin);
+  row-gap: var(--margin-l);
+  margin-bottom: var(--margin-xl);
 }
 
 .footer p {
@@ -27,6 +29,7 @@
 .patrons img {
   width: auto;
   max-height: 5.556rem;
+  max-width: 100%;
 }
 
 .socialmedia {

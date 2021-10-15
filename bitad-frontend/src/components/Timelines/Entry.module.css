@@ -4,6 +4,7 @@
   align-items: center;
   border-radius: var(--entry-border-radius);
   min-height: var(--timeline-min-height);
+  cursor: pointer;
 }
 
 .entry--break-left {
