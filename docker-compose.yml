@@ -20,10 +20,11 @@ services:
     restart: unless-stopped
     tty: true
     build:
-      context: ./bitad-api/BitadAPI
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./bitad-api/BitadAPI/Dockerfile
     ports:
       - "8080:80"
+      - "8443:443"
     environment:
       JWT_SECRET: ${JWT_SECRET}
       EMAIL_ADDRESS: ${EMAIL_ADDRESS}
@@ -33,6 +34,9 @@ services:
       EMAIL_LOGIN: ${EMAIL_LOGIN}
       SMTP_SERVER: ${SMTP_SERVER}
       REGISTRATION_ENALBED: ${REGISTRATION_ENALBED}
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${PFX_FILE_PASSWORD}
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
     depends_on:
       - db
     networks:
@@ -42,10 +46,11 @@ services:
     restart: unless-stopped
     tty: true
     build:
-      context: ./bitad-frontend/
-      dockerfile: Dockerfile.prod
+      context: .
+      dockerfile: ./bitad-frontend/Dockerfile.prod
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - api
       - db
