@@ -25,7 +25,7 @@ function App() {
         <Route path="/details">
           <Details />
         </Route>
-        {!process.env.REACT_APP_ENABLE_REGISTRATION && (
+        {process.env.REACT_APP_ENABLE_REGISTRATION === "enabled" && (
           <Route path="/registration">
             <Registration />
           </Route>

@@ -58,7 +58,7 @@ function Footer() {
             </p>
             <a href="mailto:reset@ath.bielsko.pl">reset@ath.bielsko.pl</a>
           </div>
-          {!process.env.REACT_APP_ENABLE_REGISTRATION && (
+          {process.env.REACT_APP_ENABLE_REGISTRATION === "enabled" && (
             <div>
               <h4>Dołacz do nas</h4>
               <p>

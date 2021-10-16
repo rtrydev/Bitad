@@ -8,7 +8,6 @@ export function WorkshopSelect({ name, errors, register }) {
   const { response } = useGetRequest("/Workshop/GetWorkshops", toggle);
 
   const handleClick = () => {
-    console.log("Clicked");
     setToggle((prevState) => !prevState);
   };
 

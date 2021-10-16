@@ -33,12 +33,14 @@ function Agenda() {
         subtitle="19 listopada 2021, na terenie uczelni ATH w Bielsku-Białej"
         title="Konferencja Informatyczna"
         linkText={
-          !process.env.REACT_APP_ENABLE_REGISTRATION
+          process.env.REACT_APP_ENABLE_REGISTRATION === "enabled"
             ? "Zapisz się już dziś!"
             : "Rejestracja już wkrótce"
         }
         linkTo={
-          !process.env.REACT_APP_ENABLE_REGISTRATION ? "/registration" : "#"
+          process.env.REACT_APP_ENABLE_REGISTRATION === "enabled"
+            ? "/registration"
+            : "#"
         }
       />
       <Section id="agenda">

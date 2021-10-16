@@ -18,7 +18,6 @@ import gamepadIcon from "../../assets/images/gamepad.svg";
 import workshopImage from "../../assets/images/workshop.jpg";
 
 function About() {
-  console.log(!process.env.REACT_APP_ENABLE_REGISTRATION);
   return (
     <Fragment>
       <MainHero
@@ -27,12 +26,14 @@ function About() {
         subtitle="19 listopada 2021, na terenie uczelni ATH w Bielsku-Białej"
         title="Konferencja Informatyczna"
         linkText={
-          !process.env.REACT_APP_ENABLE_REGISTRATION
+          process.env.REACT_APP_ENABLE_REGISTRATION === "enabled"
             ? "Zapisz się już dziś!"
             : "Rejestracja już wkrótce"
         }
         linkTo={
-          !process.env.REACT_APP_ENABLE_REGISTRATION ? "/registration" : "#"
+          process.env.REACT_APP_ENABLE_REGISTRATION === "enabled"
+            ? "/registration"
+            : "#"
         }
       />
       <main>

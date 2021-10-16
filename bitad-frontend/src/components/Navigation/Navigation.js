@@ -73,7 +73,7 @@ function Navigation() {
                 Agenda
               </NavHashLink>
             </li>
-            {!process.env.REACT_APP_ENABLE_REGISTRATION && (
+            {process.env.REACT_APP_ENABLE_REGISTRATION === "enabled" && (
               <li>
                 <NavLink
                   to="/registration"
