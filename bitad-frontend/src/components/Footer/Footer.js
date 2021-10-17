@@ -39,7 +39,7 @@ function Footer() {
                 isExternalLink={true}
                 src={patron1}
                 alt="FabLab"
-                to="https://www.facebook.com/klubbecon/"
+                to="https://www.facebook.com/fablab24/"
               />
               <ImageAsLink
                 isExternalLink={true}
