@@ -127,6 +127,15 @@ namespace BitadAPI.Services
 
             var hashed = HashPassword(registrationData.Password);
 
+            var workshop = await _workshopRepository.GetByCode(registrationData.WorkshopCode);
+            if (workshop is not null)
+            {
+                if (workshop.ParticipantsNumber >= workshop.MaxParticipants)
+                {
+                    workshop = null;
+                }
+            }
+
             var user = new User
             {
                 FirstName = registrationData.FirstName,
@@ -136,7 +145,7 @@ namespace BitadAPI.Services
                 CurrentScore = 0,
                 Password = hashed.password,
                 PasswordSalt = hashed.salt,
-                Workshop = await _workshopRepository.GetByCode(registrationData.WorkshopCode),
+                Workshop = workshop,
                 CreationIp = ip,
                 ActivationCode = GenerateRandomCode(),
                 ConfirmCode = GenerateRandomCode(),
