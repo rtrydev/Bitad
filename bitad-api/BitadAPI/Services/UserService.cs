@@ -145,7 +145,6 @@ namespace BitadAPI.Services
                 CurrentScore = 0,
                 Password = hashed.password,
                 PasswordSalt = hashed.salt,
-                Workshop = workshop,
                 CreationIp = ip,
                 ActivationCode = GenerateRandomCode(),
                 ConfirmCode = GenerateRandomCode(),
@@ -159,9 +158,9 @@ namespace BitadAPI.Services
             var resultUser = await _userRepository.CreateUser(user);
 
             if (resultUser is null) return null;
-            if (resultUser.Workshop is not null)
+            if (workshop is not null)
             {
-                resultUser.Workshop = await _workshopRepository.AddParticipant(resultUser.Workshop.Id, resultUser);
+                resultUser.Workshop = await _workshopRepository.AddParticipant(workshop.Id, resultUser);
             }
 
             if(Environment.GetEnvironmentVariable("EMAIL_ENABLED") == "enabled")

@@ -24,12 +24,12 @@ namespace BitadAPI.Repositories
 
         public async Task<Workshop> GetByCode(string code)
         {
-            return await GetAll().Include(x => x.Speaker).FirstOrDefaultAsync(x => x.Code == code);
+            return await GetAll().Include(x => x.Participants).Include(x => x.Speaker).FirstOrDefaultAsync(x => x.Code == code);
         }
 
         public async Task<Workshop> AddParticipant(int id, User user)
         {
-            var workshop = await GetAll().FirstOrDefaultAsync(x => x.Id == id);
+            var workshop = await GetAll().Include(x => x.Participants).FirstOrDefaultAsync(x => x.Id == id);
             workshop.Participants.Add(user);
             var result = await UpdateAsync(workshop);
             return result;
