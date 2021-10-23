@@ -205,11 +205,11 @@ namespace BitadAPI.Services
                     Code = 1
                 };
 
-            user.Workshop = workshop;
-            var result = await _userRepository.UpdateUser(user);
+            var result = await _workshopRepository.AddParticipant(workshop.Id, user);
+            
             return new TokenRefreshResponse<DtoWorkshop>
             {
-                Body = _mapper.Map<DtoWorkshop>(workshop),
+                Body = _mapper.Map<DtoWorkshop>(result),
                 Token = refreshToken,
                 Code = 0
             };
