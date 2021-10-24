@@ -156,7 +156,7 @@ namespace BitadAPI.Services
                 AttendanceCode = GenerateRandomCode(),
                 Role = UserRole.Guest,
                 ShirtSize = registrationData.ShirtSize,
-                WorkshopAttendanceCode = workshopRegistered ? GenerateLoginCode() : null
+                WorkshopAttendanceCode = workshopRegistered ? GenerateWorkshopAttendanceCode() : null
                 
             };
 
@@ -395,11 +395,11 @@ namespace BitadAPI.Services
 
         }
 
-        private string GenerateLoginCode()
+        private string GenerateWorkshopAttendanceCode()
         {
             var rnd = new Random();
             var codeBuilder = new StringBuilder();
-            for(int i=0; i < 4; i++)
+            for(int i=0; i < 5; i++)
             {
                 codeBuilder.Append((char)rnd.Next('A', 'Z'));
             }
