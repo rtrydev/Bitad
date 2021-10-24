@@ -127,12 +127,17 @@ namespace BitadAPI.Services
 
             var hashed = HashPassword(registrationData.Password);
 
+            var workshopRegistered = false;
             var workshop = await _workshopRepository.GetByCode(registrationData.WorkshopCode);
             if (workshop is not null)
             {
                 if (workshop.ParticipantsNumber >= workshop.MaxParticipants)
                 {
                     workshop = null;
+                }
+                else
+                {
+                    workshopRegistered = true;
                 }
             }
 
@@ -150,7 +155,8 @@ namespace BitadAPI.Services
                 ConfirmCode = GenerateRandomCode(),
                 AttendanceCode = GenerateRandomCode(),
                 Role = UserRole.Guest,
-                ShirtSize = registrationData.ShirtSize
+                ShirtSize = registrationData.ShirtSize,
+                WorkshopAttendanceCode = workshopRegistered ? GenerateLoginCode() : null
                 
             };
 

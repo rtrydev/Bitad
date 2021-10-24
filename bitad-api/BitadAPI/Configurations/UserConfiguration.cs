@@ -119,6 +119,11 @@ namespace BitadAPI.Configurations
                 .HasColumnType("timestamp")
                 .IsRequired(false);
 
+            builder.Property(x => x.WorkshopAttendanceCode)
+                .HasColumnName("workshop_attendance_code")
+                .HasColumnType("text")
+                .IsRequired(false);
+
         }
     }
 }

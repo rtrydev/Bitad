@@ -11,6 +11,8 @@ namespace BitadAPI.Profiles
         {
             CreateMap<User, DtoUser>();
             CreateMap<DtoUser, User>();
+            CreateMap<User, DtoWorkshopParticipant>();
+            CreateMap<DtoWorkshopParticipant, User>();
         }
     }
 }

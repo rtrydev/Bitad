@@ -48,5 +48,6 @@ namespace BitadAPI.Models
         public String PasswordResetCode { get; set; }
         public  DateTime? LastPasswordReset { get; set; }
         public DateTime? ActivationCodeResent { get; set; }
+        public string WorkshopAttendanceCode { get; set; }
     }
 }
