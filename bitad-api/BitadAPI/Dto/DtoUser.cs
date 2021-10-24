@@ -16,5 +16,6 @@ namespace BitadAPI.Dto
         public string AttendanceCode { get; set; }
         public UserRole Role { get; set; }
         public ShirtSize ShirtSize { get; set; }
+        public string WorkshopAttendanceCode { get; set; }
     }
 }
