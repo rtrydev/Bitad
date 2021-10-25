@@ -25,7 +25,8 @@ function RegistrationFrom() {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    const { email, username, password, workshopCode } = data;
+    const { email, username, password, workshopCode, firstName, lastName } =
+      data;
     setIsSubmitting(true);
 
     api
@@ -33,6 +34,8 @@ function RegistrationFrom() {
         email,
         username,
         password,
+        firstName,
+        lastName,
         workshopCode,
       })
       .then(() => {
@@ -54,7 +57,38 @@ function RegistrationFrom() {
       <div className={styles.form__section}>
         <FieldWrapper>
           <FieldInput name="username" labelText="Pseudonim*">
-            <Input register={register} errors={errors} name="username" />
+            <Input
+              register={register}
+              errors={errors}
+              name="username"
+              minLength={{ value: 4, message: "Minimum 4 znaki" }}
+              maxLength={{ value: 24, message: "Maksymalnie 24 znaki" }}
+            />
+          </FieldInput>
+        </FieldWrapper>
+        <FieldWrapper>
+          <FieldInput name="firstName" labelText="Imię*">
+            <Input
+              register={register}
+              errors={errors}
+              name="firstName"
+              pattern={{
+                value: /^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ-]+$/i,
+                message: "Dozwolone tylko litery",
+              }}
+              maxLength={{ value: 24, message: "Maksymalnie 24 znaki" }}
+            />
+          </FieldInput>
+          <FieldInput name="lastName" labelText="Nazwisko*">
+            <Input
+              register={register}
+              errors={errors}
+              name="lastName"
+              pattern={{
+                value: /^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ-]+$/i,
+                message: "Dozwolone tylko litery",
+              }}
+            />
           </FieldInput>
         </FieldWrapper>
         <FieldInput name="email" labelText="Adres email*">
@@ -66,6 +100,7 @@ function RegistrationFrom() {
             errors={errors}
             name="password"
             type="password"
+            minLength={{ value: 6, message: "Minimum 6 znaków" }}
           />
         </FieldInput>
         <FieldInput name="repeatedPassword" labelText="Powtórz hasło*">
@@ -73,6 +108,7 @@ function RegistrationFrom() {
             name="repeatedPassword"
             register={register}
             type="password"
+            minLength={{ value: 6, message: "Minimum 6 znaków" }}
             validate={{
               checkIfEquole: (value) =>
                 value === getValues("password") || "Hasła nie są takie same",
