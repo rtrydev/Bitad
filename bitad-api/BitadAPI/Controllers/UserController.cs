@@ -173,7 +173,7 @@ namespace BitadAPI.Controllers
         [HttpPut("ConfirmAccount")]
         public async Task<ActionResult> ConfirmAccount(string confirmCode)
         {
-            var result = _userService.ConfirmAccount(confirmCode);
+            var result = await _userService.ConfirmAccount(confirmCode);
             if (result is null) return Forbid();
             return Ok();
         }

@@ -409,7 +409,7 @@ namespace BitadAPI.Services
         {
             var user = await _userRepository.GetByPredicate(x => x.ConfirmCode == confirmCode);
             if (user.ActivationDate is null) return null;
-            if (user.ConfirmCode is not null) return null;
+            if (user.ConfirmDate is not null) return null;
             
             user.ConfirmDate = DateTime.Now;
             var result = await _userRepository.UpdateUser(user);
