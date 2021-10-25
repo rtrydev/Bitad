@@ -13,7 +13,6 @@ namespace BitadAPI.Services
         public Task<ICollection<DtoStaff>> GetAll();
         public Task<TokenRefreshResponse<ICollection<DtoStaff>>> GetAllAdmin(int issuerId);
         public Task<TokenRefreshResponse<DtoUser>> SendConfirmationMails(int issuerId);
-        public Task<TokenRefreshResponse<DtoUser>> BanWorkshopInactiveAccounts(int issuerId, string workshopCode);
         public Task<TokenRefreshResponse<DtoUser>> ExcludeInactiveUsersFromWorkshops(int issuerId);
     }
 
@@ -102,37 +101,7 @@ namespace BitadAPI.Services
 
         }
 
-        public async Task<TokenRefreshResponse<DtoUser>> BanWorkshopInactiveAccounts(int issuerId, string workshopCode)
-        {
-            var issuer = await _userRepository.GetById(issuerId);
-            var refreshToken = await _jwtService.GetNewToken(issuerId);
-            if (issuer.Role != UserRole.Admin && issuer.Role != UserRole.Super)
-            {
-                return new TokenRefreshResponse<DtoUser>()
-                {
-                    Body = null,
-                    Token = refreshToken,
-                    Code = 403
-                };
-            }
-            var workshop = await _workshopRepository.GetByCode(workshopCode);
-            foreach (var participant in workshop.Participants)
-            {
-                if (participant.WorkshopAttendanceCode is not null && participant.WorkshopAttendanceCheckDate is null)
-                {
-                    var user = await _userRepository.GetById(participant.Id);
-                    user.BannedFromRoulette = true;
-                    user = await _userRepository.UpdateUser(user);
-                }
-            }
-
-            return new TokenRefreshResponse<DtoUser>()
-            {
-                Body = _mapper.Map<DtoUser>(issuer),
-                Token = refreshToken,
-                Code = 200
-            };
-        }
+        
 
         public async Task<TokenRefreshResponse<DtoUser>> ExcludeInactiveUsersFromWorkshops(int issuerId)
         {

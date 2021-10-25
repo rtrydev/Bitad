@@ -378,6 +378,11 @@ namespace BitadAPI.Services
         {
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             var rand = new Random();
+            var workshops = await _workshopRepository.GetAll();
+            foreach (var workshop in workshops)
+            {
+                await BanWorkshopInactiveAccounts(workshop.Code);
+            }
             var users = (await _userRepository.GetAll())
                 .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest && !user.BannedFromRoulette).ToList();
             var winners = new List<DtoUser>();
@@ -542,6 +547,22 @@ namespace BitadAPI.Services
                 numBytesRequested: 256 / 8));
 
             return hashed;
+        }
+        
+        public async Task BanWorkshopInactiveAccounts(string workshopCode)
+        {
+            
+            var workshop = await _workshopRepository.GetByCode(workshopCode);
+            foreach (var participant in workshop.Participants)
+            {
+                if (participant.WorkshopAttendanceCode is not null && participant.WorkshopAttendanceCheckDate is null)
+                {
+                    var user = await _userRepository.GetById(participant.Id);
+                    user.BannedFromRoulette = true;
+                    user = await _userRepository.UpdateUser(user);
+                }
+            }
+            
         }
     }
 }
