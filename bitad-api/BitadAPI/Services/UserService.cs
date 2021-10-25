@@ -27,6 +27,7 @@ namespace BitadAPI.Services
         public Task<DtoUser> IssuePasswordReset(string username);
         public Task<DtoUser> ResetPassword(string resetCode, string newPassword);
         public Task<DtoUser> ResendActivation(string username);
+        public Task<DtoUser> ConfirmAccount(string confirmCode);
     }
 
     public class UserService : IUserService
@@ -402,6 +403,17 @@ namespace BitadAPI.Services
 
             return _mapper.Map<DtoUser>(user);
 
+        }
+
+        public async Task<DtoUser> ConfirmAccount(string confirmCode)
+        {
+            var user = await _userRepository.GetByPredicate(x => x.ConfirmCode == confirmCode);
+            if (user.ActivationDate is null) return null;
+            if (user.ConfirmCode is not null) return null;
+            
+            user.ConfirmDate = DateTime.Now;
+            var result = await _userRepository.UpdateUser(user);
+            return _mapper.Map<DtoUser>(result);
         }
 
         private string GenerateWorkshopAttendanceCode()
