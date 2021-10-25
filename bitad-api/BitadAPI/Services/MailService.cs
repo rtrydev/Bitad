@@ -85,7 +85,7 @@ namespace BitadAPI.Services
 
             var builder = new BodyBuilder();
 
-            using (FileStream fs = new FileStream(Path.Combine(FullFormatPath, "index.html"), FileMode.Open))
+            using (FileStream fs = new FileStream(Path.Combine(FullFormatPath, "index_confirm.html"), FileMode.Open))
             {
                 using (StreamReader sr = new StreamReader(fs))
                 {
@@ -93,7 +93,7 @@ namespace BitadAPI.Services
                 }
             }
 
-            HtmlFormat = HtmlFormat.Replace("ACTIVATION_LINK", $"{_serverUrl}/account-activation/{confirmCode}");
+            HtmlFormat = HtmlFormat.Replace("ACTIVATION_LINK", $"{_serverUrl}/account-confirm/{confirmCode}");
             HtmlFormat = HtmlFormat.Replace("USER_NAME", receiver);
 
             builder.HtmlBody = HtmlFormat;
