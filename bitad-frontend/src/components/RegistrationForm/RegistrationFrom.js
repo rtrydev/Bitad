@@ -84,7 +84,7 @@ function RegistrationFrom() {
               name="firstName"
               pattern={{
                 value: /^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ-]+$/i,
-                message: "Dozwolone tylko litery",
+                message: "Tylko litery",
               }}
               maxLength={{ value: 24, message: "Maksymalnie 24 znaki" }}
             />
@@ -96,7 +96,7 @@ function RegistrationFrom() {
               name="lastName"
               pattern={{
                 value: /^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ-]+$/i,
-                message: "Dozwolone tylko litery",
+                message: "Tylko litery",
               }}
             />
           </FieldInput>
