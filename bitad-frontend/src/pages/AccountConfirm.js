@@ -36,9 +36,12 @@ function AccountActivation() {
   };
 
   const message = isError
-    ? shortMessage("Coś poszło nie tak", "Spróbuj ponownie później")
+    ? shortMessage(
+        "Coś poszło nie tak",
+        "Możliwe, że już potwierdziłeś swoją obecność"
+      )
     : shortMessage(
-        "Twoja obecność została została",
+        "Twoja obecność została potwierdzona",
         "Zapraszamy na konferencję 19 listopada 2021 na uczelni ATH w Bielsku-Białej"
       );
 
