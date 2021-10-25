@@ -9,6 +9,7 @@ import Registration from "./pages/Registration/Registration";
 import AccountActivation from "./pages/AccountActivation";
 import AccountCreationInfo from "./pages/AccountCreationInfo";
 import AccountRestartPassword from "./pages/AccountRestartPassword/AccountRestartPassword";
+import AccountConfirm from "./pages/AccountConfirm";
 
 function App() {
   return (
@@ -53,6 +54,9 @@ function App() {
         </Route>
         <Route path="/password-reset/:code">
           <AccountRestartPassword />
+        </Route>
+        <Route path="/account-confirm/:code">
+          <AccountConfirm />
         </Route>
       </Switch>
       <Footer />
