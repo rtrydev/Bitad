@@ -115,6 +115,23 @@ namespace BitadAPI.Controllers
             return Ok(result.Body);
 
         }
+        
+        [HttpPut("CheckWorkshopAttendance")]
+        [Authorize]
+        public async Task<ActionResult<DtoAttendanceResult>> CheckWorkshopAttendance(string attendanceCode, string workshopCode)
+        {
+            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
+            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
+            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _userService.CheckAttendanceWorkshop(id, attendanceCode, workshopCode);
+            HttpContext.Response.Headers.Add("AuthToken", result.Token);
+            return Ok(result.Body);
+
+        }
 
         [HttpPut("ActivateAccount")]
         public async Task<ActionResult<DtoUser>> ActivateAccount(string activationCode)
