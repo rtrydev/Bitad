@@ -120,7 +120,9 @@ namespace BitadAPI.Services
             {
                 if (participant.WorkshopAttendanceCode is not null && participant.WorkshopAttendanceCheckDate is null)
                 {
-                    participant.BannedFromRoulette = true;
+                    var user = await _userRepository.GetById(participant.Id);
+                    user.BannedFromRoulette = true;
+                    user = await _userRepository.UpdateUser(user);
                 }
             }
 
