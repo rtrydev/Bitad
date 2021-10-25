@@ -25,8 +25,16 @@ function RegistrationFrom() {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    const { email, username, password, workshopCode, firstName, lastName } =
-      data;
+    const {
+      email,
+      username,
+      password,
+      workshopCode,
+      firstName,
+      lastName,
+      acceptedRegulations,
+      acceptedDataProcessing,
+    } = data;
     setIsSubmitting(true);
 
     api
@@ -37,6 +45,8 @@ function RegistrationFrom() {
         firstName,
         lastName,
         workshopCode,
+        acceptedRegulations,
+        acceptedDataProcessing,
       })
       .then(() => {
         setSubmitError(false);
@@ -129,7 +139,7 @@ function RegistrationFrom() {
       </div>
       <div>
         <CheckboxField
-          name="terms1"
+          name="acceptedRegulations"
           register={register}
           text={
             <>
@@ -139,7 +149,7 @@ function RegistrationFrom() {
           errors={errors}
         />
         <CheckboxField
-          name="terms2"
+          name="acceptedDataProcessing"
           register={register}
           text="Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do udziału w konferencji.*"
           errors={errors}
