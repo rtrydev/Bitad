@@ -14,6 +14,7 @@ namespace BitadAPI.Repositories
         public Task<Workshop> GetByCode(string code);
         public Task<Workshop> AddParticipant(int id, User user);
         public Task<Workshop> GetById(int id);
+        public Task<User> RemoveParticipant(int id, User user);
     }
 
     public class WorkshopRepository : Repository<Workshop>, IWorkshopRepository
@@ -45,7 +46,15 @@ namespace BitadAPI.Repositories
 
         public async Task<Workshop> GetById(int id)
         {
-            return await GetAll().FirstOrDefaultAsync(x => x.Id == id);
+            return await GetAll().Include(x => x.Participants).FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<User> RemoveParticipant(int id, User user)
+        {
+            var workshop = await GetById(id);
+            workshop.Participants.Remove(user);
+            await UpdateAsync(workshop);
+            return user;
         }
     }
 }

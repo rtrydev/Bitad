@@ -118,6 +118,11 @@ namespace BitadAPI.Services
                 return null;
             }
 
+            if (registrationData.AcceptedRegulations != true || registrationData.AcceptedDataProcessing != true)
+            {
+                return null;
+            }
+
             var registered = await _userRepository.GetManyByPredicate(x => x.CreationIp == ip);
             if (registered.Count > 3)
                 return null;
@@ -156,7 +161,8 @@ namespace BitadAPI.Services
                 AttendanceCode = GenerateRandomCode(),
                 Role = UserRole.Guest,
                 ShirtSize = registrationData.ShirtSize,
-                WorkshopAttendanceCode = workshopRegistered ? GenerateWorkshopAttendanceCode() : null
+                WorkshopAttendanceCode = workshopRegistered ? GenerateRandomCode() : null,
+                BannedFromRoulette = false
                 
             };
 
@@ -210,7 +216,10 @@ namespace BitadAPI.Services
                     Code = 1
                 };
 
-            var result = await _workshopRepository.AddParticipant(workshop.Id, user);
+            user.WorkshopAttendanceCode = GenerateRandomCode();
+            var userResult = await _userRepository.UpdateUser(user);
+
+            var result = await _workshopRepository.AddParticipant(workshop.Id, userResult);
             
             return new TokenRefreshResponse<DtoWorkshop>
             {
@@ -296,7 +305,7 @@ namespace BitadAPI.Services
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             var rand = new Random();
             var users = (await _userRepository.GetAll())
-                .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest).ToList();
+                .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest && !user.BannedFromRoulette).ToList();
             var winners = new List<DtoUser>();
 
             var maxTicket = users

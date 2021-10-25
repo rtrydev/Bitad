@@ -26,5 +26,9 @@ namespace BitadAPI.Dto
         public string Password { get; set; }
         public string WorkshopCode { get; set; }
         public ShirtSize ShirtSize { get; set; }
+        [Range(typeof(bool), "true", "true", ErrorMessage="The field must be checked.")]
+        public bool AcceptedRegulations { get; set; }
+        [Range(typeof(bool), "true", "true", ErrorMessage="The field must be checked.")]
+        public bool AcceptedDataProcessing { get; set; }
     }
 }

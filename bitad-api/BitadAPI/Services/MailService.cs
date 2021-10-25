@@ -13,6 +13,7 @@ namespace BitadAPI.Services
     {
         public Task SendActivationMail(string address, string activationCode, string receiver);
         public Task SendPasswordResetMail(string address, string resetCode, string receiver);
+        public Task SendConfirmationMail(string address, string confirmCode, string receiver);
     }
     public class MailService : IMailService
     {
@@ -53,6 +54,46 @@ namespace BitadAPI.Services
             }
 
             HtmlFormat = HtmlFormat.Replace("ACTIVATION_LINK", $"{_serverUrl}/account-activation/{activationCode}");
+            HtmlFormat = HtmlFormat.Replace("USER_NAME", receiver);
+
+            builder.HtmlBody = HtmlFormat;
+
+            message.Body = builder.ToMessageBody();
+            
+            using (var client = new SmtpClient()) {
+                await client.ConnectAsync (_smtpServer, 587, SecureSocketOptions.StartTls);
+                await client.AuthenticateAsync (_emailLogin, _emailPassword);
+
+                await client.SendAsync(message);
+
+                await client.DisconnectAsync (true);
+            }
+
+        }
+        
+        public async Task SendConfirmationMail(string address, string confirmCode, string receiver)
+        {
+            var message = new MimeMessage();
+
+            message.From.Add(new MailboxAddress("Bitad2021", _emailAddress));
+            message.To.Add(new MailboxAddress(receiver, address));
+            message.Subject = "Potwierdzenie obecności na Bitad2021";
+            
+            string FullFormatPath = "/app/bitad-email-template";
+
+            string HtmlFormat = string.Empty;
+
+            var builder = new BodyBuilder();
+
+            using (FileStream fs = new FileStream(Path.Combine(FullFormatPath, "index.html"), FileMode.Open))
+            {
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    HtmlFormat = sr.ReadToEnd();
+                }
+            }
+
+            HtmlFormat = HtmlFormat.Replace("ACTIVATION_LINK", $"{_serverUrl}/account-activation/{confirmCode}");
             HtmlFormat = HtmlFormat.Replace("USER_NAME", receiver);
 
             builder.HtmlBody = HtmlFormat;

@@ -124,6 +124,16 @@ namespace BitadAPI.Configurations
                 .HasColumnType("text")
                 .IsRequired(false);
 
+            builder.Property(x => x.BannedFromRoulette)
+                .HasColumnName("banned_from_roulette")
+                .HasColumnType("bool")
+                .IsRequired();
+
+            builder.Property(x => x.WorkshopAttendanceCheckDate)
+                .HasColumnName("workshop_attendance_check_date")
+                .HasColumnType("timestamp")
+                .IsRequired(false);
+
         }
     }
 }
