@@ -4,6 +4,6 @@
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string WorkshopAttendanceCode { get; set; }
+        public string EMail { get; set; }
     }
 }

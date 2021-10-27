@@ -12,5 +12,7 @@ namespace BitadAPI.Dto
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public string Code { get; set; }
+        public string ShortInfo { get; set; }
+        public string ExternalLink { get; set; }
     }
 }

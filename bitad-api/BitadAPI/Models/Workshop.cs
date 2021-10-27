@@ -10,6 +10,8 @@ namespace BitadAPI.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string ShortInfo { get; set; }
+        public string ExternalLink { get; set; }
         public ICollection<User> Participants { get; set; }
         public int ParticipantsNumber { get => Participants is not null ? Participants.Count : 0; }
         public string Room { get; set; }

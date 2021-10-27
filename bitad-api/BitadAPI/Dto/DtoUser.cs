@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using BitadAPI.Models;
 
 namespace BitadAPI.Dto
@@ -17,5 +18,6 @@ namespace BitadAPI.Dto
         public UserRole Role { get; set; }
         public ShirtSize ShirtSize { get; set; }
         public string WorkshopAttendanceCode { get; set; }
+        public string RewardCode => AttendanceCode.Take(4).ToString()?.ToUpper();
     }
 }
