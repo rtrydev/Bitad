@@ -18,6 +18,6 @@ namespace BitadAPI.Dto
         public UserRole Role { get; set; }
         public ShirtSize ShirtSize { get; set; }
         public string WorkshopAttendanceCode { get; set; }
-        public string RewardCode => AttendanceCode.Substring(0, 4);
+        public string RewardCode => AttendanceCode.Substring(0, 4).ToLower();
     }
 }
