@@ -11,6 +11,11 @@
   line-height: 1.4;
 }
 
+p.card__short-info,
+a.card__short-info {
+  margin-bottom: 16px;
+}
+
 .card__details {
   display: flex;
   align-items: center;
