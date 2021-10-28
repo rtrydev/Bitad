@@ -379,39 +379,37 @@ namespace BitadAPI.Services
             
             var users = (await _userRepository.GetAll())
                 .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest && !user.BannedFromRoulette).ToList();
-            var winners = new List<DtoUser>();
-
-            var maxTicket = users
-                .Sum(x => x.CurrentScore == 0 ? 1 : x.CurrentScore);
-
+            
             if (users.Count < numberOfWinners)
                 return new TokenRefreshResponse<ICollection<DtoUser>>
                 {
-                    Body = winners,
+                    Body = new List<DtoUser>(),
                     Token = refreshToken,
                     Code = 3
                 };
+            
+            var winners = new List<DtoUser>();
+            var tickets = users.Select(x => x.CurrentScore).ToList();
 
-            while (winners.Count < numberOfWinners)
+            var ticketSum = tickets.Sum();
+
+            for (int i = 0; i < numberOfWinners; i++)
             {
-                var winningTicket = rand.Next(0, maxTicket);
                 var currentTicket = 0;
-                foreach (var user in users)
+                var selectedTicket = rand.Next(0, ticketSum);
+                for (int j = 0; j < users.Count; j++)
                 {
-                    var userStartTicket = currentTicket;
-                    var userEndTicket = currentTicket + user.CurrentScore == 0 ? 1 : user.CurrentScore;
-
-                    if (winningTicket >= userStartTicket && winningTicket < userEndTicket)
+                    currentTicket += tickets[j];
+                    if (currentTicket >= selectedTicket)
                     {
-                        winners.Add(_mapper.Map<DtoUser>(user));
-                        users.Remove(user);
-                        maxTicket -= user.CurrentScore;
+                        winners.Add(_mapper.Map<DtoUser>(users[j]));
+                        ticketSum -= tickets[j];
+                        users.RemoveAt(j);
+                        tickets.RemoveAt(j);
                         break;
                     }
-
-                    currentTicket = userEndTicket;
                 }
-
+                
             }
 
             return new TokenRefreshResponse<ICollection<DtoUser>>
