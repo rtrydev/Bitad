@@ -376,11 +376,7 @@ namespace BitadAPI.Services
         {
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             var rand = new Random();
-            var workshops = await _workshopRepository.GetAll();
-            foreach (var workshop in workshops)
-            {
-                await BanWorkshopInactiveAccounts(workshop.Code);
-            }
+            
             var users = (await _userRepository.GetAll())
                 .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest && !user.BannedFromRoulette).ToList();
             var winners = new List<DtoUser>();
