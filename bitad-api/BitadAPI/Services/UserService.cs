@@ -389,7 +389,7 @@ namespace BitadAPI.Services
                 };
             
             var winners = new List<DtoUser>();
-            var tickets = users.Select(x => x.CurrentScore).ToList();
+            var tickets = users.Select(x => x.CurrentScore == 0 ? 1 : x.CurrentScore).ToList();
 
             var ticketSum = tickets.Sum();
 
