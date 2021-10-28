@@ -51,7 +51,7 @@ namespace BitadAPI.Services
 
         public async Task<TokenRefreshResponse<DtoUser>> AuthenticateUser(DtoUserLogin userLogin)
         {
-            var user = await _userRepository.GetByPredicate(x => x.Username == userLogin.Username);
+            var user = await _userRepository.GetByPredicate(x => x.Email == userLogin.Email);
             if (user is null) return null;
 
             var hashedPassword = HashPassword(userLogin.Password, user.PasswordSalt);
@@ -130,7 +130,7 @@ namespace BitadAPI.Services
             if (registered.Count > 3)
                 return null;
 
-            if (await _userRepository.GetByPredicate(x => x.Email == registrationData.Email || x.Username == registrationData.Username) is not null)
+            if (await _userRepository.GetByPredicate(x => x.Email == registrationData.Email) is not null)
                 return null;
 
             var hashed = HashPassword(registrationData.Password);
@@ -153,7 +153,6 @@ namespace BitadAPI.Services
             {
                 FirstName = registrationData.FirstName,
                 LastName = registrationData.LastName,
-                Username = registrationData.Username,
                 Email = registrationData.Email,
                 CurrentScore = 0,
                 Password = hashed.password,
@@ -180,12 +179,11 @@ namespace BitadAPI.Services
 
             if(Environment.GetEnvironmentVariable("EMAIL_ENABLED") == "enabled")
             {
-                _ = Task.Run(async () => await _mailService.SendActivationMail(user.Email, user.ActivationCode, user.Username));
+                _ = Task.Run(async () => await _mailService.SendActivationMail(user.Email, user.ActivationCode, user.FirstName));
             }
 
             return new DtoRegistrationResponse
             {
-                Username = registrationData.Username,
                 FirstName = registrationData.FirstName,
                 LastName = registrationData.LastName,
                 Email = registrationData.Email,
@@ -429,9 +427,9 @@ namespace BitadAPI.Services
             };
         }
 
-        public async Task<DtoUser> IssuePasswordReset(string username)
+        public async Task<DtoUser> IssuePasswordReset(string email)
         {
-            var user = await _userRepository.GetByPredicate(x => x.Username == username);
+            var user = await _userRepository.GetByPredicate(x => x.Email == email);
             if (user is null) return null;
             if (user.LastPasswordReset > DateTime.Now.AddHours(-1)) return null;
 
@@ -443,7 +441,7 @@ namespace BitadAPI.Services
             
             if(Environment.GetEnvironmentVariable("EMAIL_ENABLED") == "enabled")
             {
-                _ = Task.Run(async () => await _mailService.SendPasswordResetMail(result.Email, result.PasswordResetCode, result.Username));
+                _ = Task.Run(async () => await _mailService.SendPasswordResetMail(result.Email, result.PasswordResetCode, result.FirstName));
             }
 
             return _mapper.Map<DtoUser>(result);
@@ -465,9 +463,9 @@ namespace BitadAPI.Services
             return _mapper.Map<DtoUser>(result);
         }
 
-        public async Task<DtoUser> ResendActivation(string username)
+        public async Task<DtoUser> ResendActivation(string email)
         {
-            var user = await _userRepository.GetByPredicate(x => x.Username == username);
+            var user = await _userRepository.GetByPredicate(x => x.Email == email);
             if (user is null) return null;
             if (user.ActivationDate is not null) return null;
             if (user.ActivationCodeResent > DateTime.Now.AddHours(-1)) return null;
@@ -476,7 +474,7 @@ namespace BitadAPI.Services
             var result = await _userRepository.UpdateUser(user);
             if(Environment.GetEnvironmentVariable("EMAIL_ENABLED") == "enabled")
             {
-                _ = Task.Run(async () => await _mailService.SendActivationMail(result.Email, result.ActivationCode, result.Username));
+                _ = Task.Run(async () => await _mailService.SendActivationMail(result.Email, result.ActivationCode, result.FirstName));
             }
 
             return _mapper.Map<DtoUser>(user);

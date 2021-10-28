@@ -87,7 +87,7 @@ namespace BitadAPI.Services
             {
                 foreach (var user in users)
                 {
-                    _ = Task.Run(async () => await _mailService.SendConfirmationMail(user.Email, user.ConfirmCode, user.Username));
+                    _ = Task.Run(async () => await _mailService.SendConfirmationMail(user.Email, user.ConfirmCode, user.FirstName));
                 }
             }
 

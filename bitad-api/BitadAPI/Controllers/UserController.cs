@@ -163,9 +163,9 @@ namespace BitadAPI.Controllers
         }
 
         [HttpPut("IssuePasswordReset")]
-        public async Task<ActionResult> IssuePasswordReset(string username)
+        public async Task<ActionResult> IssuePasswordReset(string email)
         {
-            var result = await _userService.IssuePasswordReset(username);
+            var result = await _userService.IssuePasswordReset(email);
             if (result is not null) return Ok();
             return Forbid();
         }
@@ -179,9 +179,9 @@ namespace BitadAPI.Controllers
         }
 
         [HttpPut("RequestActivationResend")]
-        public async Task<ActionResult> RequestActivationResend(string username)
+        public async Task<ActionResult> RequestActivationResend(string email)
         {
-            var result = await _userService.ResendActivation(username);
+            var result = await _userService.ResendActivation(email);
             if (result is not null) return Ok();
             return Forbid();
 

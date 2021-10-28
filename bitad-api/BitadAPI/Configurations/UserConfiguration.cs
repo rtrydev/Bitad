@@ -54,11 +54,6 @@ namespace BitadAPI.Configurations
                 .HasColumnType("text")
                 .IsRequired();
 
-            builder.Property(x => x.Username)
-                .HasColumnName("username")
-                .HasColumnType("text")
-                .IsRequired();
-
             builder.Property(x => x.CreationIp)
                 .HasColumnName("creation_ip")
                 .HasColumnType("text")

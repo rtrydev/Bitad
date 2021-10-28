@@ -20,9 +20,6 @@ namespace BitadAPI.Dto
         public string LastName { get; set; }
         [MaxLength(24)]
         [MinLength(4)]
-        public string Username { get; set; }
-        [MaxLength(50)]
-        [MinLength(6)]
         public string Password { get; set; }
         public string WorkshopCode { get; set; }
         public ShirtSize ShirtSize { get; set; }
