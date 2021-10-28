@@ -14,6 +14,8 @@ namespace BitadAPI.Services
         public Task<TokenRefreshResponse<ICollection<DtoStaff>>> GetAllAdmin(int issuerId);
         public Task<TokenRefreshResponse<DtoUser>> SendConfirmationMails(int issuerId);
         public Task<TokenRefreshResponse<DtoUser>> ExcludeInactiveUsersFromWorkshops(int issuerId);
+        public Task<TokenRefreshResponse<DtoUser>> BanUser(int issuerId, string email);
+        public Task<TokenRefreshResponse<DtoUser>> UnbanUser(int issuerId, string email);
     }
 
     public class StaffService : IStaffService
@@ -136,6 +138,75 @@ namespace BitadAPI.Services
             {
                 Body = _mapper.Map<DtoUser>(issuer),
                 Token = refreshToken,
+                Code = 200
+            };
+        }
+
+        public async Task<TokenRefreshResponse<DtoUser>> BanUser(int issuerId, string email)
+        {
+            var issuer = await _userRepository.GetById(issuerId);
+            var token = await _jwtService.GetNewToken(issuerId);
+            if (issuer.Role != UserRole.Super)
+            {
+                return new TokenRefreshResponse<DtoUser>()
+                {
+                    Body = null,
+                    Token = token,
+                    Code = 403
+                };
+            }
+
+            var userToBan = await _userRepository.GetByPredicate(x => x.Email == email);
+            if (userToBan is null)
+            {
+                return new TokenRefreshResponse<DtoUser>()
+                {
+                    Body = null,
+                    Token = token,
+                    Code = 404
+                };
+            }
+
+            userToBan.BannedFromRoulette = true;
+            var result = await _userRepository.UpdateUser(userToBan);
+            return new TokenRefreshResponse<DtoUser>()
+            {
+                Body = _mapper.Map<DtoUser>(result),
+                Token = token,
+                Code = 200
+            };
+        }
+        public async Task<TokenRefreshResponse<DtoUser>> UnbanUser(int issuerId, string email)
+        {
+            var issuer = await _userRepository.GetById(issuerId);
+            var token = await _jwtService.GetNewToken(issuerId);
+            if (issuer.Role != UserRole.Super)
+            {
+                return new TokenRefreshResponse<DtoUser>()
+                {
+                    Body = null,
+                    Token = token,
+                    Code = 403
+                };
+            }
+
+            var userToBan = await _userRepository.GetByPredicate(x => x.Email == email);
+            if (userToBan is null)
+            {
+                return new TokenRefreshResponse<DtoUser>()
+                {
+                    Body = null,
+                    Token = token,
+                    Code = 404
+                };
+            }
+
+            userToBan.BannedFromRoulette = false;
+            var result = await _userRepository.UpdateUser(userToBan);
+            return new TokenRefreshResponse<DtoUser>()
+            {
+                Body = _mapper.Map<DtoUser>(result),
+                Token = token,
                 Code = 200
             };
         }

@@ -7,6 +7,7 @@ using BitadAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Crypto.Prng;
 
 namespace BitadAPI.Controllers
 {
@@ -73,6 +74,42 @@ namespace BitadAPI.Controllers
             var result = await staffService.ExcludeInactiveUsersFromWorkshops(id);
             HttpContext.Response.Headers.Add("AuthToken", result.Token);
             if (result.Code == 403) return Forbid();
+            return Ok();
+        }
+
+        [HttpPut("BanUser")]
+        [Authorize]
+        public async Task<ActionResult<DtoUser>> BanUser(string email)
+        {
+            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
+            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
+            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
+            {
+                return Unauthorized();
+            }
+
+            var result = await staffService.BanUser(id, email);
+            HttpContext.Response.Headers.Add("AuthToken", result.Token);
+            if (result.Code == 403) return Forbid();
+            if (result.Code == 404) return NotFound();
+            return Ok();
+        }
+
+        [HttpPut("UnbanUser")]
+        [Authorize]
+        public async Task<ActionResult<DtoUser>> UnbanUser(string email)
+        {
+            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
+            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
+            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
+            {
+                return Unauthorized();
+            }
+            
+            var result = await staffService.UnbanUser(id, email);
+            HttpContext.Response.Headers.Add("AuthToken", result.Token);
+            if (result.Code == 403) return Forbid();
+            if (result.Code == 404) return NotFound();
             return Ok();
         }
     }
