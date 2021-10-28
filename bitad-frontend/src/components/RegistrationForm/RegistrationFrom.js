@@ -27,7 +27,6 @@ function RegistrationFrom() {
   const onSubmit = (data) => {
     const {
       email,
-      username,
       password,
       workshopCode,
       firstName,
@@ -40,7 +39,6 @@ function RegistrationFrom() {
     api
       .post("/User/RegisterUser", {
         email,
-        username,
         password,
         firstName,
         lastName,
@@ -65,17 +63,6 @@ function RegistrationFrom() {
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className={styles.form__section}>
-        <FieldWrapper>
-          <FieldInput name="username" labelText="Pseudonim*">
-            <Input
-              register={register}
-              errors={errors}
-              name="username"
-              minLength={{ value: 4, message: "Minimum 4 znaki" }}
-              maxLength={{ value: 24, message: "Maksymalnie 24 znaki" }}
-            />
-          </FieldInput>
-        </FieldWrapper>
         <FieldWrapper>
           <FieldInput name="firstName" labelText="Imię*">
             <Input

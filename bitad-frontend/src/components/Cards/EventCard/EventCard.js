@@ -17,6 +17,7 @@ function EventCard(props) {
           href={externalLink}
           target="_blank"
           className={`${typography["small-p"]} ${typography["text-align--right"]} ${styles["card__short-info"]}`}
+          rel="noreferrer"
         >
           ⇾ Zapisz się tutaj
         </a>
