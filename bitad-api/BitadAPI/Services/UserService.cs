@@ -396,7 +396,7 @@ namespace BitadAPI.Services
             for (int i = 0; i < numberOfWinners; i++)
             {
                 var currentTicket = 0;
-                var selectedTicket = rand.Next(0, ticketSum);
+                var selectedTicket = rand.Next(1, ticketSum + 1);
                 for (int j = 0; j < users.Count; j++)
                 {
                     currentTicket += tickets[j];
