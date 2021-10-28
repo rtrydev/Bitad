@@ -18,6 +18,8 @@ const Overlay = ({
   start,
   end,
   onClick,
+  shortInfo,
+  externalLink,
 }) => {
   return (
     <Card className={styles["card--extended-event"]}>
@@ -31,6 +33,14 @@ const Overlay = ({
       </div>
       <div className={styles.card__main}>
         <h3>{title}</h3>
+        {externalLink && (
+          <p>
+            <a href={externalLink} target="_blank">
+              ⇾ Zapisz się tutaj
+            </a>
+          </p>
+        )}
+        {shortInfo && <p>{shortInfo}</p>}
         <p>{description}</p>
       </div>
       <div className={typography["text-align--center"]}>
@@ -47,6 +57,8 @@ function ExtendedEventCard({
   title,
   description,
   speaker,
+  shortInfo,
+  externalLink,
   room,
   start,
   end,
@@ -64,6 +76,8 @@ function ExtendedEventCard({
           speaker={speaker}
           room={room}
           start={start}
+          shortInfo={shortInfo}
+          externalLink={externalLink}
           end={end}
           onClick={onClick}
         />,

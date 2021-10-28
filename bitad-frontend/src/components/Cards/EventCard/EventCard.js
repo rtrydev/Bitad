@@ -6,17 +6,34 @@ import typography from "../../../assets/css/Typography.module.css";
 
 function EventCard(props) {
   const event = props.event;
+  const { title, start, end, shortInfo, externalLink, speaker, room } = event;
 
   return (
-    <Card id={event.title} className={styles["card--event"]}>
-      <EntryDetails room={event.room} start={event.start} end={event.end} />
-      <p className={styles.card__title}>{event.title}</p>
+    <Card id={title} className={styles["card--event"]}>
+      <EntryDetails room={room} start={start} end={end} />
+      <p className={styles.card__title}>{title}</p>
+      {externalLink && (
+        <a
+          href={externalLink}
+          target="_blank"
+          className={`${typography["small-p"]} ${typography["text-align--right"]} ${styles["card__short-info"]}`}
+        >
+          ⇾ Zapisz się tutaj
+        </a>
+      )}
+      {shortInfo && (
+        <p
+          className={`${typography["small-p"]} ${typography["text-align--right"]} ${styles["card__short-info"]}`}
+        >
+          {shortInfo}
+        </p>
+      )}
       <div>
         <EventSpeaker
-          picture={event.speaker.picture}
-          name={event.speaker.name}
-          website={event.speaker.website}
-          accentColor={event.speaker.accentColor}
+          picture={speaker.picture}
+          name={speaker.name}
+          website={speaker.website}
+          accentColor={speaker.accentColor}
           onClick={() => props.onProfileClick(event)}
         />
         {!!event.description ? (
