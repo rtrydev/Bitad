@@ -92,7 +92,7 @@ namespace BitadAPI.Controllers
             HttpContext.Response.Headers.Add("AuthToken", result.Token);
             if (result.Code == 403) return Forbid();
             if (result.Code == 404) return NotFound();
-            return Ok();
+            return Ok(result.Body);
         }
 
         [HttpPut("UnbanUser")]
@@ -110,7 +110,7 @@ namespace BitadAPI.Controllers
             HttpContext.Response.Headers.Add("AuthToken", result.Token);
             if (result.Code == 403) return Forbid();
             if (result.Code == 404) return NotFound();
-            return Ok();
+            return Ok(result.Body);
         }
     }
 }
