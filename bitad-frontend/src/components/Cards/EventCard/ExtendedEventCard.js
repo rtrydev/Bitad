@@ -35,7 +35,7 @@ const Overlay = ({
         <h3>{title}</h3>
         {externalLink && (
           <p>
-            <a href={externalLink} target="_blank">
+            <a href={externalLink} target="_blank" rel="noreferrer">
               ⇾ Zapisz się tutaj
             </a>
           </p>

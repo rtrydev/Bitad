@@ -9,7 +9,9 @@ export function CheckboxField({ register, name, errors, ...rest }) {
       <input
         id={name}
         type="checkbox"
-        className={styles.field__checkbox}
+        className={`${styles.field__checkbox} ${
+          errors[name] !== undefined && styles["input--error"]
+        }`}
         {...register(name, { required })}
       />
       <label htmlFor={name}>{rest.text}</label>

@@ -23,7 +23,9 @@ export function Input({
           validate,
           pattern,
         })}
-        className={styles.field__input}
+        className={`${styles.field__input} ${
+          errors[name] !== undefined && styles["input--error"]
+        }`}
       />
       {errors[name] !== undefined && (
         <p className={styles.field__error}>{errors[name]?.message}</p>
