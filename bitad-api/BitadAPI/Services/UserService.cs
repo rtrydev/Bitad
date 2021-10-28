@@ -375,7 +375,7 @@ namespace BitadAPI.Services
         public async Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners)
         {
             var refreshToken = await _jwtService.GetNewToken(issuerId);
-            var rand = new Random();
+            var rand = new Random(DateTime.Now.Millisecond);
             
             var users = (await _userRepository.GetAll())
                 .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest && !user.BannedFromRoulette).ToList();
