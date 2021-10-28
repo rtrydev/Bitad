@@ -386,8 +386,7 @@ namespace BitadAPI.Services
             var winners = new List<DtoUser>();
 
             var maxTicket = users
-                
-                .Sum(x => x.CurrentScore == 0 ? 10 : x.CurrentScore)/10;
+                .Sum(x => x.CurrentScore == 0 ? 1 : x.CurrentScore);
 
             if (users.Count < numberOfWinners)
                 return new TokenRefreshResponse<ICollection<DtoUser>>
@@ -399,18 +398,18 @@ namespace BitadAPI.Services
 
             while (winners.Count < numberOfWinners)
             {
-                var winningTicket = rand.Next(0, (int) maxTicket + 1);
+                var winningTicket = rand.Next(0, maxTicket);
                 var currentTicket = 0;
                 foreach (var user in users)
                 {
                     var userStartTicket = currentTicket;
-                    var userEndTicket = currentTicket + (user.CurrentScore == 0 ? 10 : user.CurrentScore) / 10;
+                    var userEndTicket = currentTicket + user.CurrentScore == 0 ? 1 : user.CurrentScore;
 
                     if (winningTicket >= userStartTicket && winningTicket < userEndTicket)
                     {
                         winners.Add(_mapper.Map<DtoUser>(user));
                         users.Remove(user);
-                        maxTicket -= user.CurrentScore / 10;
+                        maxTicket -= user.CurrentScore;
                         break;
                     }
 
