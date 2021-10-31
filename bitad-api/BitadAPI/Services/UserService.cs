@@ -236,12 +236,7 @@ namespace BitadAPI.Services
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             if (issuer.Role == UserRole.Guest)
             {
-                return new TokenRefreshResponse<DtoAttendanceResult>
-                {
-                    Body = new DtoAttendanceResult {Code = 401, Message = "Unauthorized"},
-                    Token = refreshToken,
-                    Code = 403
-                };
+                return TokenRefreshResponse<DtoAttendanceResult>.NullResponse(refreshToken, 403);
             }
                 
             var user = await _userRepository.GetByPredicate(x => x.AttendanceCode == attendanceCode);
@@ -252,11 +247,10 @@ namespace BitadAPI.Services
             
             if (user is null)
             {
-                return new TokenRefreshResponse<DtoAttendanceResult>
+                return new TokenRefreshResponse<DtoAttendanceResult>()
                 {
-                    Body = new DtoAttendanceResult {Code = 404, Message = "No such user"},
-                    Token = refreshToken,
-                    Code = 404
+                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"},
+                    Token = refreshToken
                 };
             }
 
@@ -266,7 +260,6 @@ namespace BitadAPI.Services
                 {
                     Body = new DtoAttendanceResult {Code = 2, Message = "Not activated"},
                     Token = refreshToken,
-                    Code = 2
                 };
             }
             
@@ -276,7 +269,6 @@ namespace BitadAPI.Services
                 {
                     Body = new DtoAttendanceResult {Code = 1, Message = "Already checked"},
                     Token = refreshToken,
-                    Code = 1
                 };
             }
             
@@ -286,7 +278,6 @@ namespace BitadAPI.Services
             {
                 Body = new DtoAttendanceResult {Code = 0, Message = "Ok"},
                 Token = refreshToken,
-                Code = 0
             }; 
 
         }
@@ -297,12 +288,7 @@ namespace BitadAPI.Services
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             if (issuer.Role == UserRole.Guest)
             {
-                return new TokenRefreshResponse<DtoAttendanceResult>
-                {
-                    Body = new DtoAttendanceResult {Code = 401, Message = "Unauthorized"},
-                    Token = refreshToken,
-                    Code = 403
-                };
+                return TokenRefreshResponse<DtoAttendanceResult>.NullResponse(refreshToken, 403);
             }
                 
             var user = await _userRepository.GetByPredicate(x => x.WorkshopAttendanceCode == attendanceCode);
@@ -313,21 +299,19 @@ namespace BitadAPI.Services
             
             if (user is null)
             {
-                return new TokenRefreshResponse<DtoAttendanceResult>
+                return new TokenRefreshResponse<DtoAttendanceResult>()
                 {
-                    Body = new DtoAttendanceResult {Code = 404, Message = "No such user"},
-                    Token = refreshToken,
-                    Code = 404
+                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"},
+                    Token = refreshToken
                 };
             }
 
             if (user.Workshop.Code != workshopCode)
             {
-                return new TokenRefreshResponse<DtoAttendanceResult>
+                return new TokenRefreshResponse<DtoAttendanceResult>()
                 {
-                    Body = new DtoAttendanceResult {Code = 404, Message = "No such user"},
-                    Token = refreshToken,
-                    Code = 404
+                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"},
+                    Token = refreshToken
                 };
             }
 
@@ -337,7 +321,6 @@ namespace BitadAPI.Services
                 {
                     Body = new DtoAttendanceResult {Code = 2, Message = "Not activated"},
                     Token = refreshToken,
-                    Code = 2
                 };
             }
             
@@ -347,7 +330,6 @@ namespace BitadAPI.Services
                 {
                     Body = new DtoAttendanceResult {Code = 1, Message = "Already checked"},
                     Token = refreshToken,
-                    Code = 1
                 };
             }
             
@@ -357,7 +339,6 @@ namespace BitadAPI.Services
             {
                 Body = new DtoAttendanceResult {Code = 0, Message = "Ok"},
                 Token = refreshToken,
-                Code = 0
             }; 
 
         }
@@ -376,7 +357,10 @@ namespace BitadAPI.Services
         {
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             var rand = new Random(DateTime.Now.Millisecond);
+            var issuer = await _userRepository.GetById(issuerId);
             
+            if (issuer.Role != UserRole.Super) return TokenRefreshResponse<ICollection<DtoUser>>.NullResponse(refreshToken, 403);
+
             var users = (await _userRepository.GetAll())
                 .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest && !user.BannedFromRoulette).ToList();
             
@@ -385,7 +369,6 @@ namespace BitadAPI.Services
                 {
                     Body = new List<DtoUser>(),
                     Token = refreshToken,
-                    Code = 3
                 };
             
             var winners = new List<DtoUser>();
@@ -416,7 +399,6 @@ namespace BitadAPI.Services
             {
                 Body = winners,
                 Token = refreshToken,
-                Code = 2
             };
         }
 
@@ -514,7 +496,6 @@ namespace BitadAPI.Services
             }
             var stringSalt = Convert.ToBase64String(salt);
 
-            // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
                 salt: salt,
@@ -529,7 +510,6 @@ namespace BitadAPI.Services
         {
             byte[] saltBytes = Convert.FromBase64String(salt);
 
-            // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
                 salt: saltBytes,

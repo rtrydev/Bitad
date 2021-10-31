@@ -12,8 +12,8 @@ namespace BitadAPI.Services
     {
         public Task<ICollection<DtoStaff>> GetAll();
         public Task<TokenRefreshResponse<ICollection<DtoStaff>>> GetAllAdmin(int issuerId);
-        public Task<TokenRefreshResponse<DtoUser>> SendConfirmationMails(int issuerId);
-        public Task<TokenRefreshResponse<DtoUser>> ExcludeInactiveUsersFromWorkshops(int issuerId);
+        public Task<TokenRefreshResponse> SendConfirmationMails(int issuerId);
+        public Task<TokenRefreshResponse> ExcludeInactiveUsersFromWorkshops(int issuerId);
         public Task<TokenRefreshResponse<DtoUser>> BanUser(int issuerId, string email);
         public Task<TokenRefreshResponse<DtoUser>> UnbanUser(int issuerId, string email);
     }
@@ -51,15 +51,8 @@ namespace BitadAPI.Services
         {
             var issuer = await _userRepository.GetById(issuerId);
             var refreshToken = await _jwtService.GetNewToken(issuerId);
-            if (issuer.Role == UserRole.Guest)
-            {
-                return new TokenRefreshResponse<ICollection<DtoStaff>>
-                {
-                    Body = null,
-                    Token = refreshToken,
-                    Code = 403
-                };
-            }
+            if (issuer.Role == UserRole.Guest) return TokenRefreshResponse<ICollection<DtoStaff>>.NullResponse(refreshToken, 403);
+            
             var staff = await staffRepository.GetAll();
             return new TokenRefreshResponse<ICollection<DtoStaff>>
             {
@@ -69,15 +62,14 @@ namespace BitadAPI.Services
             };
         }
 
-        public async Task<TokenRefreshResponse<DtoUser>> SendConfirmationMails(int issuerId)
+        public async Task<TokenRefreshResponse> SendConfirmationMails(int issuerId)
         {
             var issuer = await _userRepository.GetById(issuerId);
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             if (issuer.Role != UserRole.Super)
             {
-                return new TokenRefreshResponse<DtoUser>()
+                return new TokenRefreshResponse
                 {
-                    Body = null,
                     Token = refreshToken,
                     Code = 403
                 };
@@ -93,9 +85,8 @@ namespace BitadAPI.Services
                 }
             }
 
-            return new TokenRefreshResponse<DtoUser>()
+            return new TokenRefreshResponse()
             {
-                Body = _mapper.Map<DtoUser>(issuer),
                 Token = refreshToken,
                 Code = 200
             };
@@ -105,15 +96,14 @@ namespace BitadAPI.Services
 
         
 
-        public async Task<TokenRefreshResponse<DtoUser>> ExcludeInactiveUsersFromWorkshops(int issuerId)
+        public async Task<TokenRefreshResponse> ExcludeInactiveUsersFromWorkshops(int issuerId)
         {
             var issuer = await _userRepository.GetById(issuerId);
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             if (issuer.Role != UserRole.Super)
             {
-                return new TokenRefreshResponse<DtoUser>()
+                return new TokenRefreshResponse()
                 {
-                    Body = null,
                     Token = refreshToken,
                     Code = 403
                 };
@@ -134,9 +124,8 @@ namespace BitadAPI.Services
                 }
             }
 
-            return new TokenRefreshResponse<DtoUser>()
+            return new TokenRefreshResponse()
             {
-                Body = _mapper.Map<DtoUser>(issuer),
                 Token = refreshToken,
                 Code = 200
             };
