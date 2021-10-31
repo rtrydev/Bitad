@@ -40,23 +40,11 @@ namespace BitadAPI.Services
             var token = await _jwtService.GetNewToken(issuerId);
 
             var issuer = await _userRepository.GetById(issuerId);
-            if (issuer.Role != UserRole.Admin && issuer.Role != UserRole.Super)
-            {
-                return new TokenRefreshResponse<ICollection<DtoWorkshopParticipant>>()
-                {
-                    Token = token,
-                    Code = 403,
-                    Body = null
-                };
-            }
+            if (issuer.Role != UserRole.Admin && issuer.Role != UserRole.Super) return TokenRefreshResponse<ICollection<DtoWorkshopParticipant>>.NullResponse(token, 403);
 
             if (workshop is null)
             {
-                return new TokenRefreshResponse<ICollection<DtoWorkshopParticipant>>()
-                {
-                    Token = token,
-                    Code = 404
-                };
+                return TokenRefreshResponse<ICollection<DtoWorkshopParticipant>>.NullResponse(token, 404);
             }
             
             var participants = _mapper.Map<ICollection<User>, ICollection<DtoWorkshopParticipant>>(workshop.Participants);
@@ -64,7 +52,6 @@ namespace BitadAPI.Services
             {
                 Token = token,
                 Body = participants,
-                Code = 200
             };
 
         }

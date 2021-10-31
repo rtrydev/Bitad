@@ -51,15 +51,8 @@ namespace BitadAPI.Services
         {
             var issuer = await _userRepository.GetById(issuerId);
             var refreshToken = await _jwtService.GetNewToken(issuerId);
-            if (issuer.Role == UserRole.Guest)
-            {
-                return new TokenRefreshResponse<ICollection<DtoStaff>>
-                {
-                    Body = null,
-                    Token = refreshToken,
-                    Code = 403
-                };
-            }
+            if (issuer.Role == UserRole.Guest) return TokenRefreshResponse<ICollection<DtoStaff>>.NullResponse(refreshToken, 403);
+            
             var staff = await staffRepository.GetAll();
             return new TokenRefreshResponse<ICollection<DtoStaff>>
             {

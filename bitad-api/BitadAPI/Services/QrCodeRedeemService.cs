@@ -34,7 +34,7 @@ namespace BitadAPI.Services
 
             var currentTime = DateTime.Now;
             var newToken = await _jwtService.GetNewToken(userId);
-            var nullResponse = TokenRefreshResponse<DtoQrCodeRedeem>.NullResponse(newToken);
+            var nullResponse = TokenRefreshResponse<DtoQrCodeRedeem>.NullResponse(newToken, 204);
 
             if (qrCode is null)
                 return nullResponse;
