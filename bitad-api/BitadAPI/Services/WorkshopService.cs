@@ -15,27 +15,40 @@ namespace BitadAPI.Services
     }
     public class WorkshopService : IWorkshopService
     {
-        private IWorkshopRepository workshopRepository;
+        private IWorkshopRepository _workshopRepository;
         private IMapper _mapper;
         private IJwtService _jwtService;
+        private IUserRepository _userRepository;
 
-        public WorkshopService(IWorkshopRepository repository, IMapper mapper, IJwtService jwtService)
+        public WorkshopService(IWorkshopRepository workshopRepository, IUserRepository userRepository, IMapper mapper, IJwtService jwtService)
         {
-            workshopRepository = repository;
+            _workshopRepository = workshopRepository;
+            _userRepository = userRepository;
             _mapper = mapper;
             _jwtService = jwtService;
         }
 
         public async Task<ICollection<DtoWorkshop>> GetAll()
         {
-            var workshops = await workshopRepository.GetAll();
+            var workshops = await _workshopRepository.GetAll();
             return _mapper.Map<ICollection<Workshop>, ICollection<DtoWorkshop>>(workshops);
         }
 
         public async Task<TokenRefreshResponse<ICollection<DtoWorkshopParticipant>>> GetParticipantsForWorkshop(int issuerId, string code)
         {
-            var workshop = await workshopRepository.GetByCode(code);
+            var workshop = await _workshopRepository.GetByCode(code);
             var token = await _jwtService.GetNewToken(issuerId);
+
+            var issuer = await _userRepository.GetById(issuerId);
+            if (issuer.Role != UserRole.Admin && issuer.Role != UserRole.Super)
+            {
+                return new TokenRefreshResponse<ICollection<DtoWorkshopParticipant>>()
+                {
+                    Token = token,
+                    Code = 403,
+                    Body = null
+                };
+            }
 
             if (workshop is null)
             {

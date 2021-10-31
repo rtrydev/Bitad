@@ -376,6 +376,17 @@ namespace BitadAPI.Services
         {
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             var rand = new Random(DateTime.Now.Millisecond);
+            var issuer = await _userRepository.GetById(issuerId);
+            
+            if (issuer.Role != UserRole.Super)
+            {
+                return new TokenRefreshResponse<ICollection<DtoUser>>
+                {
+                    Body = null,
+                    Token = refreshToken,
+                    Code = 403
+                };
+            }
             
             var users = (await _userRepository.GetAll())
                 .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest && !user.BannedFromRoulette).ToList();
