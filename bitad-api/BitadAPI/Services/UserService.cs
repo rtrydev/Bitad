@@ -249,7 +249,8 @@ namespace BitadAPI.Services
             {
                 return new TokenRefreshResponse<DtoAttendanceResult>()
                 {
-                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"}
+                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"},
+                    Token = refreshToken
                 };
             }
 
@@ -300,7 +301,8 @@ namespace BitadAPI.Services
             {
                 return new TokenRefreshResponse<DtoAttendanceResult>()
                 {
-                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"}
+                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"},
+                    Token = refreshToken
                 };
             }
 
@@ -308,7 +310,8 @@ namespace BitadAPI.Services
             {
                 return new TokenRefreshResponse<DtoAttendanceResult>()
                 {
-                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"}
+                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"},
+                    Token = refreshToken
                 };
             }
 
