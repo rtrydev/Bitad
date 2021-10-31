@@ -8,4 +8,10 @@ namespace BitadAPI.Dto
         public string Token { get; set; }
         public int Code { get; set; }
     }
+
+    public class TokenRefreshResponse
+    {
+        public string Token { get; set; }
+        public int Code { get; set; }
+    }
 }
