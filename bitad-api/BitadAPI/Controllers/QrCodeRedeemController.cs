@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BitadAPI.Controllers
 {
     [Route("[controller]")]
-    public class QrCodeRedeemController : BitadController
+    public class QrCodeRedeemController : AuthorizedController
     {
         private IQrCodeRedeemService _qrCodeRedeemService;
         private IJwtService _jwtService;

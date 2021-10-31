@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BitadAPI.Controllers
 {
-    public abstract class BitadController : Controller
+    public abstract class AuthorizedController : Controller
     {
         protected async Task<ActionResult<TResult>> MakeAuthorizedServiceCall<TResult>(Func<int, Task<TokenRefreshResponse<TResult>>> serviceCall, IJwtService jwtService)
         {

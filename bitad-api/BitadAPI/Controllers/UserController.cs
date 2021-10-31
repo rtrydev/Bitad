@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BitadAPI.Controllers
 {
     [Route("[controller]")]
-    public class UserController : BitadController
+    public class UserController : AuthorizedController
     {
         private IUserService _userService;
         private IJwtService _jwtService;

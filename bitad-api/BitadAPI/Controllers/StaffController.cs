@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BitadAPI.Controllers
 {
     [Route("[controller]")]
-    public class StaffController : BitadController
+    public class StaffController : AuthorizedController
     {
         private IStaffService _staffService;
         private IJwtService _jwtService;
