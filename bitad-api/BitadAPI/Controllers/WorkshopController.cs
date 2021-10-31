@@ -38,5 +38,13 @@ namespace BitadAPI.Controllers
                 _jwtService);
             return result;
         }
+        
+        [HttpPut("SelectWorkshop")]
+        [Authorize]
+        public async Task<ActionResult<DtoWorkshop>> SelectWorkshop(string workshopCode)
+        {
+            var result = await MakeAuthorizedServiceCall(workshopCode, _workshopService.SelectWorkshop, _jwtService);
+            return result;
+        }
     }
 }

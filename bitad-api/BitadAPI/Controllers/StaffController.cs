@@ -33,36 +33,23 @@ namespace BitadAPI.Controllers
             return result;
         }
 
-        [HttpPost("SendConfirmationMails")]
+        [HttpPut("CheckAttendance")]
         [Authorize]
-        public async Task<ActionResult> SendConfirmationMails()
+        public async Task<ActionResult<DtoAttendanceResult>> CheckAttendance(string attendanceCode)
         {
-            var result = await MakeAuthorizedServiceCall(_staffService.SendConfirmationMails, _jwtService);
+            var result = await MakeAuthorizedServiceCall(attendanceCode, _staffService.CheckAttendance, _jwtService);
             return result;
-        }
 
-        [HttpPost("ExcludeInactiveUsersFromWorkshops")]
-        [Authorize]
-        public async Task<ActionResult> ExcludeInactiveUsersFromWorkshops()
-        {
-            var result = await MakeAuthorizedServiceCall(_staffService.ExcludeInactiveUsersFromWorkshops, _jwtService);
-            return result;
         }
-
-        [HttpPut("BanUser")]
+        
+        [HttpPut("CheckWorkshopAttendance")]
         [Authorize]
-        public async Task<ActionResult<DtoUser>> BanUser(string email)
+        public async Task<ActionResult<DtoAttendanceResult>> CheckWorkshopAttendance(string attendanceCode, string workshopCode)
         {
-            var result = await MakeAuthorizedServiceCall(email, _staffService.BanUser, _jwtService);
+            var result = await MakeAuthorizedServiceCall(attendanceCode, workshopCode,
+                _staffService.CheckAttendanceWorkshop, _jwtService);
             return result;
-        }
 
-        [HttpPut("UnbanUser")]
-        [Authorize]
-        public async Task<ActionResult<DtoUser>> UnbanUser(string email)
-        {
-            var result = await MakeAuthorizedServiceCall(email, _staffService.UnbanUser, _jwtService);
-            return result;
         }
         
     }

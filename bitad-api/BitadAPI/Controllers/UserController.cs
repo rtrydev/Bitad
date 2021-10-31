@@ -65,46 +65,11 @@ namespace BitadAPI.Controllers
             return result;
         }
 
-        [HttpPut("SelectWorkshop")]
-        [Authorize]
-        public async Task<ActionResult<DtoWorkshop>> SelectWorkshop(string workshopCode)
-        {
-            var result = await MakeAuthorizedServiceCall(workshopCode, _userService.SelectWorkshop, _jwtService);
-            return result;
-        }
-
-        [HttpPut("CheckAttendance")]
-        [Authorize]
-        public async Task<ActionResult<DtoAttendanceResult>> CheckAttendance(string attendanceCode)
-        {
-            var result = await MakeAuthorizedServiceCall(attendanceCode, _userService.CheckAttendance, _jwtService);
-            return result;
-
-        }
-        
-        [HttpPut("CheckWorkshopAttendance")]
-        [Authorize]
-        public async Task<ActionResult<DtoAttendanceResult>> CheckWorkshopAttendance(string attendanceCode, string workshopCode)
-        {
-            var result = await MakeAuthorizedServiceCall(attendanceCode, workshopCode,
-                _userService.CheckAttendanceWorkshop, _jwtService);
-            return result;
-
-        }
-
         [HttpPut("ActivateAccount")]
         public async Task<ActionResult<DtoUser>> ActivateAccount(string activationCode)
         {
             var result = await _userService.ActivateAccount(activationCode);
             if (result is null) return Forbid();
-            return result;
-        }
-
-        [HttpGet("Winners")]
-        [Authorize]
-        public async Task<ActionResult<ICollection<DtoUser>>> GetWinners(int numberOfWinners)
-        {
-            var result = await MakeAuthorizedServiceCall(numberOfWinners, _userService.GetWinners, _jwtService);
             return result;
         }
 

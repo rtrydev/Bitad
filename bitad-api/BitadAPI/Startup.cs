@@ -115,6 +115,7 @@ namespace BitadAPI
             services.AddScoped<IQrCodeRedeemService, QrCodeRedeemService>();
             services.AddScoped<ISponsorService, SponsorService>();
             services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IAdminService, AdminService>();
 
             services.AddControllers().AddJsonOptions(options =>
             {
