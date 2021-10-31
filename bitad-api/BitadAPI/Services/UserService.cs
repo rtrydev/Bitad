@@ -247,7 +247,10 @@ namespace BitadAPI.Services
             
             if (user is null)
             {
-                return TokenRefreshResponse<DtoAttendanceResult>.NullResponse(refreshToken, 404);
+                return new TokenRefreshResponse<DtoAttendanceResult>()
+                {
+                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"}
+                };
             }
 
             if (user.ActivationDate is null)
@@ -295,12 +298,18 @@ namespace BitadAPI.Services
             
             if (user is null)
             {
-                return TokenRefreshResponse<DtoAttendanceResult>.NullResponse(refreshToken, 404);
+                return new TokenRefreshResponse<DtoAttendanceResult>()
+                {
+                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"}
+                };
             }
 
             if (user.Workshop.Code != workshopCode)
             {
-                return TokenRefreshResponse<DtoAttendanceResult>.NullResponse(refreshToken, 404);
+                return new TokenRefreshResponse<DtoAttendanceResult>()
+                {
+                    Body = new DtoAttendanceResult() {Code = 404, Message = "User not found"}
+                };
             }
 
             if (user.ActivationDate is null)
