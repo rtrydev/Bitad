@@ -23,17 +23,13 @@ namespace BitadAPI.Services
         private IMapper _mapper;
         private IUserRepository _userRepository;
         private IJwtService _jwtService;
-        private IMailService _mailService;
-        private IWorkshopRepository _workshopRepository;
 
-        public StaffService(IStaffRepository repository, IMapper mapper, IUserRepository userRepository, IJwtService jwtService, IMailService mailService, IWorkshopRepository workshopRepository)
+        public StaffService(IStaffRepository repository, IMapper mapper, IUserRepository userRepository, IJwtService jwtService)
         {
             staffRepository = repository;
             _mapper = mapper;
             _userRepository = userRepository;
             _jwtService = jwtService;
-            _mailService = mailService;
-            _workshopRepository = workshopRepository;
         }
 
         public async Task<ICollection<DtoStaff>> GetAll()

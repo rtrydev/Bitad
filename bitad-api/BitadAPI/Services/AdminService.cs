@@ -158,23 +158,13 @@ namespace BitadAPI.Services
             var token = await _jwtService.GetNewToken(issuerId);
             if (issuer.Role != UserRole.Super)
             {
-                return new TokenRefreshResponse<DtoUser>()
-                {
-                    Body = null,
-                    Token = token,
-                    Code = 403
-                };
+                return TokenRefreshResponse<DtoUser>.NullResponse(token, 403);
             }
 
             var userToBan = await _userRepository.GetByPredicate(x => x.Email == email);
             if (userToBan is null)
             {
-                return new TokenRefreshResponse<DtoUser>()
-                {
-                    Body = null,
-                    Token = token,
-                    Code = 404
-                };
+                return TokenRefreshResponse<DtoUser>.NullResponse(token, 404);
             }
 
             userToBan.BannedFromRoulette = true;
@@ -192,27 +182,17 @@ namespace BitadAPI.Services
             var token = await _jwtService.GetNewToken(issuerId);
             if (issuer.Role != UserRole.Super)
             {
-                return new TokenRefreshResponse<DtoUser>()
-                {
-                    Body = null,
-                    Token = token,
-                    Code = 403
-                };
+                return TokenRefreshResponse<DtoUser>.NullResponse(token, 403);
             }
 
-            var userToBan = await _userRepository.GetByPredicate(x => x.Email == email);
-            if (userToBan is null)
+            var userToUnban = await _userRepository.GetByPredicate(x => x.Email == email);
+            if (userToUnban is null)
             {
-                return new TokenRefreshResponse<DtoUser>()
-                {
-                    Body = null,
-                    Token = token,
-                    Code = 404
-                };
+                return TokenRefreshResponse<DtoUser>.NullResponse(token, 404);
             }
 
-            userToBan.BannedFromRoulette = false;
-            var result = await _userRepository.UpdateUser(userToBan);
+            userToUnban.BannedFromRoulette = false;
+            var result = await _userRepository.UpdateUser(userToUnban);
             return new TokenRefreshResponse<DtoUser>()
             {
                 Body = _mapper.Map<DtoUser>(result),

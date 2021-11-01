@@ -56,6 +56,7 @@ namespace BitadAPI.Services
             {
                 Token = token,
                 Body = participants,
+                Code = 200
             };
 
         }
@@ -68,23 +69,13 @@ namespace BitadAPI.Services
 
             if (workshop is null || workshop.ParticipantsNumber >= workshop.MaxParticipants)
             {
-                return new TokenRefreshResponse<DtoWorkshop>
-                {
-                    Body = null,
-                    Token = refreshToken,
-                    Code = 403
-                };
+                return TokenRefreshResponse<DtoWorkshop>.NullResponse(refreshToken, 403);
             }
 
             var user = await _userRepository.GetById(userId);
 
             if(user.Workshop is not null)
-                return new TokenRefreshResponse<DtoWorkshop>
-                {
-                    Body = null,
-                    Token = refreshToken,
-                    Code = 1
-                };
+                return TokenRefreshResponse<DtoWorkshop>.NullResponse(refreshToken, 1);
 
             user.WorkshopAttendanceCode = _generator.GenerateRandomCode();
             var userResult = await _userRepository.UpdateUser(user);
@@ -95,7 +86,7 @@ namespace BitadAPI.Services
             {
                 Body = _mapper.Map<DtoWorkshop>(result),
                 Token = refreshToken,
-                Code = 0
+                Code = 200
             };
         }
     }

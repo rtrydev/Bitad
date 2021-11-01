@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using BitadAPI.Common;
 using BitadAPI.Dto;
 using BitadAPI.Models;
 using BitadAPI.Repositories;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Microsoft.AspNetCore.Mvc;
-using Org.BouncyCastle.Asn1.Cms;
 
 namespace BitadAPI.Services
 {
