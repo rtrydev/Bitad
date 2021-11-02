@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BitadAPI.Controllers
 {
     [Route("[controller]")]
-    public class QrCodeRedeemController : Controller
+    public class QrCodeRedeemController : AuthorizedController
     {
         private IQrCodeRedeemService _qrCodeRedeemService;
         private IJwtService _jwtService;
@@ -24,16 +24,8 @@ namespace BitadAPI.Controllers
         [HttpPost("RedeemQrCode")]
         public async Task<ActionResult<DtoQrCodeRedeem>> RedeemCode(string code)
         {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-            var result = await _qrCodeRedeemService.RedeemQrCode(code, id);
-            if (result is null) return Forbid();
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-            return Ok(result.Body);
+            var result = await MakeAuthorizedServiceCall(code, _qrCodeRedeemService.RedeemQrCode, _jwtService);
+            return result;
         }
     }
 }

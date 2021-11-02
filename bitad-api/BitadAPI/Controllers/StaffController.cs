@@ -1,79 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BitadAPI.Dto;
 using BitadAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BitadAPI.Controllers
 {
     [Route("[controller]")]
-    public class StaffController : Controller
+    public class StaffController : AuthorizedController
     {
-        private IStaffService staffService;
+        private IStaffService _staffService;
         private IJwtService _jwtService;
 
-        public StaffController(IStaffService service, IJwtService jwtService)
+        public StaffController(IStaffService staffService, IJwtService jwtService)
         {
-            staffService = service;
+            _staffService = staffService;
             _jwtService = jwtService;
         }
 
         [HttpGet("GetStaff")]
         public async Task<ActionResult<ICollection<DtoStaff>>> GetStaff()
         {
-            return Ok(await staffService.GetAll());
+            return Ok(await _staffService.GetAll());
         }
 
         [HttpGet("GetStaffAdmin")]
         [Authorize]
         public async Task<ActionResult<ICollection<DtoStaff>>> GetStaffAdmin()
         {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-            var result = await staffService.GetAllAdmin(id);
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-            if (result.Code == 403) return Forbid();
-            return Ok(result.Body);
+            var result = await MakeAuthorizedServiceCall(_staffService.GetAllAdmin, _jwtService);
+            return result;
         }
 
-        [HttpPost("SendConfirmationMails")]
+        [HttpPut("CheckAttendance")]
         [Authorize]
-        public async Task<ActionResult> SendConfirmationMails()
+        public async Task<ActionResult<DtoAttendanceResult>> CheckAttendance(string attendanceCode)
         {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-            var result = await staffService.SendConfirmationMails(id);
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-            if (result.Code == 403) return Forbid();
-            return Ok();
-        }
+            var result = await MakeAuthorizedServiceCall(attendanceCode, _staffService.CheckAttendance, _jwtService);
+            return result;
 
-        [HttpPost("ExcludeInactiveUsersFromWorkshops")]
-        [Authorize]
-        public async Task<ActionResult> ExcludeInactiveUsersFromWorkshops()
-        {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-            var result = await staffService.ExcludeInactiveUsersFromWorkshops(id);
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-            if (result.Code == 403) return Forbid();
-            return Ok();
         }
+        
+        [HttpPut("CheckWorkshopAttendance")]
+        [Authorize]
+        public async Task<ActionResult<DtoAttendanceResult>> CheckWorkshopAttendance(string attendanceCode, string workshopCode)
+        {
+            var result = await MakeAuthorizedServiceCall(attendanceCode, workshopCode,
+                _staffService.CheckAttendanceWorkshop, _jwtService);
+            return result;
+
+        }
+        
     }
 }

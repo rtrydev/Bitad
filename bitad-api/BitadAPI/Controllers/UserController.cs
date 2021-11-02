@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BitadAPI.Controllers
 {
     [Route("[controller]")]
-    public class UserController : Controller
+    public class UserController : AuthorizedController
     {
         private IUserService _userService;
         private IJwtService _jwtService;
@@ -53,84 +53,16 @@ namespace BitadAPI.Controllers
         [HttpGet("GetUser")]
         public async Task<ActionResult<DtoUser>> GetUser()
         {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if(await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-            
-            var result = await _userService.GetUserById(id);
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-            return Ok(result.Body);
+            var result = await MakeAuthorizedServiceCall(_userService.GetUserById, _jwtService);
+            return result;
         }
 
         [Authorize]
         [HttpGet("GetLeaderboard")]
         public async Task<ActionResult<ICollection<DtoLeader>>> GetLeaderboard()
         {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-            var result = await _userService.GetLeaders(id);
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-
-            return Ok(result.Body);
-        }
-
-        [HttpPut("SelectWorkshop")]
-        [Authorize]
-        public async Task<ActionResult<DtoWorkshop>> SelectWorkshop(string workshopCode)
-        {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-
-            var result = await _userService.SelectWorkshop(id, workshopCode);
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-
-            if (result.Body is null) return Forbid();
-            return Ok(result.Body);
-        }
-
-        [HttpPut("CheckAttendance")]
-        [Authorize]
-        public async Task<ActionResult<DtoAttendanceResult>> CheckAttendance(string attendanceCode)
-        {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-
-            var result = await _userService.CheckAttendance(id, attendanceCode);
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-            return Ok(result.Body);
-
-        }
-        
-        [HttpPut("CheckWorkshopAttendance")]
-        [Authorize]
-        public async Task<ActionResult<DtoAttendanceResult>> CheckWorkshopAttendance(string attendanceCode, string workshopCode)
-        {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-
-            var result = await _userService.CheckAttendanceWorkshop(id, attendanceCode, workshopCode);
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-            return Ok(result.Body);
-
+            var result = await MakeAuthorizedServiceCall(_userService.GetLeaders, _jwtService);
+            return result;
         }
 
         [HttpPut("ActivateAccount")]
@@ -139,27 +71,6 @@ namespace BitadAPI.Controllers
             var result = await _userService.ActivateAccount(activationCode);
             if (result is null) return Forbid();
             return result;
-        }
-
-        [HttpGet("Winners")]
-        [Authorize]
-        public async Task<ActionResult<ICollection<DtoUser>>> GetWinners(int numberOfWinners)
-        {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if (await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-
-            var userRole = (await _userService.GetUserById(id)).Body.Role;
-            if (userRole != UserRole.Super)
-            {
-                return Forbid();
-            }
-            var result = await _userService.GetWinners(id, numberOfWinners);
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-            return Ok(result.Body);
         }
 
         [HttpPut("IssuePasswordReset")]

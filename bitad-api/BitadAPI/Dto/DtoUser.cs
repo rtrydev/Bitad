@@ -15,8 +15,6 @@ namespace BitadAPI.Dto
         public DtoWorkshop Workshop { get; set; }
         public string AttendanceCode { get; set; }
         public UserRole Role { get; set; }
-        public ShirtSize ShirtSize { get; set; }
-        public string WorkshopAttendanceCode { get; set; }
         public string RewardCode => AttendanceCode.Substring(0, 4).ToLower();
     }
 }

@@ -15,18 +15,18 @@ namespace BitadAPI.Services
 
     public class AgendaService : IAgendaService
     {
-        private IAgendaRepository agendaRepository;
+        private IAgendaRepository _agendaRepository;
         private IMapper _mapper;
 
-        public AgendaService(IAgendaRepository repository, IMapper mapper)
+        public AgendaService(IAgendaRepository agendaRepository, IMapper mapper)
         {
-            agendaRepository = repository;
+            _agendaRepository = agendaRepository;
             _mapper = mapper;
         }
 
         public async Task<ICollection<DtoAgenda>> GetAll()
         {
-            var agendas = await agendaRepository.GetAll();
+            var agendas = await _agendaRepository.GetAll();
             return _mapper.Map<ICollection<Agenda>, ICollection<DtoAgenda>>(agendas);
         }
     }

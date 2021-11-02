@@ -10,7 +10,7 @@ namespace BitadAPI.Services
 {
     public interface IQrCodeRedeemService
     {
-        public Task<TokenRefreshResponse<DtoQrCodeRedeem>> RedeemQrCode(string qrCodeString, int userId);
+        public Task<TokenRefreshResponse<DtoQrCodeRedeem>> RedeemQrCode(int userId, string qrCodeString);
     }
 
     public class QrCodeRedeemService : IQrCodeRedeemService
@@ -28,16 +28,16 @@ namespace BitadAPI.Services
             _jwtService = jwtService;
         }
 
-        public async Task<TokenRefreshResponse<DtoQrCodeRedeem>> RedeemQrCode(string qrCodeString, int userId)
+        public async Task<TokenRefreshResponse<DtoQrCodeRedeem>> RedeemQrCode(int userId, string qrCodeString)
         {
             var qrCode = await _qrCodeRepository.GetQrCode(qrCodeString);
 
             var currentTime = DateTime.Now;
             var newToken = await _jwtService.GetNewToken(userId);
-            var nullResponse = TokenRefreshResponse<DtoQrCodeRedeem>.NullResponse(newToken);
+            var nullResponse = TokenRefreshResponse<DtoQrCodeRedeem>.NullResponse(newToken, 204);
 
             if (qrCode is null)
-                return nullResponse;
+                return TokenRefreshResponse<DtoQrCodeRedeem>.NullResponse(newToken, 404);
 
             if (qrCode.ActivationTime > currentTime)
                 return nullResponse;
@@ -51,7 +51,7 @@ namespace BitadAPI.Services
             var user = await _userRepository.GetById(userId);
 
             if (user.AttendanceCheckDate is null)
-                return nullResponse;
+                return TokenRefreshResponse<DtoQrCodeRedeem>.NullResponse(newToken, 403);;
             
             var result = await _qrCodeRedeemRepository.RedeemQrCode(qrCode, user);
             await _userRepository.AddPoints(userId, qrCode.Points);

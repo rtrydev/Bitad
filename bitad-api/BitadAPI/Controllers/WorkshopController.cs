@@ -12,17 +12,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace BitadAPI.Controllers
 {
     [Route("[controller]")]
-    public class WorkshopController : Controller
+    public class WorkshopController : AuthorizedController
     {
         private IWorkshopService _workshopService;
         private IJwtService _jwtService;
-        private IUserService _userService;
 
-        public WorkshopController(IWorkshopService workshopService, IJwtService jwtService, IUserService userService)
+        public WorkshopController(IWorkshopService workshopService, IJwtService jwtService)
         {
             _workshopService = workshopService;
             _jwtService = jwtService;
-            _userService = userService;
         }
 
         [HttpGet("GetWorkshops")]
@@ -36,22 +34,17 @@ namespace BitadAPI.Controllers
         public async Task<ActionResult<ICollection<DtoWorkshopParticipant>>> GetWorkshopParticipants(
             string workshopCode)
         {
-            var id = Int32.Parse(User.Claims.First(p => p.Type == "id").Value);
-            var presentedToken = HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value;
-            if(await _jwtService.CheckAuthorization(id, presentedToken) is UnauthorizedResult)
-            {
-                return Unauthorized();
-            }
-            var userRole = (await _userService.GetUserById(id)).Body.Role;
-            if (userRole != UserRole.Super && userRole != UserRole.Admin)
-            {
-                return Forbid();
-            }
-
-            var result = await _workshopService.GetParticipantsForWorkshop(id, workshopCode);
-            HttpContext.Response.Headers.Add("AuthToken", result.Token);
-            if (result.Body is null) return NotFound();
-            return Ok(result.Body);
+            var result = await MakeAuthorizedServiceCall(workshopCode, _workshopService.GetParticipantsForWorkshop,
+                _jwtService);
+            return result;
+        }
+        
+        [HttpPut("SelectWorkshop")]
+        [Authorize]
+        public async Task<ActionResult<DtoWorkshop>> SelectWorkshop(string workshopCode)
+        {
+            var result = await MakeAuthorizedServiceCall(workshopCode, _workshopService.SelectWorkshop, _jwtService);
+            return result;
         }
     }
 }
