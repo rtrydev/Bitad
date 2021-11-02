@@ -37,7 +37,7 @@ namespace BitadAPI.Services
             var nullResponse = TokenRefreshResponse<DtoQrCodeRedeem>.NullResponse(newToken, 204);
 
             if (qrCode is null)
-                return nullResponse;
+                return TokenRefreshResponse<DtoQrCodeRedeem>.NullResponse(newToken, 404);
 
             if (qrCode.ActivationTime > currentTime)
                 return nullResponse;
@@ -51,7 +51,7 @@ namespace BitadAPI.Services
             var user = await _userRepository.GetById(userId);
 
             if (user.AttendanceCheckDate is null)
-                return nullResponse;
+                return TokenRefreshResponse<DtoQrCodeRedeem>.NullResponse(newToken, 403);;
             
             var result = await _qrCodeRedeemRepository.RedeemQrCode(qrCode, user);
             await _userRepository.AddPoints(userId, qrCode.Points);
