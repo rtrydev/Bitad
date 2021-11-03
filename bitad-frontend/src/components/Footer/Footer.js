@@ -9,7 +9,6 @@ import bg from "../../assets/css/Backgrounds.module.css";
 import typography from "../../assets/css/Typography.module.css";
 import patron from "../../assets/images/becon.png";
 import patron1 from "../../assets/images/FabLab-logo.png";
-import patron2 from "../../assets/images/ath-logo.svg";
 import fbLogo from "../../assets/images/fb-logo.svg";
 import ytLogo from "../../assets/images/yt-logo.svg";
 import twLogo from "../../assets/images/tw-logo.svg";
@@ -29,7 +28,7 @@ function Footer() {
             <HashLink to="/#sponsors" className={typography["nav-link"]}>
               Sponsorzy
             </HashLink>
-            <HashLink to="/agenda#timeline" className={typography["nav-link"]}>
+            <HashLink to="/agenda#agenda" className={typography["nav-link"]}>
               Agenda
             </HashLink>
           </div>
