@@ -38,12 +38,6 @@ function Footer() {
             <div className={styles.patrons}>
               <ImageAsLink
                 isExternalLink={true}
-                src={patron2}
-                alt="Akademia Techniczno-Humanistyczna"
-                to="https://www.ath.bielsko.pl/"
-              />
-              <ImageAsLink
-                isExternalLink={true}
                 src={patron1}
                 alt="FabLab"
                 to="https://www.facebook.com/fablab24/"
