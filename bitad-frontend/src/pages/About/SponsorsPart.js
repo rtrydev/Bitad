@@ -21,7 +21,7 @@ function SponsorsPart() {
         <p>
           Staramy się, aby konferencja była wyjątkowym przeżyciem, aby każdy
           mógł zgłębić pasjonujące Go tematy z dziedziny informatyki. Ale sami
-          nie dalibyśmy rady.. jesteśmy wdzięczni za Waszą pomoc. Dzięki Wam
+          nie dalibyśmy rady... Jesteśmy wdzięczni za Waszą pomoc. Dzięki Wam
           BITAD 2020++ się odbędzie!
         </p>
       </div>

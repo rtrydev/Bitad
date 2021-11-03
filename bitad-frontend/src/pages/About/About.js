@@ -54,7 +54,7 @@ function About() {
                 poprzez liczne warsztaty oraz wykłady.
               </p>
               <p>
-                Dbamy również aby spędzony czas z nami był jak najlepiej
+                Dbamy również, aby spędzony czas z nami był jak najlepiej
                 spożytkowany.
               </p>
             </div>
@@ -97,9 +97,9 @@ function About() {
           <p>
             Dbamy o to, aby to piątkowe spotkanie było przede wszystkim mile
             spędzonym czasem. Dlatego nie zapominając, że nauka to potęgi klucz,
-            powinniśmy znaleźć również czas na relaks. Więc stworzyliśmy strefę
+            powinniśmy znaleźć również czas na relaks. Stworzyliśmy więc strefę
             gier komputerowych i planszowych. Każdy znajdzie coś dla siebie,
-            przyjemnie spożytkując czas.
+            przyjemnie pożytkując czas.
           </p>
           <ImageWithShadow
             src={workshopImage}

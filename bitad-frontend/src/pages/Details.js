@@ -64,7 +64,7 @@ function Details() {
           <h2>Gra QR Code</h2>
           <p>
             Biorąc udział w warsztatach będziecie mogli zbierać punkty z kodów
-            QR, które potem, przybliżą Was przy losowaniu, do głównej nagrody.
+            QR, które potem przybliżą Was przy losowaniu do głównej nagrody.
             Punkty będziemy również rozdawać na strefie gier. Serdecznie
             zapraszamy do zabawy.
           </p>
