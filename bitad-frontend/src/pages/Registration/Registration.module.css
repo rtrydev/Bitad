@@ -8,6 +8,8 @@
 
 .registration--two-columns > img {
   align-self: center;
+  width: auto;
+  max-width: 100%;
 }
 
 @media all and (max-width: 864px) {
