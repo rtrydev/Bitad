@@ -51,7 +51,7 @@ function Navigation() {
               to="https://www.ath.bielsko.pl/"
               src={siteLogo1}
               alt="Akademia Techniczno-Humanistyczna"
-              height="60px"
+              height="43px"
             />
           </div>
         </div>
