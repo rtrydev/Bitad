@@ -23,7 +23,7 @@
   display: grid;
   gap: var(--margin-m);
   align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
 }
 
 .patrons img {
