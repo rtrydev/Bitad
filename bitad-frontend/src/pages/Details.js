@@ -33,10 +33,10 @@ function Details() {
           <h2>Powitalna paczka</h2>
           <p>
             Dla każdego uczestnika, który dokona rejestracji na Akademii
-            Techniczno-Humanistycznej, czekać będzie StartPack, dzięki temu
-            będziecie w stanie bardziej zaznajomić się z wydarzeniem, agendą
-            oraz nagrodami. Dodatkowo czekać będą na Was niespodzianki w postaci
-            długopisów, smyczy i wielu, wielu więcej!
+            Techniczno-Humanistycznej, czekać będzie pakiet powitalny, dzięki
+            temu będziecie w stanie bardziej zaznajomić się z wydarzeniem,
+            agendą oraz nagrodami. Dodatkowo czekać będą na Was niespodzianki w
+            postaci długopisów, smyczy i wielu, wielu więcej!
           </p>
         </Section>
         <Section
@@ -49,7 +49,7 @@ function Details() {
             Wiemy, że najlepszy sposób nauki to ciągła praktyka i stawianie
             czoła nowym wyzwaniom. Dlatego na warsztatach będziecie w stanie
             pogłębić wiedzę na dany, interesujący Was temat pod okiem
-            profesjonalistów. Będzie ciekawie, będą przekąski… zapraszamy!
+            profesjonalistów. Będzie ciekawie, będą przekąski… Zapraszamy!
           </p>
           <p>
             Zapraszamy do wzięcia udziału:{" "}
