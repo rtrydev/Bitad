@@ -19,11 +19,12 @@ function AccountActivation() {
       .put(`/User/ConfirmAccount?confirmCode=${code}`)
       .then(() => {
         setIsError(false);
+        setIsLoading(false);
       })
       .catch(() => {
         setIsError(true);
+        setIsLoading(false);
       });
-    setIsLoading(false);
   }, [code]);
 
   const shortMessage = (title, description) => {
@@ -42,7 +43,7 @@ function AccountActivation() {
       )
     : shortMessage(
         "Twoja obecność została potwierdzona",
-        "Zapraszamy na konferencję 19 listopada 2021 na uczelni ATH w Bielsku-Białej"
+        process.env.REACT_APP_SECONDARY_SUBTITLE
       );
 
   return (

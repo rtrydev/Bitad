@@ -11,7 +11,7 @@ function Details() {
       <SmallHero
         imageSrc={heroImage}
         imageAlt="Logo konferencji"
-        subtitle="19 listopada 2021, na terenie uczelni ATH w Bielsku-Białej"
+        subtitle={process.env.REACT_APP_SUBTITLE}
         title="Konferencja Informatyczna"
         linkText={
           process.env.REACT_APP_ENABLE_REGISTRATION === "enabled"

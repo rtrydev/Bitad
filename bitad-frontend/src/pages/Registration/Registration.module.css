@@ -1,5 +1,7 @@
 .registration h4 {
   margin-bottom: var(--margin-s);
+  max-width: 620px;
+  line-height: 36px;
 }
 
 .registration--two-columns {

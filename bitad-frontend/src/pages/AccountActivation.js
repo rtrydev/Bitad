@@ -19,11 +19,12 @@ function AccountActivation() {
       .put(`/User/ActivateAccount?activationCode=${code}`)
       .then(() => {
         setIsError(false);
+        setIsLoading(false);
       })
       .catch(() => {
         setIsError(true);
+        setIsLoading(false);
       });
-    setIsLoading(false);
   }, [code]);
 
   const shortMessage = (title, description) => {
@@ -45,7 +46,7 @@ function AccountActivation() {
             )
           : shortMessage(
               "Konto zostało aktywowane",
-              "Zapraszamy na konferencję 19 listopada 2021 na uczelni ATH w Bielsku-Białej"
+              process.env.REACT_APP_SECONDARY_SUBTITLE
             )}
         {!isLoading && <img src={image} alt="Logo Bitadu" />}
       </header>
