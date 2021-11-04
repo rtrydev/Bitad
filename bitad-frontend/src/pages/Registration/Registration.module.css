@@ -1,5 +1,7 @@
 .registration h4 {
   margin-bottom: var(--margin-s);
+  max-width: 620px;
+  line-height: 36px;
 }
 
 .registration--two-columns {
@@ -8,6 +10,8 @@
 
 .registration--two-columns > img {
   align-self: center;
+  width: auto;
+  max-width: 100%;
 }
 
 @media all and (max-width: 864px) {

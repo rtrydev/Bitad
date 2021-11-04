@@ -29,6 +29,7 @@ const Overlay = ({
           picture={speaker.picture}
           name={speaker.name}
           website={speaker.website}
+          accentColor={speaker.accentColor}
         />
       </div>
       <div className={styles.card__main}>
