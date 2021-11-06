@@ -11,7 +11,9 @@ function EventCard(props) {
   return (
     <Card id={title} className={styles["card--event"]}>
       <EntryDetails room={room} start={start} end={end} />
-      <p className={styles.card__title}>{title}</p>
+      <p className={`${styles.card__title} ${styles["card__title--ellipsis"]}`}>
+        {title}
+      </p>
       {externalLink && (
         <a
           href={externalLink}

@@ -11,6 +11,15 @@
   line-height: 1.4;
 }
 
+.card__title--ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 p.card__short-info,
 a.card__short-info {
   margin-bottom: 16px;
