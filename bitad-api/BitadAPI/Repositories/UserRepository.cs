@@ -38,16 +38,16 @@ namespace BitadAPI.Repositories
 
         public async Task<User> GetById(int id)
         {
-            return await GetAll().Include(x => x.Workshop).FirstOrDefaultAsync(x => x.Id == id);
+            return await GetAll().Include(x => x.Workshop).Include(x => x.Workshop.Speaker).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<User> GetByPredicate(Expression<Func<User, bool>> predicate)
         {
-            return await GetAll().Include(x => x.Workshop).FirstOrDefaultAsync(predicate);
+            return await GetAll().Include(x => x.Workshop).Include(x => x.Workshop.Speaker).FirstOrDefaultAsync(predicate);
         }
         public async Task<ICollection<User>> GetManyByPredicate(Expression<Func<User, bool>> predicate)
         {
-            return await GetAll().Include(x => x.Workshop).Where(predicate).ToListAsync();
+            return await GetAll().Include(x => x.Workshop).Include(x => x.Workshop.Speaker).Where(predicate).ToListAsync();
         }
 
         public async Task<User> AddPoints(int id, int points)
