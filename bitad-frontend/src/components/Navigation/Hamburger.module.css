@@ -40,7 +40,7 @@
   opacity: 0;
 }
 
-@media all and (max-width: 782px) {
+@media all and (max-width: 900px) {
   .hamburger {
     display: block;
   }

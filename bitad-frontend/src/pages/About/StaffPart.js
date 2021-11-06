@@ -10,7 +10,7 @@ function StaffPart() {
     <Fragment>
       <h2 className={typography["text-align--center"]}>Organizatorzy</h2>
       <p className={typography["text-align--center"]}>
-        Musieliśmy się tutaj wpisać.. Jako zespół dokładamy wszelkich starań,
+        Musieliśmy się tutaj wpisać... Jako zespół dokładamy wszelkich starań,
         aby ta konferencja była wspólną wspaniałą przygodą pełną niesamowitych
         wrażeń. Dlatego wszystkich serdecznie zapraszamy oraz służymy pomocą 😃
       </p>

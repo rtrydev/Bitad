@@ -28,7 +28,7 @@ function Footer() {
             <HashLink to="/#sponsors" className={typography["nav-link"]}>
               Sponsorzy
             </HashLink>
-            <HashLink to="/agenda#timeline" className={typography["nav-link"]}>
+            <HashLink to="/agenda#agenda" className={typography["nav-link"]}>
               Agenda
             </HashLink>
           </div>

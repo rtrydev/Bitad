@@ -20,12 +20,21 @@
   margin-right: 0;
 }
 
-.navigation__element img {
-  height: 43px;
-  width: auto;
+.navigation__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-m);
+  flex-direction: row;
+  margin-right: var(--margin-m);
 }
 
-@media all and (max-width: 782px) {
+.navigation__element img {
+  width: auto;
+  max-width: 100%;
+  min-width: 90px;
+}
+
+@media all and (max-width: 900px) {
   .navigation__element .button--hide {
     border: none;
     padding: 0;
@@ -42,6 +51,13 @@
     /* Fix for not showing navigation when clicked on hamburger by tab if navigation was hiden */
     top: 0;
     overflow-y: auto;
+  }
+
+  .navigation--shadow {
+    -webkit-box-shadow: 0px 8px 22px -7px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 8px 22px -7px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 22px -7px rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
   }
 
   .navigation--open .navigation__element ul {

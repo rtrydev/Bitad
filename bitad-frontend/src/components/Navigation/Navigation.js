@@ -6,6 +6,7 @@ import ImageAsLink from "../UI/ImageAsLink";
 import Hamburger from "./Hamburger";
 
 import siteLogo from "../../assets/images/reset-logo-red.svg";
+import siteLogo1 from "../../assets/images/ath-logo.svg";
 import styles from "./Navigation.module.css";
 import bg from "../../assets/css/Backgrounds.module.css";
 import typography from "../../assets/css/Typography.module.css";
@@ -30,18 +31,29 @@ function Navigation() {
 
   return (
     <Container
+      classNameWrapper={isOpen ? styles["navigation--shadow"] : ""}
       className={`${bg["white-background"]} ${
         isOpen ? styles["navigation--open"] : ""
       } `}
     >
       <nav className={styles.navigation}>
         <div className={styles.navigation__element}>
-          <ImageAsLink
-            to="/"
-            src={siteLogo}
-            alt="Reset Logo"
-            onClick={handleLinkClick}
-          />
+          <div className={styles.navigation__logo}>
+            <ImageAsLink
+              to="/"
+              src={siteLogo}
+              alt="Reset Logo"
+              height="43px"
+              onClick={handleLinkClick}
+            />
+            <ImageAsLink
+              isExternalLink
+              to="https://www.ath.bielsko.pl/"
+              src={siteLogo1}
+              alt="Akademia Techniczno-Humanistyczna"
+              height="43px"
+            />
+          </div>
         </div>
         <div className={styles.navigation__element}>
           <Hamburger isOpen={isOpen} onClick={handleHamburgerClick} />
