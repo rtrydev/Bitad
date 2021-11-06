@@ -19,7 +19,9 @@ function EventSpeaker(props) {
         alt={props.name}
         className={layout["image--circle"]}
       />
-      <div className={styles["event-speaker__details"]}>
+      <div
+        className={`${styles["event-speaker__details"]} ${styles["details__name--ellipsis"]}`}
+      >
         <span className={styles.details__name}>{props.name}</span>
         <span className={typography["small-p"]}>{props.website}</span>
       </div>
