@@ -34,6 +34,7 @@ services:
       EMAIL_LOGIN: ${EMAIL_LOGIN}
       SMTP_SERVER: ${SMTP_SERVER}
       REGISTRATION_ENALBED: ${REGISTRATION_ENALBED}
+      TZ: ${TIMEZONE}
       #ASPNETCORE_URLS: https://+:443;http://+:80
       ASPNETCORE_URLS: https://+:443
       ASPNETCORE_Kestrel__Certificates__Default__Password: ${PFX_FILE_PASSWORD}
