@@ -91,7 +91,10 @@ function RegistrationFrom() {
         <FieldInput name="email" labelText="Adres email*">
           <InputEmail register={register} errors={errors} name="email" />
         </FieldInput>
-        <FieldInput name="password" labelText="Hasło do aplikacji QR Code*">
+        <FieldInput
+          name="password"
+          labelText="Utwórz hasło do aplikacji QR Code*"
+        >
           <Input
             register={register}
             errors={errors}
