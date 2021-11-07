@@ -33,27 +33,34 @@ function Footer() {
               Agenda
             </HashLink>
           </div>
-          <div>
-            <h4>Partnerzy</h4>
+          <div className={styles["patrons-wrapper"]}>
             <div className={styles.patrons}>
-              <ImageAsLink
-                isExternalLink={true}
-                src={patron1}
-                alt="FabLab"
-                to="https://www.facebook.com/fablab24/"
-              />
-              <ImageAsLink
-                isExternalLink={true}
-                src={patron}
-                alt="Becon"
-                to="https://www.facebook.com/klubbecon/"
-              />
-              <ImageAsLink
-                isExternalLink={true}
-                src={patron2}
-                alt="Radio Bielsko"
-                to="https://www.radiobielsko.pl/"
-              />
+              <h4>Partnerzy</h4>
+              <div className={styles.patrons__wrapper}>
+                <ImageAsLink
+                  isExternalLink={true}
+                  src={patron1}
+                  alt="FabLab"
+                  to="https://www.facebook.com/fablab24/"
+                />
+                <ImageAsLink
+                  isExternalLink={true}
+                  src={patron}
+                  alt="Becon"
+                  to="https://www.facebook.com/klubbecon/"
+                />
+              </div>
+            </div>
+            <div className={styles["media-patrons"]}>
+              <h4>Patronat medialny</h4>
+              <div className={styles.patrons__wrapper}>
+                <ImageAsLink
+                  isExternalLink={true}
+                  src={patron2}
+                  alt="Radio Bielsko"
+                  to="https://www.radiobielsko.pl/"
+                />
+              </div>
             </div>
           </div>
           <div>
