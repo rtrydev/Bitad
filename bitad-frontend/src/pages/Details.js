@@ -68,6 +68,11 @@ function Details() {
             Punkty będziemy również rozdawać na strefie gier. Serdecznie
             zapraszamy do zabawy.
           </p>
+          <p>
+            Aplikację do gry QR będzie można pobrać podczas konferencji z Google
+            Play. Zalogujesz się do niej przy pomocy podanego maila oraz hasła
+            podczas rejestracji.
+          </p>
         </Section>
       </main>
     </div>

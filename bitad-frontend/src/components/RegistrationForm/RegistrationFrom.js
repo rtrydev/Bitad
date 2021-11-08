@@ -7,9 +7,10 @@ import { Input } from "./Input";
 import { InputEmail } from "./InputEmail";
 import { FieldInput } from "./FieldInput";
 import api from "../../api/api";
-import { useState } from "react";
+import React, { useState } from "react";
 import { WorkshopSelect } from "./WorkshopSelect";
 import SubmitButton from "./SubmitButton";
+import { HashLink } from "react-router-hash-link";
 
 function RegistrationFrom() {
   const {
@@ -93,7 +94,16 @@ function RegistrationFrom() {
         </FieldInput>
         <FieldInput
           name="password"
-          labelText="Utwórz hasło do aplikacji QR Code*"
+          labelText={
+            <span>
+              Utwórz hasło do
+              <HashLink to="/details#game" target="_blank">
+                {" "}
+                aplikacji QR Code
+              </HashLink>
+              *
+            </span>
+          }
         >
           <Input
             register={register}
