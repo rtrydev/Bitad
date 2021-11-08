@@ -5,6 +5,7 @@ import EntryDetails from "./EventDetails";
 import EventSpeaker from "./EventSpeaker";
 import styles from "./ExtendedEventCard.module.css";
 import typography from "../../../assets/css/Typography.module.css";
+import NewLineText from "../../NewLineText/NewLineText";
 
 const Backdrop = ({ onClick }) => {
   return <div onClick={onClick} className={styles["backdrop"]} />;
@@ -42,7 +43,7 @@ const Overlay = ({
           </p>
         )}
         {shortInfo && <p>{shortInfo}</p>}
-        <p>{description}</p>
+        <NewLineText text={description} />
       </div>
       <div className={typography["text-align--center"]}>
         <button onClick={onClick} className={typography.button}>
