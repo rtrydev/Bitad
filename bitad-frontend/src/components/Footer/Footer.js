@@ -9,6 +9,7 @@ import bg from "../../assets/css/Backgrounds.module.css";
 import typography from "../../assets/css/Typography.module.css";
 import patron from "../../assets/images/becon.png";
 import patron1 from "../../assets/images/FabLab-logo.png";
+import patron2 from "../../assets/images/radio-bielsko.svg";
 import fbLogo from "../../assets/images/fb-logo.svg";
 import ytLogo from "../../assets/images/yt-logo.svg";
 import twLogo from "../../assets/images/tw-logo.svg";
@@ -32,21 +33,34 @@ function Footer() {
               Agenda
             </HashLink>
           </div>
-          <div>
-            <h4>Partnerzy</h4>
+          <div className={styles["patrons-wrapper"]}>
             <div className={styles.patrons}>
-              <ImageAsLink
-                isExternalLink={true}
-                src={patron1}
-                alt="FabLab"
-                to="https://www.facebook.com/fablab24/"
-              />
-              <ImageAsLink
-                isExternalLink={true}
-                src={patron}
-                alt="Becon"
-                to="https://www.facebook.com/klubbecon/"
-              />
+              <h4>Partnerzy</h4>
+              <div className={styles.patrons__wrapper}>
+                <ImageAsLink
+                  isExternalLink={true}
+                  src={patron1}
+                  alt="FabLab"
+                  to="https://www.facebook.com/fablab24/"
+                />
+                <ImageAsLink
+                  isExternalLink={true}
+                  src={patron}
+                  alt="Becon"
+                  to="https://www.facebook.com/klubbecon/"
+                />
+              </div>
+            </div>
+            <div className={styles["media-patrons"]}>
+              <h4>Patronat medialny</h4>
+              <div className={styles.patrons__wrapper}>
+                <ImageAsLink
+                  isExternalLink={true}
+                  src={patron2}
+                  alt="Radio Bielsko"
+                  to="https://www.radiobielsko.pl/"
+                />
+              </div>
             </div>
           </div>
           <div>

@@ -40,7 +40,7 @@ function App() {
         <Route path="/account-creation-info/error">
           <AccountCreationInfo
             title="Coś poszło nie tak"
-            description="Spróbuj ponownie później"
+            description="Możliwe, że przekroczono limit zarejestrowanych kont z Twojego adresu IP"
           />
         </Route>
         <Route path="/account-reset-password-info/success">

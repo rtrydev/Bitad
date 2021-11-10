@@ -63,10 +63,16 @@ function Details() {
         >
           <h2>Gra QR Code</h2>
           <p>
-            Biorąc udział w warsztatach będziecie mogli zbierać punkty z kodów
-            QR, które potem przybliżą Was przy losowaniu do głównej nagrody.
-            Punkty będziemy również rozdawać na strefie gier. Serdecznie
-            zapraszamy do zabawy.
+            Skanujcie kody QR na warsztatach oraz prelekcjach. Kolejno możecie
+            za nie zdobyć 40 i 20pkt, które zwiększają Wasze szanse na zdobycie
+            wyjątkowych nagród, w tym nawet Xboxa One X. Losowanie upominków dla
+            szczęściarzy odbędzie się o godzinie 16:15 - 16:45 w sali 128
+            (Aula).
+          </p>
+          <p>
+            Aplikacje do gry można pobrać podczas konferencji z Google Play.
+            Zalogujesz się do niej przy pomocy maila i hasła podanego przy
+            rejestracji. Zapraszamy do udziału w konkursie!
           </p>
         </Section>
       </main>
