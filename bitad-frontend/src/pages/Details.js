@@ -64,15 +64,23 @@ function Details() {
           <h2>Gra QR Code</h2>
           <p>
             Skanujcie kody QR na warsztatach oraz prelekcjach. Kolejno możecie
-            za nie zdobyć 40 i 20pkt, które zwiększają Wasze szanse na zdobycie
-            wyjątkowych nagród, w tym nawet Xboxa One X. Losowanie upominków dla
-            szczęściarzy odbędzie się o godzinie 16:15 - 16:45 w sali 128
-            (Aula).
+            za nie zdobyć 40 i 20 punktów. Zwiększają one Wasze szanse na
+            zdobycie wyjątkowych nagród, w tym nawet Xboxa One X. Losowanie
+            upominków dla szczęściarzy odbędzie się od 16:15 do 16:45 podczas
+            konferencji w sali 128 (Aula).
           </p>
           <p>
-            Aplikacje do gry można pobrać podczas konferencji z Google Play.
-            Zalogujesz się do niej przy pomocy maila i hasła podanego przy
-            rejestracji. Zapraszamy do udziału w konkursie!
+            Aplikację do Gry QR na Andrioda można pobrać{" "}
+            <a
+              href="https://play.google.com/store/apps/details?id=com.reset.Bitad2021"
+              target="_blank"
+              rel="noreferrer"
+            >
+              tutaj
+            </a>{" "}
+            (nie mamy wersji na iOS). Zalogujesz się do niej przy pomocy maila i
+            hasła podanego podczas rejestracji na stronie. Zapraszamy do udziału
+            w konkursie!
           </p>
         </Section>
       </main>
