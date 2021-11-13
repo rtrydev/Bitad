@@ -86,7 +86,20 @@ function About() {
             />
             <SimpleCard
               title="Gry QR Code"
-              description="Baw się z nami i zdobywaj punkty podczas udziału w prelekcjach i warsztatach. "
+              description={
+                <>
+                  Baw się z nami i zdobywaj punkty podczas udziału w prelekcjach
+                  i warsztatach. Aplikację do Gry QR na Andrioda możesz pobrać{" "}
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.reset.Bitad2021"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    tutaj
+                  </a>
+                  .
+                </>
+              }
               image={{ src: gamepadIcon, alt: "Ikona pada do gier" }}
               link="/details#game"
             />
