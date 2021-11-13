@@ -13,6 +13,7 @@ namespace BitadAPI.Models
         public string Degree { get; set; }
         public string Contact { get; set; }
         public bool IsPublic { get; set; }
+        public string StaffRole { get; set; }
 
     }
 }

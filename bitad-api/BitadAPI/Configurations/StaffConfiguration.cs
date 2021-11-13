@@ -47,6 +47,11 @@ namespace BitadAPI.Configurations
                 .HasColumnName("is_public")
                 .HasColumnType("bool")
                 .IsRequired();
+
+            builder.Property(x => x.StaffRole)
+                .HasColumnName("staff_role")
+                .HasColumnType("text")
+                .IsRequired(false);
         }
     }
 }

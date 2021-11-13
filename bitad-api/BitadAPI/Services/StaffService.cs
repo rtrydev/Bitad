@@ -38,6 +38,7 @@ namespace BitadAPI.Services
             foreach (var s in staff)
             {
                 s.Contact = null;
+                s.StaffRole = null;
             }
             return _mapper.Map<ICollection<Staff>, ICollection<DtoStaff>>(staff);
         }
