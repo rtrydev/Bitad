@@ -34,6 +34,16 @@ namespace BitadAPI.Controllers
             var result = await MakeAuthorizedServiceCall(_adminService.SendConfirmationMails, _jwtService);
             return result;
         }
+        
+        [HttpPost("SendInformationMails")]
+        [Authorize]
+        
+        public async Task<ActionResult> SendInformationMails(string htmlName, string title)
+        {
+            var result =
+                await MakeAuthorizedServiceCall(htmlName, title, _adminService.SendInformationMails, _jwtService);
+            return result;
+        }
 
         [HttpPost("ExcludeInactiveUsersFromWorkshops")]
         [Authorize]

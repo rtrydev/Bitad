@@ -13,6 +13,7 @@ namespace BitadAPI.Services
     {
         public Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners);
         public Task<TokenRefreshResponse> SendConfirmationMails(int issuerId);
+        public Task<TokenRefreshResponse> SendInformationMails(int issuerId, string htmlName, string title);
         public Task<TokenRefreshResponse> ExcludeInactiveUsersFromWorkshops(int issuerId);
         public Task<TokenRefreshResponse<DtoUser>> BanUser(int issuerId, string email);
         public Task<TokenRefreshResponse<DtoUser>> UnbanUser(int issuerId, string email);
@@ -103,6 +104,38 @@ namespace BitadAPI.Services
                 foreach (var user in users)
                 {
                     _ = Task.Run(async () => await _mailService.SendConfirmationMail(user.Email, user.ConfirmCode, user.FirstName));
+                }
+            }
+
+            return new TokenRefreshResponse()
+            {
+                Token = refreshToken,
+                Code = 200
+            };
+
+
+        }
+        
+        public async Task<TokenRefreshResponse> SendInformationMails(int issuerId, string htmlName, string title)
+        {
+            var issuer = await _userRepository.GetById(issuerId);
+            var refreshToken = await _jwtService.GetNewToken(issuerId);
+            if (issuer.Role != UserRole.Super)
+            {
+                return new TokenRefreshResponse
+                {
+                    Token = refreshToken,
+                    Code = 403
+                };
+            }
+
+            var users = await _userRepository.GetManyByPredicate(x => x.ActivationDate != null);
+            
+            if(Environment.GetEnvironmentVariable("EMAIL_ENABLED") == "enabled")
+            {
+                foreach (var user in users)
+                {
+                    _ = Task.Run(async () => await _mailService.SendInformationMail(user.Email, user.FirstName, htmlName, title));
                 }
             }
 

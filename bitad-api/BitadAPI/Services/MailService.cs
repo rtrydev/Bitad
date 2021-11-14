@@ -23,6 +23,7 @@ namespace BitadAPI.Services
         public Task SendActivationMail(string address, string activationCode, string receiver);
         public Task SendPasswordResetMail(string address, string resetCode, string receiver);
         public Task SendConfirmationMail(string address, string confirmCode, string receiver);
+        public Task SendInformationMail(string address, string receiver, string htmlName, string title);
     }
     public class MailService : IMailService
     {
@@ -68,6 +69,20 @@ namespace BitadAPI.Services
                 TemplateFileName = "index_confirm.html"
             };
             var message = CreateMessage(mailInfo);
+            await SendMail(message);
+
+        }
+        
+        public async Task SendInformationMail(string address, string receiver, string htmlName, string title)
+        {
+            var mailInfo = new MailInfo
+            {
+                Receiver = receiver,
+                ReceiverAddress = address,
+                Subject = title,
+                TemplateFileName = htmlName
+            };
+            var message = CreateUneditedMessage(mailInfo);
             await SendMail(message);
 
         }
@@ -122,6 +137,32 @@ namespace BitadAPI.Services
             }
             HtmlFormat = HtmlFormat.Replace("USER_NAME", info.Receiver);
             HtmlFormat = HtmlFormat.Replace("ACTIVITY_LINK", $"{_serverUrl}/{info.TaskType}/{info.Code}");
+            builder.HtmlBody = HtmlFormat;
+
+            message.Body = builder.ToMessageBody();
+            return message;
+        }
+
+        private MimeMessage CreateUneditedMessage(MailInfo info)
+        {
+            var message = new MimeMessage();
+
+            message.From.Add(new MailboxAddress("Bitad2021", _emailAddress));
+            message.To.Add(new MailboxAddress(info.Receiver, info.ReceiverAddress));
+            message.Subject = info.Subject;
+            string FullFormatPath = "/app/bitad-email-template";
+
+            string HtmlFormat = string.Empty;
+
+            var builder = new BodyBuilder();
+
+            using (FileStream fs = new FileStream(Path.Combine(FullFormatPath, info.TemplateFileName), FileMode.Open))
+            {
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    HtmlFormat = sr.ReadToEnd();
+                }
+            }
             builder.HtmlBody = HtmlFormat;
 
             message.Body = builder.ToMessageBody();
