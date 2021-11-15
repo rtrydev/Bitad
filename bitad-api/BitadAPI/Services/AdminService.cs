@@ -104,7 +104,8 @@ namespace BitadAPI.Services
             {
                 foreach (var user in users)
                 {
-                    _ = Task.Run(async () => await _mailService.SendConfirmationMail(user.Email, user.ConfirmCode, user.FirstName));
+                    await _mailService.SendConfirmationMail(user.Email, user.ConfirmCode, user.FirstName);
+                    Thread.Sleep(400);
                 }
             }
 
@@ -137,7 +138,7 @@ namespace BitadAPI.Services
                 foreach (var user in users)
                 {
                     await _mailService.SendInformationMail(user.Email, user.FirstName, htmlName, title);
-                    Thread.Sleep(200);
+                    Thread.Sleep(400);
                 }
             }
 
