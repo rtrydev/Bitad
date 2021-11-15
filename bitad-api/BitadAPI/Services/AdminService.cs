@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using BitadAPI.Dto;
@@ -135,7 +136,8 @@ namespace BitadAPI.Services
             {
                 foreach (var user in users)
                 {
-                    _ = Task.Run(async () => await _mailService.SendInformationMail(user.Email, user.FirstName, htmlName, title));
+                    await _mailService.SendInformationMail(user.Email, user.FirstName, htmlName, title);
+                    Thread.Sleep(200);
                 }
             }
 
