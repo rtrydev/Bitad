@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -74,6 +74,11 @@
         .borderTd{
             max-width: 60px;
         }
+        .buttonInterior{
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
+        }
         .codeButton{
             font-family: Arial;
             letter-spacing: 1px;
@@ -87,25 +92,19 @@
             margin-top: 20px;
             margin-bottom: 20px;
             color: #fff;
+            min-height: 84px;
             background: rgba(0,0,0,0);
-            display: inline-block;
-            max-width: 180px;
+            display: block;
+            float: none;
             cursor: pointer;
             text-decoration: none;
             text-transform: uppercase;
             border: 2px dotted #d99a02;
             min-height: 32px;
             position: relative;
-            width: calc(33% - 70px);
+            width: 96%;
+            box-sizing: border-box;
             text-shadow: 0px 0px 2px #000;
-        }
-        .codeButton span{
-            display: block;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 90%;
-            transform: translate(-50%, -50%);
         }
         .tableimg{
             max-width: 200px;
@@ -120,14 +119,33 @@
             height: auto;
             padding-bottom: 10px;
         }
-        @media only screen and (max-width: 800px) {
+        @media only screen and (min-width: 800px) {
             .codeButton{
-                float: none!important;
-                clear: both!important;
-                display: block!important;
-                width: 100%!important;
-                margin-left: auto!important;
-                margin-right: auto!important;
+                font-family: Arial;
+                letter-spacing: 1px;
+                border-radius: 4px;
+                font-size: 16px;
+                font-weight: 700;
+                border: none;
+                padding: 16px 20px;
+                margin-left: 10px;
+                margin-right: 10px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: #fff;
+                min-height: 84px;
+                background: rgba(0,0,0,0);
+                display: inline-block;
+                float: left;
+                cursor: pointer;
+                text-decoration: none;
+                text-transform: uppercase;
+                border: 2px dotted #d99a02;
+                min-height: 32px;
+                position: relative;
+                width: calc(33% - 18px);
+                box-sizing: border-box;
+                text-shadow: 0px 0px 2px #000;
             }
         }
     </style>
@@ -147,10 +165,13 @@
             <!--<span class="header">Witaj {imie}!</span>-->
             <span class="paragraph">Zapraszamy uczestników konferencji do zapisania się do programu "<span class='bold'>Rozwiń Karierę z Google Cloud</span>", gdzie otrzymają Państwo 30-dniowy, nielimitowany dostęp do <span class='bold'>Google Cloud Skills Boost</span>. Na platformie można realizować ścieżki <span class='bold'>Skill Badges</span> i zdobywać nagrody rzeczowe! Więcej szczegółów można znaleźć na stronie lub zapytać o nie ekspertów <span class='bold'>Google Cloud</span> w dniu wydarzenia.</span>
             <span class="buttonZone">
-                        <a href="https://events.withgoogle.com/google-cloud/" style="color: #fff!important; text-decoration: none!important; 
-                        border: 2px dotted #c82113!important; background: #EA4335;" class="codeButton"><span>Rozwiń karierę z Google Cloud</span></a>
-                        <a href="https://www.cloudskillsboost.google" style="color: #fff!important; text-decoration: none!important;  background: #FBBC05;" class="codeButton"><span>Google Cloud Skills Boost</span></a>
-                        <a href="https://drive.google.com/file/d/1QPkziclAv2PlTZE7T6VnaXfTgmCvgnj8/view" style="color: #fff!important; text-decoration: none!important; border: 2px dotted #128631; background: #34A853;" class="codeButton"><span>Skill Badges</span></a>
+                        <div class="buttonInterior">
+                            <a href="https://events.withgoogle.com/google-cloud/" style="color: #fff!important; text-decoration: none!important; 
+                            border: 2px dotted #c82113!important; background: #EA4335;" class="codeButton"><span>Rozwiń karierę z Google Cloud</span></a>
+                            <a href="https://www.cloudskillsboost.google" style="color: #fff!important; text-decoration: none!important;  background: #FBBC05;" class="codeButton"><span>Google Cloud Skills Boost</span></a>
+                            <a href="https://drive.google.com/file/d/1QPkziclAv2PlTZE7T6VnaXfTgmCvgnj8/view" style="color: #fff!important; text-decoration: none!important; border: 2px dotted #128631; background: #34A853;" class="codeButton"><span>Skill Badges</span></a>
+                            <div style='clear: both;'></div>
+                        </div>
                     </span>
             <span class="paragraph">Na konferencji BITAD można skorzystać z wyjątkowej okazji do zdobycia wiedzy bezpośrednio od <span class='bold'>ekspertów Google Cloud</span> i dowiedzieć się więcej o ścieżkach <span class='bold'>Skill Badges</span>.</span>
             <span class="paragraph">Podczas wydarzenia zapraszamy do wzięcia udziału w dwóch prelekcjach prowadzonych przez ekspertów z Google Cloud, Pana <span class='bold'>Artura Kulińskiego</span> oraz Pana <span class='bold'>Jakuba Skuratowicza</span>.</span>
