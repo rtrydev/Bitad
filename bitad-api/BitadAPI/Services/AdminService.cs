@@ -12,7 +12,7 @@ namespace BitadAPI.Services
 {
     public interface IAdminService
     {
-        public Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners);
+        public Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners, bool includeWinners);
         public Task<TokenRefreshResponse> SendConfirmationMails(int issuerId);
         public Task<TokenRefreshResponse> SendInformationMails(int issuerId, string htmlName, string title);
         public Task<TokenRefreshResponse> ExcludeInactiveUsersFromWorkshops(int issuerId);
@@ -36,7 +36,7 @@ namespace BitadAPI.Services
             _mailService = mailService;
         }
         
-        public async Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners)
+        public async Task<TokenRefreshResponse<ICollection<DtoUser>>> GetWinners(int issuerId, int numberOfWinners, bool includeWinners)
         {
             var refreshToken = await _jwtService.GetNewToken(issuerId);
             var rand = new Random(DateTime.Now.Millisecond);
@@ -44,8 +44,19 @@ namespace BitadAPI.Services
             
             if (issuer.Role != UserRole.Super) return TokenRefreshResponse<ICollection<DtoUser>>.NullResponse(refreshToken, 403);
 
-            var users = (await _userRepository.GetAll())
-                .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest && !user.BannedFromRoulette).ToList();
+            IList<User> users;
+            
+            if (includeWinners)
+            {
+                users = (await _userRepository.GetAll())
+                    .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest && !user.BannedFromRoulette).ToList();
+            }
+            else
+            {
+                users = (await _userRepository.GetAll())
+                    .Where(user => (user.AttendanceCheckDate is not null) && user.Role is UserRole.Guest && !user.BannedFromRoulette && !user.AlreadyWon).ToList();
+            }
+
             
             if (users.Count < numberOfWinners)
                 return new TokenRefreshResponse<ICollection<DtoUser>>
@@ -84,7 +95,6 @@ namespace BitadAPI.Services
                 Token = refreshToken,
             };
         }
-        
         public async Task<TokenRefreshResponse> SendConfirmationMails(int issuerId)
         {
             var issuer = await _userRepository.GetById(issuerId);

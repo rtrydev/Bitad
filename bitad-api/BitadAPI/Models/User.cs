@@ -50,5 +50,6 @@ namespace BitadAPI.Models
         public string WorkshopAttendanceCode { get; set; }
         public DateTime? WorkshopAttendanceCheckDate { get; set; }
         public bool BannedFromRoulette { get; set; }
+        public bool AlreadyWon { get; set; }
     }
 }

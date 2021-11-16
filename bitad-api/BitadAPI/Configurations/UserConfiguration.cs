@@ -129,6 +129,11 @@ namespace BitadAPI.Configurations
                 .HasColumnType("timestamp")
                 .IsRequired(false);
 
+            builder.Property(x => x.AlreadyWon)
+                .HasColumnName("already_won")
+                .HasColumnType("bool")
+                .IsRequired();
+
         }
     }
 }

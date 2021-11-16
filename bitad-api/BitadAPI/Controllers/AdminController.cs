@@ -23,10 +23,19 @@ namespace BitadAPI.Controllers
         [Authorize]
         public async Task<ActionResult<ICollection<DtoUser>>> GetWinners(int numberOfWinners)
         {
-            var result = await MakeAuthorizedServiceCall(numberOfWinners, _adminService.GetWinners, _jwtService);
+            var result = await MakeAuthorizedServiceCall(numberOfWinners, false, _adminService.GetWinners, _jwtService);
             return result;
         }
-        
+
+        [HttpGet("GetMainWinner")]
+        [Authorize]
+
+        public async Task<ActionResult<ICollection<DtoUser>>> GetMainWinner()
+        {
+            var result = await MakeAuthorizedServiceCall(1, true, _adminService.GetWinners, _jwtService);
+            return result;
+        }
+
         [HttpPost("SendConfirmationMails")]
         [Authorize]
         public async Task<ActionResult> SendConfirmationMails()
