@@ -79,6 +79,8 @@ namespace BitadAPI.Services
                     currentTicket += tickets[j];
                     if (currentTicket >= selectedTicket)
                     {
+                        users[j].AlreadyWon = true;
+                        await _userRepository.UpdateUser(users[j]);
                         winners.Add(_mapper.Map<DtoUser>(users[j]));
                         ticketSum -= tickets[j];
                         users.RemoveAt(j);
