@@ -82,7 +82,7 @@ namespace BitadAPI.Services
                 Subject = title,
                 TemplateFileName = htmlName
             };
-            var message = CreateUneditedMessage(mailInfo);
+            var message = CreateMessage(mailInfo);
             await SendMail(message);
 
         }
