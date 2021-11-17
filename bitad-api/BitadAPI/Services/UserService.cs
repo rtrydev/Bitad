@@ -45,7 +45,8 @@ namespace BitadAPI.Services
 
         public async Task<TokenRefreshResponse<DtoUser>> AuthenticateUser(DtoUserLogin userLogin)
         {
-            var user = await _userRepository.GetByPredicate(x => x.Email == userLogin.Email);
+            var email = userLogin.Email.ToLower();
+            var user = await _userRepository.GetByPredicate(x => x.Email == email);
             if (user is null) return null;
 
             var hashedPassword = _hasher.HashPassword(userLogin.Password, user.PasswordSalt);
@@ -124,7 +125,8 @@ namespace BitadAPI.Services
             if (registered.Count > 3)
                 return null;
 
-            if (await _userRepository.GetByPredicate(x => x.Email == registrationData.Email) is not null)
+            var email = registrationData.Email.ToLower();
+            if (await _userRepository.GetByPredicate(x => x.Email == email) is not null)
                 return null;
 
             var hashed = _hasher.HashPassword(registrationData.Password);
@@ -147,7 +149,7 @@ namespace BitadAPI.Services
             {
                 FirstName = registrationData.FirstName,
                 LastName = registrationData.LastName,
-                Email = registrationData.Email,
+                Email = email,
                 CurrentScore = 0,
                 Password = hashed.password,
                 PasswordSalt = hashed.salt,
