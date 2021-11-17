@@ -143,7 +143,7 @@ namespace BitadAPI.Services
                 };
             }
 
-            var users = await _userRepository.GetManyByPredicate(x => x.ActivationDate != null);
+            var users = await _userRepository.GetAll();
             
             if(Environment.GetEnvironmentVariable("EMAIL_ENABLED") == "enabled")
             {
