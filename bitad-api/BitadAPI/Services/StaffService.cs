@@ -70,7 +70,7 @@ namespace BitadAPI.Services
             var user = await _userRepository.GetByPredicate(x => x.AttendanceCode == attendanceCode);
             if (user is null)
             {
-                user = await _userRepository.GetByPredicate(x => x.Email == attendanceCode);
+                user = await _userRepository.GetByPredicate(x => x.Email == attendanceCode.ToLower());
             }
             
             if (user is null)
@@ -122,7 +122,7 @@ namespace BitadAPI.Services
             var user = await _userRepository.GetByPredicate(x => x.WorkshopAttendanceCode == attendanceCode);
             if (user is null)
             {
-                user = await _userRepository.GetByPredicate(x => x.Email == attendanceCode);
+                user = await _userRepository.GetByPredicate(x => x.Email == attendanceCode.ToLower());
             }
             
             if (user is null)
