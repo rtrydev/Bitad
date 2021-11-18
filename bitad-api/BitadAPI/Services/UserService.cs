@@ -199,7 +199,8 @@ namespace BitadAPI.Services
 
         public async Task<DtoUser> IssuePasswordReset(string email)
         {
-            var user = await _userRepository.GetByPredicate(x => x.Email == email.ToLower());
+            var trimmedEmail = email.ToLower().Trim();
+            var user = await _userRepository.GetByPredicate(x => x.Email == trimmedEmail);
             if (user is null) return null;
             if (user.LastPasswordReset > DateTime.Now.AddHours(-1)) return null;
 
@@ -235,7 +236,8 @@ namespace BitadAPI.Services
 
         public async Task<DtoUser> ResendActivation(string email)
         {
-            var user = await _userRepository.GetByPredicate(x => x.Email == email.ToLower());
+            var trimmedEmail = email.ToLower().Trim();
+            var user = await _userRepository.GetByPredicate(x => x.Email == trimmedEmail);
             if (user is null) return null;
             if (user.ActivationDate is not null) return null;
             if (user.ActivationCodeResent > DateTime.Now.AddHours(-1)) return null;
