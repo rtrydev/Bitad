@@ -34,8 +34,8 @@ function Agenda() {
         title="Konferencja Informatyczna"
         linkText={
           process.env.REACT_APP_ENABLE_REGISTRATION === "enabled"
-            ? "Zapisz się już dziś!"
-            : "Rejestracja już wkrótce"
+            ? process.env.REACT_APP_ENABLED_REGISTRATION_LABEL
+            : process.env.REACT_APP_DISABLED_REGISTRATION_LABEL
         }
         linkTo={
           process.env.REACT_APP_ENABLE_REGISTRATION === "enabled"
