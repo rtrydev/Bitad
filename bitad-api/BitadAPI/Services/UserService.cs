@@ -45,7 +45,7 @@ namespace BitadAPI.Services
 
         public async Task<TokenRefreshResponse<DtoUser>> AuthenticateUser(DtoUserLogin userLogin)
         {
-            var email = userLogin.Email.ToLower();
+            var email = userLogin.Email.ToLower().Trim();
             var user = await _userRepository.GetByPredicate(x => x.Email == email);
             if (user is null) return null;
 
