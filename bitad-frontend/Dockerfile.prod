@@ -16,9 +16,9 @@ COPY --from=build /app/build /usr/share/nginx/html
 COPY ./bitad-frontend/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Uncomment for ssl
-COPY ./certificat/bitad_ath_bielsko_pl.crt /etc/ssl/bitad_ath_bielsko_pl.crt
-COPY ./certificat/bitad_ath_bielsko_pl.key /etc/ssl/bitad_ath_bielsko_pl.key
+#COPY ./certificat/bitad_ath_bielsko_pl.crt /etc/ssl/bitad_ath_bielsko_pl.crt
+#COPY ./certificat/bitad_ath_bielsko_pl.key /etc/ssl/bitad_ath_bielsko_pl.key
 
 EXPOSE 80
-EXPOSE 443
+#EXPOSE 443
 CMD ["nginx", "-g", "daemon off;"]

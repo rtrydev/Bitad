@@ -150,7 +150,7 @@ namespace BitadAPI
                                    ForwardedHeaders.XForwardedProto
             });  
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
