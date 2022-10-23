@@ -7,7 +7,7 @@ import Copyrights from "./Copyrights";
 
 import bg from "../../assets/css/Backgrounds.module.css";
 import typography from "../../assets/css/Typography.module.css";
-import patron from "../../assets/images/becon.png";
+import patron from "../../assets/images/helion.png";
 import patron1 from "../../assets/images/FabLab-logo.png";
 import patron2 from "../../assets/images/radio-bielsko.svg";
 import fbLogo from "../../assets/images/fb-logo.svg";
@@ -46,8 +46,8 @@ function Footer() {
                 <ImageAsLink
                   isExternalLink={true}
                   src={patron}
-                  alt="Becon"
-                  to="https://www.facebook.com/klubbecon/"
+                  alt="Helion"
+                  to="https://helion.pl/"
                 />
               </div>
             </div>
