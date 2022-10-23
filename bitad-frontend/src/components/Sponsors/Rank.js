@@ -15,7 +15,7 @@ function Rank(props) {
 
   return (
     <div>
-      <h4>{props.title}</h4>
+      <h4 className={styles.rank__title}>{props.title}</h4>
       <div className={styles.rank__sponosrs}>{sponsors}</div>
     </div>
   );

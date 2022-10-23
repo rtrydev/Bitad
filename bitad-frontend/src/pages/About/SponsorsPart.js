@@ -19,10 +19,11 @@ function SponsorsPart() {
           <br /> możliwa dzięki Nim!
         </h2>
         <p>
-          Staramy się, aby konferencja była wyjątkowym przeżyciem, aby każdy
-          mógł zgłębić pasjonujące Go tematy z dziedziny informatyki. Ale sami
-          nie dalibyśmy rady... Jesteśmy wdzięczni za Waszą pomoc. Dzięki Wam
-          BITAD 2020++ się odbędzie!
+          Dzięki sponsorom mamy przyjemność 11 raz organizować dla Was
+          konferencję, tym razem tematem przewodnim jest “MaszynoweLove BITAD w
+          chmurach”, która urozmaici Wasz czas oraz pomoże rozwinąć
+          zainteresowania szeroko pojętym działem IT oraz pogłębić wiedzę
+          praktyczną. Jesteśmy wdzięczni za pomoc, dziękujemy! ♥
         </p>
       </div>
     </Columns>

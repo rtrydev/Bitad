@@ -40,22 +40,25 @@ function About() {
         <Section>
           <Columns>
             <div>
-              <h2>Powrót do przeszłości…</h2>
+              <h2>To już 11 edycja eventu…</h2>
               <p>
-                Przez pandemię ominęła nas rok temu nauka i dobra zabawa, więc
-                tym bardziej inkrementacyjna edycja 2020++ konferencji jest
-                wyjątkowa. Powracamy jeszcze bardziej zmotywowani do działania
-                przy organizacji Beskid IT Academic Day na Akademii
-                Techniczno-Humanistycznej w Bielsku-Białej.
+                Już po raz jedenasty podjęliśmy się organizacji konferencji
+                Beskid IT Academic Day na Akademii Techniczno-Humanistycznej w
+                Bielsku-Białej. Nieustannie staramy się rozwijać nasz event.
               </p>
               <p>
-                Zadbaliśmy, aby każdy uczestnik wyniósł z tego dnia ogromne
-                pokłady wiedzy oraz motywacji do dalszego rozwijania się,
-                poprzez liczne warsztaty oraz wykłady.
+                Jak co roku zadbamy o to, aby każdy uczestnik zarówno
+                profesjonalista jak i amator wyniósł z dnia konferencji ogromne
+                pokłady wiedzy i motywacji do dalszego jej zgłębiania oraz miło
+                spędził czas korzystając z bogatych atrakcji, które co roku
+                staramy się poszerzać.
               </p>
               <p>
-                Dbamy również, aby spędzony czas z nami był jak najlepiej
-                spożytkowany.
+                Tegoroczny event - „MaszynoweLove BITAD w chmurach” nawiązywać
+                będzie do tematyki Sieci, Chmur, Cyberbezpieczeństwa oraz
+                Machine Learningu. BITAD to nie tylko event, gdzie można
+                porozmawiać ze specjalistami z całej Polski, ale również spędzić
+                mile czas korzystając z wielu różnych atrakcji.
               </p>
             </div>
             <DecoratedImage
@@ -65,27 +68,25 @@ function About() {
           </Columns>
         </Section>
         <Section className={bg["half-background"]}>
-          <h2 className={typography["text-align--center"]}>
-            Możesz się u nas spodziewać*
-          </h2>
+          <h2 className={typography["text-align--center"]}>Czekają na was*</h2>
           <p className={typography["text-align--right"]}>
-            *Oczywiście również o wiele, wiele więcej.
+            *oraz wiele innych atrakcji
           </p>
           <Columns columns="3.5">
             <SimpleCard
-              title="Powitalnej paczki"
+              title="Starter packi"
               description="Na każdego z Was po potwierdzeniu rejestracji online będzie czekała powitalna paczka w dniu konferencji."
               image={{ src: giftIcon, alt: "Ikona prezentu" }}
               link="/details#gift"
             />
             <SimpleCard
-              title="Warsztatów"
+              title="Warsztaty"
               description="Biorąc udział w warsztatach będziesz mógł w praktyce rozwinąć się w wybranym temacie pod okiem profesjonalistów."
               image={{ src: keyboardIcon, alt: "Ikona klawiatury" }}
               link="/details#workshops"
             />
             <SimpleCard
-              title="Gry QR Code"
+              title="Gra QR Code"
               description={
                 <>
                   Baw się z nami i zdobywaj punkty podczas udziału w prelekcjach
@@ -106,13 +107,13 @@ function About() {
           </Columns>
         </Section>
         <Section className={typography["text-align--center"]}>
-          <h2>Ciągle rozwijamy się dla Ciebie</h2>
+          <h2>Ciągły rozwój to nasz priorytet</h2>
           <p>
-            Dbamy o to, aby to piątkowe spotkanie było przede wszystkim mile
-            spędzonym czasem. Dlatego nie zapominając, że nauka to potęgi klucz,
-            powinniśmy znaleźć również czas na relaks. Stworzyliśmy więc strefę
-            gier komputerowych i planszowych. Każdy znajdzie coś dla siebie,
-            przyjemnie pożytkując czas.
+            Dbamy, aby pobyt na konferencji był dla Was ciekawym wydarzeniem i
+            mile spędzonym czasem, więc oprócz dawki wiedzy w postaci prelekcji
+            i warsztatów oferujemy również rozluźnienie na strefie gier,
+            zjedzenie czegoś smacznego. Ponadto uczestniczenie w grze QR Code
+            doda Wam szczęścia przy losowaniu nagród.
           </p>
           <ImageWithShadow
             src={workshopImage}

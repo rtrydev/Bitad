@@ -30,13 +30,12 @@ function Details() {
           isSmallSection={true}
           id="gift"
         >
-          <h2>Powitalna paczka</h2>
+          <h2>Starter packi</h2>
           <p>
             Dla każdego uczestnika, który dokona rejestracji na Akademii
-            Techniczno-Humanistycznej, czekać będzie pakiet powitalny, dzięki
+            Techniczno-Humanistycznej, czekać będzie pakiet powitalny. Dzięki
             temu będziecie w stanie bardziej zaznajomić się z wydarzeniem,
-            agendą oraz nagrodami. Dodatkowo czekać będą na Was niespodzianki w
-            postaci długopisów, smyczy i wielu, wielu więcej!
+            agendą oraz nagrodami.
           </p>
         </Section>
         <Section
@@ -46,10 +45,10 @@ function Details() {
         >
           <h2>Warsztaty</h2>
           <p>
-            Wiemy, że najlepszy sposób nauki to ciągła praktyka i stawianie
-            czoła nowym wyzwaniom. Dlatego na warsztatach będziecie w stanie
-            pogłębić wiedzę na dany, interesujący Was temat pod okiem
-            profesjonalistów. Będzie ciekawie, będą przekąski… Zapraszamy!
+            Dla osób nie bojących się nowych wyzwań i chcących pogłębić swoje
+            umiejętności poprzez praktykę przygotowane zostały warsztaty o
+            rozmaitej tematyce pod okiem specjalistów. Każdy znajdzie coś dla
+            siebie.
           </p>
           <p>
             Zapraszamy do wzięcia udziału:{" "}
@@ -65,9 +64,9 @@ function Details() {
           <p>
             Skanujcie kody QR na warsztatach oraz prelekcjach. Kolejno możecie
             za nie zdobyć 40 i 20 punktów. Zwiększają one Wasze szanse na
-            zdobycie wyjątkowych nagród, w tym nawet Xboxa One X. Losowanie
-            upominków dla szczęściarzy odbędzie się od 16:15 do 16:45 podczas
-            konferencji w sali 128 (Aula).
+            zdobycie wyjątkowych nagród. Losowanie upominków dla szczęściarzy
+            odbędzie się od 15:15 do 15:30 podczas konferencji w sali 128
+            (Aula).
           </p>
           <p>
             Aplikację do Gry QR na Andrioda można pobrać{" "}
