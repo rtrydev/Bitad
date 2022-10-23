@@ -2,7 +2,7 @@ import Columns from "../../components/UI/Columns";
 
 import styles from "./Registration.module.css";
 import bg from "../../assets/css/Backgrounds.module.css";
-import registartionImage from "../../assets/images/bitad-logo.svg";
+import registartionImage from "../../assets/images/bitad-logo-2022.svg";
 import Section from "../../components/UI/Section";
 import RegistrationFrom from "../../components/RegistrationForm/RegistrationFrom";
 

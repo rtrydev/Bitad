@@ -4,7 +4,7 @@ import bg from "../assets/css/Backgrounds.module.css";
 import styles from "../components/Hero/Hero.module.css";
 import typography from "../assets/css/Typography.module.css";
 import Container from "../components/UI/Container";
-import image from "../assets/images/bitad-logo.svg";
+import image from "../assets/images/bitad-logo-2022.svg";
 import api from "../api/api";
 import Loading from "../components/UI/Loading";
 

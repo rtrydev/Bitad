@@ -5,7 +5,7 @@ import TimelinesPart from "./TimelinesPart";
 import { useGetRequest } from "../../hooks/http-requests";
 
 import typography from "../../assets/css/Typography.module.css";
-import heroImage from "../../assets/images/bitad-logo.svg";
+import heroImage from "../../assets/images/bitad-logo-2022.svg";
 import Loading from "../../components/UI/Loading";
 
 function Agenda() {

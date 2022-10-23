@@ -3,7 +3,7 @@ import Section from "../components/UI/Section";
 import { HashLink } from "react-router-hash-link";
 
 import styles from "./Details.module.css";
-import heroImage from "../assets/images/bitad-logo.svg";
+import heroImage from "../assets/images/bitad-logo-2022.svg";
 
 function Details() {
   return (

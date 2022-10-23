@@ -2,7 +2,7 @@ import bg from "../../assets/css/Backgrounds.module.css";
 import styles from "../Hero/Hero.module.css";
 import typography from "../../assets/css/Typography.module.css";
 import Container from "../UI/Container";
-import image from "../../assets/images/bitad-logo.svg";
+import image from "../../assets/images/bitad-logo-2022.svg";
 import Loading from "../UI/Loading";
 
 function ShortInfo({ title, description, isLoading = false, children }) {

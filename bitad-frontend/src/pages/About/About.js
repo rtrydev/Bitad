@@ -10,7 +10,7 @@ import StaffPart from "./StaffPart";
 
 import bg from "../../assets/css/Backgrounds.module.css";
 import typography from "../../assets/css/Typography.module.css";
-import heroImage from "../../assets/images/bitad-logo.svg";
+import heroImage from "../../assets/images/bitad-logo-2022.svg";
 import decoratedImage from "../../assets/images/lectures.jpg";
 import giftIcon from "../../assets/images/gift.svg";
 import keyboardIcon from "../../assets/images/keyboard.svg";
