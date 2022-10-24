@@ -51,7 +51,7 @@ function Footer() {
                 />
               </div>
             </div>
-            <div className={styles["media-patrons"]}>
+            {/* <div className={styles["media-patrons"]}>
               <h4>Patronat medialny</h4>
               <div className={styles.patrons__wrapper}>
                 <ImageAsLink
@@ -61,7 +61,7 @@ function Footer() {
                   to="https://www.radiobielsko.pl/"
                 />
               </div>
-            </div>
+            </div> */}
           </div>
           <div>
             <h4>Dane kontaktowe</h4>
