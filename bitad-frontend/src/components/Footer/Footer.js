@@ -9,7 +9,8 @@ import bg from "../../assets/css/Backgrounds.module.css";
 import typography from "../../assets/css/Typography.module.css";
 import patron from "../../assets/images/helion.png";
 import patron1 from "../../assets/images/FabLab-logo.png";
-import patron2 from "../../assets/images/radio-bielsko.svg";
+// import patron2 from "../../assets/images/radio-bielsko.svg";
+import patron3 from "../../assets/images/cbsg.png";
 import fbLogo from "../../assets/images/fb-logo.svg";
 import ytLogo from "../../assets/images/yt-logo.svg";
 import twLogo from "../../assets/images/tw-logo.svg";
@@ -48,6 +49,12 @@ function Footer() {
                   src={patron}
                   alt="Helion"
                   to="https://helion.pl/"
+                />
+                <ImageAsLink
+                  isExternalLink={true}
+                  src={patron3}
+                  alt="Cbsg"
+                  to="https://cbsg.pl/"
                 />
               </div>
             </div>
