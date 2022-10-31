@@ -45,7 +45,7 @@ function Agenda() {
       />
       <Section id="agenda">
         <h2 className={typography["text-align--center"]}>Agenda</h2>
-        {process.env.REACT_APP_AGENDA_SOON ? (
+        {!!process.env.REACT_APP_AGENDA_SOON ? (
           <p className={typography["text-align--center"]}>
             Jesteśmy w trakcie planowania prelekcji oraz warsztatów. Prosimy o
             chwilę cierpliwości 😃.
