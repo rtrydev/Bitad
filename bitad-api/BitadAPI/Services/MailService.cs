@@ -48,7 +48,7 @@ namespace BitadAPI.Services
                 Receiver = receiver,
                 Code = activationCode,
                 ReceiverAddress = address,
-                Subject = "Aktywacja konta Bitad2021",
+                Subject = "Aktywacja konta Bitad2022",
                 TaskType = "account-activation",
                 TemplateFileName = "index.html"
             };
@@ -64,7 +64,7 @@ namespace BitadAPI.Services
                 Receiver = receiver,
                 Code = confirmCode,
                 ReceiverAddress = address,
-                Subject = "Potwierdzenie obecności na Bitad2021",
+                Subject = "Potwierdzenie obecności na Bitad2022",
                 TaskType = "account-confirm",
                 TemplateFileName = "index_confirm.html"
             };
@@ -94,7 +94,7 @@ namespace BitadAPI.Services
                 Receiver = receiver,
                 Code = resetCode,
                 ReceiverAddress = address,
-                Subject = "Resetowanie hasła konta Bitad2021",
+                Subject = "Resetowanie hasła konta Bitad2022",
                 TaskType = "password-reset",
                 TemplateFileName = "index_password.html"
             };
@@ -119,7 +119,7 @@ namespace BitadAPI.Services
         {
             var message = new MimeMessage();
 
-            message.From.Add(new MailboxAddress("Bitad2021", _emailAddress));
+            message.From.Add(new MailboxAddress("Bitad2022", _emailAddress));
             message.To.Add(new MailboxAddress(info.Receiver, info.ReceiverAddress));
             message.Subject = info.Subject;
             string FullFormatPath = "/app/bitad-email-template";
@@ -147,7 +147,7 @@ namespace BitadAPI.Services
         {
             var message = new MimeMessage();
 
-            message.From.Add(new MailboxAddress("Bitad2021", _emailAddress));
+            message.From.Add(new MailboxAddress("Bitad2022", _emailAddress));
             message.To.Add(new MailboxAddress(info.Receiver, info.ReceiverAddress));
             message.Subject = info.Subject;
             string FullFormatPath = "/app/bitad-email-template";
