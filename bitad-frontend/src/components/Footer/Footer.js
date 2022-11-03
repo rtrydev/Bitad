@@ -11,6 +11,7 @@ import patron from "../../assets/images/helion.png";
 import patron1 from "../../assets/images/FabLab-logo.png";
 import patron2 from "../../assets/images/blackfrog.png";
 import patron3 from "../../assets/images/cbsg.png";
+import patron4 from "../../assets/images/k.png";
 import fbLogo from "../../assets/images/fb-logo.svg";
 import ytLogo from "../../assets/images/yt-logo.svg";
 import twLogo from "../../assets/images/tw-logo.svg";
@@ -61,6 +62,12 @@ function Footer() {
                   src={patron2}
                   alt="Blackfrog"
                   to="https://blackfrog.pl/"
+                />{" "}
+                <ImageAsLink
+                  isExternalLink={true}
+                  src={patron4}
+                  alt="Klub fantastyki kregulec"
+                  to="https://kregulec.pl/"
                 />
               </div>
             </div>
