@@ -2,6 +2,7 @@
   display: inline-block;
   margin-bottom: var(--margin-xxl);
   max-height: var(--hero-image-max-height);
+  width: 100%;
 }
 
 .hero .small-hero__image {
