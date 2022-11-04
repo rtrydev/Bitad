@@ -143,7 +143,11 @@ function RegistrationFrom() {
           register={register}
           text={
             <>
-              Zapoznałem/am się z <Link to="/Regulamin.pdf">Regulaminem</Link>.*
+              Zapoznałem/am się z{" "}
+              <Link target={"_blank"} to="/Regulamin.pdf">
+                Regulaminem
+              </Link>
+              .*
             </>
           }
           errors={errors}
