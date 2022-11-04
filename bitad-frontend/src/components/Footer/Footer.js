@@ -94,7 +94,7 @@ function Footer() {
           </div>
           {process.env.REACT_APP_ENABLE_REGISTRATION === "enabled" && (
             <div>
-              <h4>Dołacz do nas</h4>
+              <h4>Dołącz do nas</h4>
               <p>
                 Zarejestruj się i zostań uczestnikiem konferencji Beskid IT
                 Academic Day już teraz. Nie zwlekaj, miejsca są ograniczone.
