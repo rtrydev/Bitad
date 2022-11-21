@@ -65,7 +65,7 @@ function Details() {
             Skanujcie kody QR na warsztatach oraz prelekcjach. Kolejno możecie
             za nie zdobyć 40 i 20 punktów. Zwiększają one Wasze szanse na
             zdobycie wyjątkowych nagród. Losowanie upominków dla szczęściarzy
-            odbędzie się od 15:15 do 15:30 podczas konferencji w sali 128
+            odbędzie się od 16:30 do 17:00 podczas konferencji w sali 128
             (Aula).
           </p>
           <p>
